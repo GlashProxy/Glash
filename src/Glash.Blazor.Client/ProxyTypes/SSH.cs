@@ -58,16 +58,16 @@ namespace Glash.Blazor.Client.ProxyTypes
                     {
 #pragma warning disable CA1416 // 验证平台兼容性
                         //从注册表中读取NSIS的安装目录
-                        var winScpKey = Registry.LocalMachine.OpenSubKey(@"SOFTWARE\WOW6432Node\Microsoft\Windows\CurrentVersion\Uninstall\winscp3_is1", false);
-                        if (winScpKey == null)
+                        var regKey = Registry.LocalMachine.OpenSubKey(@"SOFTWARE\WOW6432Node\Microsoft\Windows\CurrentVersion\Uninstall\winscp3_is1", false);
+                        if (regKey == null)
                         {
                             Console.WriteLine("未检测到WinSCP，请安装WinSCP！");
                             return;
                         }
-                        var winScpDir = winScpKey.GetValue("InstallLocation").ToString();
-                        var winScpExeFile = Path.Combine(winScpDir, "WinSCP.exe");
-#pragma warning restore CA1416 // 验证平台兼容性      
-                        var process = Process.Start(winScpExeFile, $"/ini=nul sftp://{GetLocalIPAddress(t.Config.LocalIPAddress)}:{t.LocalPort}/ -username={User} -password={Password}");
+                        var installLocation = regKey.GetValue("InstallLocation").ToString();
+                        var exeFile = Path.Combine(installLocation, "WinSCP.exe");
+#pragma warning restore CA1416 // 验证平台兼容性
+                        var process = Process.Start(exeFile, $"/ini=nul sftp://{GetLocalIPAddress(t.Config.LocalIPAddress)}:{t.LocalPort}/ -username={User} -password={Password}");
                         WaitForProcessMainWindow(process);
                     })
             };

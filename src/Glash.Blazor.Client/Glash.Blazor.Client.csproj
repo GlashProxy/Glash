@@ -12,6 +12,12 @@
 		<RepositoryUrl>https://github.com/aaasoft/Glash</RepositoryUrl>
 		<PackageTags>Glash;Proxy</PackageTags>
 	</PropertyGroup>
+	<ItemGroup>
+	  <Compile Remove="runtimes\**" />
+	  <Content Remove="runtimes\**" />
+	  <EmbeddedResource Remove="runtimes\**" />
+	  <None Remove="runtimes\**" />
+	</ItemGroup>
 	
 	<ItemGroup>
 		<None Include="..\..\logo.png">
@@ -102,136 +108,6 @@
 	  <Content Update="_Imports.razor">
 	    <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
 	  </Content>
-	</ItemGroup>
-
-	<ItemGroup>
-	  <None Update="runtimes\win-x64\native\HeidiSQL\fbclient-4.0.dll">
-	    <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-	  </None>
-	  <None Update="runtimes\win-x64\native\HeidiSQL\functions-interbase.ini">
-	    <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-	  </None>
-	  <None Update="runtimes\win-x64\native\HeidiSQL\functions-mariadb.ini">
-	    <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-	  </None>
-	  <None Update="runtimes\win-x64\native\HeidiSQL\functions-mssql.ini">
-	    <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-	  </None>
-	  <None Update="runtimes\win-x64\native\HeidiSQL\functions-mysql.ini">
-	    <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-	  </None>
-	  <None Update="runtimes\win-x64\native\HeidiSQL\functions-postgresql.ini">
-	    <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-	  </None>
-	  <None Update="runtimes\win-x64\native\HeidiSQL\functions-redshift.ini">
-	    <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-	  </None>
-	  <None Update="runtimes\win-x64\native\HeidiSQL\functions-sqlite.ini">
-	    <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-	  </None>
-	  <None Update="runtimes\win-x64\native\HeidiSQL\gpl.txt">
-	    <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-	  </None>
-	  <None Update="runtimes\win-x64\native\HeidiSQL\heidisql.exe">
-	    <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-	  </None>
-	  <None Update="runtimes\win-x64\native\HeidiSQL\ibclient64-14.1.dll">
-	    <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-	  </None>
-	  <None Update="runtimes\win-x64\native\HeidiSQL\libcrypto-1_1-x64.dll">
-	    <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-	  </None>
-	  <None Update="runtimes\win-x64\native\HeidiSQL\libiconv-2.dll">
-	    <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-	  </None>
-	  <None Update="runtimes\win-x64\native\HeidiSQL\libintl-8.dll">
-	    <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-	  </None>
-	  <None Update="runtimes\win-x64\native\HeidiSQL\libmariadb.dll">
-	    <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-	  </None>
-	  <None Update="runtimes\win-x64\native\HeidiSQL\libmysql-6.1.dll">
-	    <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-	  </None>
-	  <None Update="runtimes\win-x64\native\HeidiSQL\libmysql.dll">
-	    <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-	  </None>
-	  <None Update="runtimes\win-x64\native\HeidiSQL\libpq-10.dll">
-	    <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-	  </None>
-	  <None Update="runtimes\win-x64\native\HeidiSQL\libpq-12.dll">
-	    <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-	  </None>
-	  <None Update="runtimes\win-x64\native\HeidiSQL\libpq-15.dll">
-	    <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-	  </None>
-	  <None Update="runtimes\win-x64\native\HeidiSQL\libssl-1_1-x64.dll">
-	    <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-	  </None>
-	  <None Update="runtimes\win-x64\native\HeidiSQL\LICENSE-openssl">
-	    <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-	  </None>
-	  <None Update="runtimes\win-x64\native\HeidiSQL\license.txt">
-	    <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-	  </None>
-	  <None Update="runtimes\win-x64\native\HeidiSQL\plink.exe">
-	    <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-	  </None>
-	  <None Update="runtimes\win-x64\native\HeidiSQL\plugins\authentication_windows_client.dll">
-	    <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-	  </None>
-	  <None Update="runtimes\win-x64\native\HeidiSQL\plugins\auth_ed25519.dll">
-	    <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-	  </None>
-	  <None Update="runtimes\win-x64\native\HeidiSQL\plugins\auth_gssapi.dll">
-	    <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-	  </None>
-	  <None Update="runtimes\win-x64\native\HeidiSQL\plugins\auth_gssapi_client.dll">
-	    <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-	  </None>
-	  <None Update="runtimes\win-x64\native\HeidiSQL\plugins\auth_named_pipe.dll">
-	    <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-	  </None>
-	  <None Update="runtimes\win-x64\native\HeidiSQL\plugins\caching_sha2_password.dll">
-	    <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-	  </None>
-	  <None Update="runtimes\win-x64\native\HeidiSQL\plugins\client_ed25519.dll">
-	    <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-	  </None>
-	  <None Update="runtimes\win-x64\native\HeidiSQL\plugins\dialog.dll">
-	    <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-	  </None>
-	  <None Update="runtimes\win-x64\native\HeidiSQL\plugins\mysql_clear_password.dll">
-	    <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-	  </None>
-	  <None Update="runtimes\win-x64\native\HeidiSQL\plugins\pvio_npipe.dll">
-	    <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-	  </None>
-	  <None Update="runtimes\win-x64\native\HeidiSQL\plugins\pvio_shmem.dll">
-	    <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-	  </None>
-	  <None Update="runtimes\win-x64\native\HeidiSQL\plugins\sha256_password.dll">
-	    <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-	  </None>
-	  <None Update="runtimes\win-x64\native\HeidiSQL\portable.lock">
-	    <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-	  </None>
-	  <None Update="runtimes\win-x64\native\HeidiSQL\sqlite3.dll">
-	    <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-	  </None>
-	  <None Update="runtimes\win-x64\native\PuTTY\plink.exe">
-	    <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-	  </None>
-	  <None Update="runtimes\win-x64\native\PuTTY\putty.exe">
-	    <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-	  </None>
-	  <None Update="runtimes\win-x64\native\WinSCP\WinSCP.exe">
-	    <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-	  </None>
-	</ItemGroup>
-
-	<ItemGroup>
-	  <Folder Include="runtimes\win-x64\native\HeidiSQL\" />
 	</ItemGroup>
 
 </Project>

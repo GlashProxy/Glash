@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.Win32;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Diagnostics;
@@ -72,7 +73,6 @@ Firebird:
         public string Password { get; set; }
 
         public override string Icon => "fa fa-database";
-        private const string NATIVE_FOLDER = "runtimes/win-x64/native";
 
         [SupportedOSPlatform("windows")]
         public override ProxyTypeButton[] GetButtons()
@@ -84,7 +84,19 @@ Firebird:
                     "fa fa-database",
                      t=>
                      {
-                         var process = Process.Start($"{NATIVE_FOLDER}/HeidiSQL/heidisql",$"--nettype={NetType} --library={Library} --host={GetLocalIPAddress(t.Config.LocalIPAddress)} --port={t.LocalPort} --user={User} --password={Password}");
+                         #pragma warning disable CA1416 // 验证平台兼容性
+                        //从注册表中读取NSIS的安装目录
+                        var regKey = Registry.LocalMachine.OpenSubKey(@"SOFTWARE\Microsoft\Windows\CurrentVersion\Uninstall\HeidiSQL_is1", false);
+                        if (regKey == null)
+                        {
+                            Console.WriteLine("未检测到HeidiSQL，请安装HeidiSQL！");
+                            return;
+                        }
+                        var installLocation = regKey.GetValue("InstallLocation").ToString();
+                        var exeFile = Path.Combine(installLocation, "heidisql.exe");
+#pragma warning restore CA1416 // 验证平台兼容性
+
+                         var process = Process.Start(exeFile,$"--nettype={NetType} --library={Library} --host={GetLocalIPAddress(t.Config.LocalIPAddress)} --port={t.LocalPort} --user={User} --password={Password}");
                          WaitForProcessMainWindow(process);
                      }
                 )
