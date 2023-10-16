@@ -1,4 +1,4 @@
-﻿namespace GlashServer.Core;
+﻿namespace GlashAgent.Core;
 
 public class LoginPasswordManager
 {
@@ -9,7 +9,7 @@ public class LoginPasswordManager
 
     public void Init()
     {
-        LoginPassword = Glash.Blazor.Server.Model.Config.GetConfig(nameof(LoginPassword));
+        LoginPassword = Glash.Blazor.Agent.Model.Config.GetConfig(nameof(LoginPassword));
         if (string.IsNullOrEmpty(LoginPassword))
         {
             Console.WriteLine($"初始化登录密码：{DEFAULT_LOGIN_PASSWORD}");
@@ -19,7 +19,7 @@ public class LoginPasswordManager
 
     public void SetLoginPassword(string password)
     {
-        Glash.Blazor.Server.Model.Config.SetConfig(nameof(LoginPassword), password);
+        Glash.Blazor.Agent.Model.Config.SetConfig(nameof(LoginPassword), password);
         LoginPassword = password;
     }
 }

@@ -16,6 +16,7 @@ ConfigDbContext.Init(new SQLiteDbContextConfigHandler(dbFile), modelBuilder =>
 using (var dbContext = new ConfigDbContext())
     dbContext.DatabaseEnsureCreatedAndUpdated(t => Debug.Print(t));
 ConfigDbContext.CacheContext.LoadCache();
+GlashAgent.Core.LoginPasswordManager.Instance.Init();
 GlashAgentManager.Instance.Init();
 
 var builder = WebApplication.CreateBuilder(args);
