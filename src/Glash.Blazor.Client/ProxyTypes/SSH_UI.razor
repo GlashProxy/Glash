@@ -1,0 +1,20 @@
+﻿@inherits AbstractProxyTypeUI<SSH>
+<div class="form-group">
+    <label>@Global.Instance.TextManager.GetText(SSH.Texts.User)</label>
+    <InputText class="form-control" @bind-Value="@Model.User" />
+    <ValidationMessage For="@(() => Model.User)" />
+</div>
+<div class="form-group">
+    <label>@Global.Instance.TextManager.GetText(SSH.Texts.Password)</label>
+    <InputText type="password" class="form-control" @bind-Value="@Model.Password" />
+    <ValidationMessage For="@(() => Model.Password)" />
+</div>
+<div class="form-group">
+    <label>@Global.Instance.TextManager.GetText(SSH.Texts.Terminal)</label>
+    <InputSelect class="form-control" @bind-Value="@Model.Terminal">
+        <option value="">@Global.Instance.TextManager.GetText(ClientTexts.PleaseSelect)</option>
+        <option value="putty">putty</option>
+        <option value="plink">plink</option>
+    </InputSelect>
+    <ValidationMessage For="@(() => Model.Terminal)" />
+</div>

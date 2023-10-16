@@ -1,0 +1,10 @@
+﻿Id=编号
+Agent=代理
+Client=客户端
+Target=目标
+ConnectTime=连接时间
+TotalBytes=累计(上传/下载)
+CurrentSpeed=速度(上传/下载)
+Operate=操作
+CloseTunnel=关闭
+CloseTunnelConfirm=确认要关闭通道[{0}]?

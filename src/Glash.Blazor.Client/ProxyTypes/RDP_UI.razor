@@ -1,0 +1,11 @@
+﻿@inherits AbstractProxyTypeUI<RDP>
+<div class="form-group">
+    <label>@Global.Instance.TextManager.GetText(RDP.Texts.User)</label>
+    <InputText class="form-control" @bind-Value="@Model.User" />
+    <ValidationMessage For="@(() => Model.User)" />
+</div>
+<div class="form-group">
+    <label>@Global.Instance.TextManager.GetText(RDP.Texts.Password)</label>
+    <InputText type="password" class="form-control" @bind-Value="@Model.Password" />
+    <ValidationMessage For="@(() => Model.Password)" />
+</div>

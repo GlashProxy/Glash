@@ -1,0 +1,21 @@
+﻿@inject NavigationManager NavigationManager
+
+<div class="row">
+    <div class="col-12">
+        <EditForm Model="this" OnValidSubmit="Ok">
+            <DataAnnotationsValidator />
+            <div class="form-group">
+                <label>@Global.Instance.TextManager.GetText(Texts.ConnectionPassword)</label>
+                <input type="text" class="form-control" @bind-value="ConnectionPassword" />
+                <ValidationMessage For="@(() => ConnectionPassword)" />
+            </div>
+            <div class="form-group">
+                <label>@Global.Instance.TextManager.GetText(Texts.ApiAddress)</label>
+                <input type="text" readonly class="form-control" value="@getGlashServerUrl()" />
+            </div>
+            <button type="submit" class="btn btn-primary col-sm-5 col-md-4 col-lg-2">@Global.Instance.TextManager.GetText(ServerTexts.Ok)</button>
+        </EditForm>
+    </div>
+</div>
+
+<ModalAlert @ref="modalAlert"></ModalAlert>

@@ -1,0 +1,43 @@
+﻿@using Quick.EntityFrameworkCore.Plus;
+
+<table class="table">
+    <thead>
+        <tr>
+            <th scope="col">@Global.Instance.TextManager.GetText(Model.ClientInfo.Texts.Name)</th>
+            <th scope="col">@Global.Instance.TextManager.GetText(Model.AgentInfo.Texts.ChannelName)</th>
+            <th scope="col">@Global.Instance.TextManager.GetText(Model.AgentInfo.Texts.ConnectTime)</th>
+            <th scope="col">
+                @Global.Instance.TextManager.GetText(Texts.Operate)
+                <div class="btn-group btn-group-sm" role="group">
+                    <button type="button" title="@Global.Instance.TextManager.GetText(Texts.Add)" class="btn btn-secondary pt-0 pb-0" @onclick="Add">
+                        <i class="fa fa-plus"></i>
+                    </button>
+                </div>    
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in ConfigDbContext.CacheContext.Query<Model.ClientInfo>())
+        {
+            <tr>
+                <td>@item.Name</td>
+                <td>@item.Context?.Channel.ChannelName</td>
+                <td>@item.Context?.CreateTime</td>
+                <td>
+                    <div class="btn-toolbar">
+                        <div class="btn-group">
+                            <button type="button" class="btn btn-sm btn-primary" @onclick="@(()=>Edit(item))">
+                                @Global.Instance.TextManager.GetText(Texts.Edit)
+                            </button>
+                            <button type="button" class="btn btn-sm btn-danger" @onclick="@(()=>Delete(item))">
+                                @Global.Instance.TextManager.GetText(Texts.Delete)
+                            </button>
+                        </div>
+                    </div>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+<ModalWindow @ref="modalWindow" />
+<ModalAlert @ref="modalAlert" />

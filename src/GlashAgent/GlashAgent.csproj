@@ -1,0 +1,23 @@
+﻿<Project Sdk="Microsoft.NET.Sdk.Web">
+
+	<PropertyGroup>
+		<TargetFramework>net6.0</TargetFramework>
+		<ImplicitUsings>enable</ImplicitUsings>
+		<RollForward>Major</RollForward>
+		<AppendTargetFrameworkToOutputPath>false</AppendTargetFrameworkToOutputPath>
+	</PropertyGroup>
+
+	<ItemGroup>
+	  <None Remove="Language\en-US\GlashAgent\Pages\Index+Texts.lang" />
+	  <None Remove="Language\zh-CN\GlashAgent\Pages\Index+Texts.lang" />
+	</ItemGroup>
+
+	<ItemGroup>
+	  <EmbeddedResource Include="Language\en-US\GlashAgent\Pages\Index+Texts.lang" />
+	  <EmbeddedResource Include="Language\zh-CN\GlashAgent\Pages\Index+Texts.lang" />
+	</ItemGroup>
+
+	<ItemGroup>
+		<ProjectReference Include="..\Glash.Blazor.Agent\Glash.Blazor.Agent.csproj" />
+	</ItemGroup>
+</Project>

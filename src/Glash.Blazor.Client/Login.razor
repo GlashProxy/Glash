@@ -1,0 +1,57 @@
+﻿<EditForm class="p-0 m-0" Model="@Global.Instance">
+    <Modal Visiable DialogBackdropVisiable DialogCentered>
+        <HeaderContent>
+            <h5 class="modal-title">
+                @Global.Instance.TextManager.GetText(Texts.Title)
+                <span class="badge badge-secondary">@Global.Instance.Version</span>
+            </h5>
+            <div class="form-group p-0 m-0">
+                <div class="input-group input-group-sm">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text"> <i class="fa fa-globe"></i> </span>
+                    </div>
+                    <InputSelect @bind-Value="@Global.Instance.Language" class="form-control">
+                        @foreach (var t in Global.Instance.GetLanuages())
+                        {
+                            <option value="@t.IetfLanguageTag">@t.DisplayName</option>
+                        }
+                    </InputSelect>
+                </div>
+            </div>
+        </HeaderContent>
+        <BodyContent>
+            <div>
+                <div class="form-group">
+                    <div class="input-group">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text"> <i class="fa fa-address-book"></i> </span>
+                        </div>
+                        <InputSelect @bind-Value="@CurrentProfileId" class="form-control">
+                            <option selected value="">@Global.Instance.TextManager.GetText(Texts.ChooseProfile)</option>
+                            @foreach (var t in Quick.EntityFrameworkCore.Plus.ConfigDbContext.CacheContext.Query<Model.Profile>())
+                            {
+                                <option value="@t.Id">@t.Name</option>
+                            }
+                        </InputSelect>
+                        <div class="input-group-append">
+                            <button class="btn btn-secondary" type="button" @onclick="ShowProfileManageWindow">...</button>
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group">
+                    @if(Global.Instance.Profile==null)
+                    {
+                        <input type="button" class="btn btn-success btn-block" value="@Global.Instance.TextManager.GetText(Texts.Login)" disabled />
+                    }
+                    else
+                    {
+                        <input type="button" class="btn btn-success btn-block" value="@Global.Instance.TextManager.GetText(Texts.Login)" @onclick="OnPost" />
+                    }
+                </div>
+            </div>
+            <ModalAlert @ref="modalAlert"></ModalAlert>
+            <ModalWindow @ref="modalWindow" DialogSizeExtraLarge></ModalWindow>
+            <ModalLoading @ref="modalLoading"></ModalLoading>
+        </BodyContent>
+    </Modal>
+</EditForm>

@@ -1,0 +1,28 @@
+﻿<div class="row">
+    <div class="col-12">
+        <EditForm Model="@Model" OnValidSubmit="Ok">
+            <DataAnnotationsValidator />
+            <div class="form-group">
+                <label>@Global.Instance.TextManager.GetText(Blazor.Client.Model.Profile.Texts.Name)</label>
+                <InputText class="form-control" @bind-Value="Model.Name" />
+                <ValidationMessage For="@(() => Model.Name)" />
+            </div>
+            <div class="form-group">
+                <label>@Global.Instance.TextManager.GetText(Blazor.Client.Model.Profile.Texts.ServerUrl)</label>
+                <InputText class="form-control" @bind-Value="Model.ServerUrl" />
+                <ValidationMessage For="@(() => Model.ServerUrl)" />
+            </div>
+            <div class="form-group">
+                <label>@Global.Instance.TextManager.GetText(Blazor.Client.Model.Profile.Texts.ClientName)</label>
+                <InputText class="form-control" @bind-Value="Model.ClientName" />
+                <ValidationMessage For="@(() => Model.ClientName)" />
+            </div>
+            <div class="form-group">
+                <label>@Global.Instance.TextManager.GetText(Blazor.Client.Model.Profile.Texts.ClientPassword)</label>
+                <InputText type="password" class="form-control" @bind-Value="Model.ClientPassword" />
+                <ValidationMessage For="@(() => Model.ClientPassword)" />
+            </div>
+            <button type="submit" class="btn btn-primary col-sm-5 col-md-4 col-lg-2">@Global.Instance.TextManager.GetText(ClientTexts.Ok)</button>
+        </EditForm>
+    </div>
+</div>

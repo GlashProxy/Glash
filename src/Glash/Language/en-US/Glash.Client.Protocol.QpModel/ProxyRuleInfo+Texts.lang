@@ -1,0 +1,14 @@
+﻿ModelName=Proxy Rule
+TabBasic=Basic
+TabProxyType=Proxy Type
+SelectOptionNone=None
+Name=Name
+Agent=Agent
+Local=Local
+LocalIPAddress=Local IPAddress
+LocalPort=Local Port
+Remote=Remote
+RemoteHost=Remote Host
+RemotePort=Remote Port
+ProxyType=Proxy Type
+ProxyTypeConfig=Proxy Type Config

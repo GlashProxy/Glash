@@ -1,0 +1,38 @@
+﻿<div class="row">
+    <div class="col-12">
+        <EditForm Model="@Model" OnValidSubmit="Ok">
+            <DataAnnotationsValidator />
+            <div class="form-group">
+                <label>@Global.Instance.TextManager.GetText(Server.Model.ClientInfo.Texts.Name)</label>
+                @if (IsAdd)
+                {
+                    <InputText class="form-control" @bind-Value="Model.Name" />
+                }
+                else
+                {
+                    <InputText class="form-control" @bind-Value="Model.Name" readonly />
+                }
+                <ValidationMessage For="@(() => Model.Name)" />
+            </div>
+            <div class="form-group">
+                <label>@Global.Instance.TextManager.GetText(Server.Model.ClientInfo.Texts.Password)</label>
+                <InputText class="form-control" @bind-Value="Model.Password" />
+                <ValidationMessage For="@(() => Model.Password)" />
+            </div>
+            <div class="form-group">
+                <label>@Global.Instance.TextManager.GetText(Server.Model.AgentInfo.Texts.ModelName)</label>
+                @if (selectAgents != null)
+                {
+                    <p>
+
+                        @foreach (var tag in selectAgents)
+                        {
+                            <button type="button" class="btn btn-sm m-1 @(tag.Checked ? "btn-info" : "btn-light")" @onclick="@(e => checkAgent(tag))">@tag.Name</button>
+                        }
+                    </p>
+                }
+            </div>
+            <button type="submit" class="btn btn-primary col-sm-5 col-md-4 col-lg-2">@Global.Instance.TextManager.GetText(ServerTexts.Ok)</button>
+        </EditForm>
+    </div>
+</div>

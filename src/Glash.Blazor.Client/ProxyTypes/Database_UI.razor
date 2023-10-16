@@ -1,0 +1,52 @@
+﻿@inherits AbstractProxyTypeUI<Database>
+<div class="form-group">
+    <label>@Global.Instance.TextManager.GetText(Database.Texts.NetType)</label>
+    <InputSelect class="form-control" @bind-Value="@Model.NetType">
+        <option value="">@Global.Instance.TextManager.GetText(ClientTexts.PleaseSelect)</option>
+        <option value="0">MariaDB/MySQL</option>
+        <option value="4">Microsoft SQL Server</option>
+        <option value="8">PostgreSQL</option>
+        <option value="12">Interbase</option>
+        <option value="14">Firebird</option>
+    </InputSelect>
+    <ValidationMessage For="@(() => Model.NetType)" />
+</div>
+<div class="form-group">
+    <label>@Global.Instance.TextManager.GetText(Database.Texts.Library)</label>
+    <InputSelect class="form-control" @bind-Value="@Model.Library">
+        <option value="">@Global.Instance.TextManager.GetText(ClientTexts.PleaseSelect)</option>
+        @switch(Model.NetType)
+        {
+            case "0":
+                <option value="libmariadb.dll">libmariadb.dll</option>
+                <option value="libmysql.dll">libmysql.dll</option>
+                <option value="libmysql-6.1.dll">libmysql-6.1.dll</option>
+                break;
+            case "4":
+                <option value="SQLOLEDB">SQLOLEDB</option>
+                break;
+            case "8":
+                <option value="libpq.dll">libpq.dll</option>
+                <option value="libpq-12.dll">libpq-12.dll</option>
+                break;
+            case "12":
+                <option value="ibclient64-14.1.dll">ibclient64-14.1.dll</option>
+                <option value="gds32-14.1.dll">gds32-14.1.dll</option>
+                break;
+            case "14":
+                <option value="fbclient-4.0.dll">fbclient-4.0.dll</option>
+                break;
+        }
+    </InputSelect>
+    <ValidationMessage For="@(() => Model.Library)" />
+</div>
+<div class="form-group">
+    <label>@Global.Instance.TextManager.GetText(Database.Texts.User)</label>
+    <InputText class="form-control" @bind-Value="@Model.User" />
+    <ValidationMessage For="@(() => Model.User)" />
+</div>
+<div class="form-group">
+    <label>@Global.Instance.TextManager.GetText(Database.Texts.Password)</label>
+    <InputText type="password" class="form-control" @bind-Value="@Model.Password" />
+    <ValidationMessage For="@(() => Model.Password)" />
+</div>

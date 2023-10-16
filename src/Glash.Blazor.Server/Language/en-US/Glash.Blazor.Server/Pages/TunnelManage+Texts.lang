@@ -1,0 +1,10 @@
+﻿Id=Id
+Agent=Agent
+Client=Client
+Target=Target
+ConnectTime=Connect Time
+TotalBytes=Total(Up/Down)
+CurrentSpeed=Speed(Up/Down)
+Operate=Operate
+CloseTunnel=Close
+CloseTunnelConfirm=Are you sure to close Tunnel[{0}]?

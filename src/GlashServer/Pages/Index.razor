@@ -1,0 +1,41 @@
+﻿@page "/"
+@using Glash.Blazor.Server.Pages;
+
+<div class="sidebar">
+    <NavMenu ActiveKey="Home">
+        <Title>
+            @Global.Instance.TextManager.GetText(Texts.Title)
+        </Title>
+        <ChildContent>
+            <NavMenuItem Key="Basic" OnClick="@(() => Show<Basic>())">
+                <Tab>
+                    <i class="fa fa-tachometer" aria-hidden="true"></i>
+                    @Global.Instance.TextManager.GetText(Texts.Basic)
+                </Tab>
+            </NavMenuItem>
+            <NavMenuItem Key="AgentManage" OnClick="@(() => Show<AgentManage>())">
+                <Tab>
+                    <i class="fa fa-black-tie" aria-hidden="true"></i>
+                    @Global.Instance.TextManager.GetText(Texts.AgentManage)
+                </Tab>
+            </NavMenuItem>
+            <NavMenuItem Key="ClientManage" OnClick="@(() => Show<ClientManage>())">
+                <Tab>
+                    <i class="fa fa-desktop" aria-hidden="true"></i>
+                    @Global.Instance.TextManager.GetText(Texts.ClientManage)
+                </Tab>
+            </NavMenuItem>
+            <NavMenuItem Key="TunnelManage" OnClick="@(() => Show<TunnelManage>())">
+                <Tab>
+                    <i class="fa fa-plug" aria-hidden="true"></i>
+                    @Global.Instance.TextManager.GetText(Texts.TunnelManage)
+                </Tab>
+            </NavMenuItem>
+        </ChildContent>
+    </NavMenu>
+</div>
+<div class="main">
+    <div class="content px-4">
+        @Body
+    </div>
+</div>

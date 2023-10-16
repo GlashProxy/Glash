@@ -1,0 +1,54 @@
+﻿@using Quick.EntityFrameworkCore.Plus;
+
+<table class="table">
+    <thead>
+        <tr>
+            <th scope="col">@Global.Instance.TextManager.GetText(Texts.Id)</th>
+            <th scope="col">@Global.Instance.TextManager.GetText(Texts.Agent)</th>
+            <th scope="col">@Global.Instance.TextManager.GetText(Texts.Client)/@Global.Instance.TextManager.GetText(Texts.Target)</th>
+            <th scope="col">@Global.Instance.TextManager.GetText(Texts.ConnectTime)</th>
+            <th scope="col">@Global.Instance.TextManager.GetText(Texts.TotalBytes)</th>
+            <th scope="col">@Global.Instance.TextManager.GetText(Texts.CurrentSpeed)</th>
+            <th scope="col">@Global.Instance.TextManager.GetText(Texts.Operate)</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var t in GetTunnels())
+        {
+            @if (t != null && t.TunnelInfo != null)
+            {
+                <tr>
+                    <th scope="row">@t.TunnelInfo.Id</th>
+                    <td>@t.Agent.Name</td>
+                    <td>
+                        <span>@t.Client.Name</span>
+                        <span>&nbsp;/&nbsp;</span>
+                        <span>@($"{t.TunnelInfo.Host}:{t.TunnelInfo.Port}")</span>
+                    </td>
+                    <td>@t.CreateTime.ToString("yyyy-MM-dd HH:mm:ss")</td>
+                    <td>
+                        <span>@(storageUSC.GetString(t.UploadBytes, 0, true))B</span>
+                        <span>&nbsp;/&nbsp;</span>
+                        <span>@(storageUSC.GetString(t.DownloadBytes, 0, true))B</span>
+                    </td>
+                    <td>
+                        <span>@(storageUSC.GetString(t.UploadBytesPerSecond, 0, true))B/s</span>
+                        <span>&nbsp;/&nbsp;</span>
+                        <span>@(storageUSC.GetString(t.DownloadBytesPerSecond, 0, true))B/s</span>
+                    </td>
+                    <td>
+                        <div class="btn-toolbar">
+                            <div class="btn-group">
+                                <button type="button" class="btn btn-sm btn-danger" @onclick="@(()=>CloseTunnel(t))">
+                                    @Global.Instance.TextManager.GetText(Texts.CloseTunnel)
+                                </button>
+                            </div>
+                        </div>
+                    </td>
+                </tr>
+            }
+        }
+    </tbody>
+</table>
+
+<ModalAlert @ref="modalAlert" />

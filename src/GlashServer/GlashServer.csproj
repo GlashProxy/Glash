@@ -1,0 +1,30 @@
+﻿<Project Sdk="Microsoft.NET.Sdk.Web">
+
+	<PropertyGroup>
+		<TargetFramework>net6.0</TargetFramework>
+		<ImplicitUsings>enable</ImplicitUsings>
+		<RollForward>Major</RollForward>
+		<AppendTargetFrameworkToOutputPath>false</AppendTargetFrameworkToOutputPath>
+	</PropertyGroup>
+
+	<ItemGroup>
+	  <None Remove="Language\en-US\GlashServer\Pages\Index+Texts.lang" />
+	  <None Remove="Language\zh-CN\GlashServer\Pages\Index+Texts.lang" />
+	</ItemGroup>
+
+	<ItemGroup>
+		<EmbeddedResource Include="Language\en-US\GlashServer\Pages\Index+Texts.lang" />
+		<EmbeddedResource Include="Language\zh-CN\GlashServer\Pages\Index+Texts.lang" />
+	</ItemGroup>
+
+	<ItemGroup>
+		<PackageReference Include="Quick.Protocol.WebSocket.Server.AspNetCore" Version="2.2.9" />
+		<PackageReference Include="Quick.Blazor.Bootstrap.Admin" Version="4.0.10" />
+		<PackageReference Include="Quick.EntityFrameworkCore.Plus.SQLite" Version="6.0.0" />
+		<PackageReference Include="Quick.Localize" Version="1.0.4" />
+	</ItemGroup>
+
+	<ItemGroup>
+	  <ProjectReference Include="..\Glash.Blazor.Server\Glash.Blazor.Server.csproj" />
+	</ItemGroup>
+</Project>

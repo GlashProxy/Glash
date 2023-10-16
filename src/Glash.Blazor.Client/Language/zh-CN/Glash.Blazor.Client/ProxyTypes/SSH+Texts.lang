@@ -1,0 +1,6 @@
+﻿ProxyTypeName=SSH
+User=用户名
+Password=密码
+Terminal=终端
+ButtonStartTerminal=终端
+ButtonStartFileTransfer=文件传输

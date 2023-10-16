@@ -1,0 +1,237 @@
+﻿<Project Sdk="Microsoft.NET.Sdk.Razor">
+	<PropertyGroup>
+		<TargetFramework>net6.0</TargetFramework>
+		<ImplicitUsings>enable</ImplicitUsings>
+		<RollForward>Major</RollForward>
+		<AppendTargetFrameworkToOutputPath>false</AppendTargetFrameworkToOutputPath>
+		<Version>1.1.0</Version>
+		<GeneratePackageOnBuild>True</GeneratePackageOnBuild>
+		<Description>Glash Client Blazor controls.</Description>
+		<PackageIcon>logo.png</PackageIcon>
+		<PackageProjectUrl>https://github.com/aaasoft/Glash</PackageProjectUrl>
+		<RepositoryUrl>https://github.com/aaasoft/Glash</RepositoryUrl>
+		<PackageTags>Glash;Proxy</PackageTags>
+	</PropertyGroup>
+	
+	<ItemGroup>
+		<None Include="..\..\logo.png">
+			<Pack>True</Pack>
+			<PackagePath>\</PackagePath>
+		</None>
+	</ItemGroup>
+	
+	<ItemGroup>
+	  <None Remove="Language\en-US\Glash.Blazor.Client\ClientTexts.lang" />
+	  <None Remove="Language\en-US\Glash.Blazor.Client\Login+Texts.lang" />
+	  <None Remove="Language\en-US\Glash.Blazor.Client\Main+Texts.lang" />
+	  <None Remove="Language\en-US\Glash.Blazor.Client\Model\ProxyRule+Texts.lang" />
+	  <None Remove="Language\en-US\Glash.Blazor.Client\ProfileManage+Texts.lang" />
+	  <None Remove="Language\en-US\Glash.Blazor.Client\ProxyTypes\Database+Texts.lang" />
+	  <None Remove="Language\en-US\Glash.Blazor.Client\ProxyTypes\RDP+Texts.lang" />
+	  <None Remove="Language\en-US\Glash.Blazor.Client\ProxyTypes\SSH+Texts.lang" />
+	  <None Remove="Language\en-US\Glash.Blazor.Client\ProxyTypes\Web+Texts.lang" />
+	  <None Remove="Language\zh-CN\Glash.Blazor.Client\ClientTexts.lang" />
+	  <None Remove="Language\zh-CN\Glash.Blazor.Client\Login+Texts.lang" />
+	  <None Remove="Language\zh-CN\Glash.Blazor.Client\Main+Texts.lang" />
+	  <None Remove="Language\zh-CN\Glash.Blazor.Client\Model\Profile+Texts.lang" />
+	  <None Remove="Language\zh-CN\Glash.Blazor.Client\Model\ProxyRule+Texts.lang" />
+	  <None Remove="Language\zh-CN\Glash.Blazor.Client\ProfileManage+Texts.lang" />
+	  <None Remove="Language\zh-CN\Glash.Blazor.Client\ProxyTypes\Database+Texts.lang" />
+	  <None Remove="Language\zh-CN\Glash.Blazor.Client\ProxyTypes\RDP+Texts.lang" />
+	  <None Remove="Language\zh-CN\Glash.Blazor.Client\ProxyTypes\SSH+Texts.lang" />
+	  <None Remove="Language\zh-CN\Glash.Blazor.Client\ProxyTypes\Web+Texts.lang" />
+	</ItemGroup>
+
+	<ItemGroup>
+		<EmbeddedResource Include="Language\en-US\Glash.Blazor.Client\Login+Texts.lang" />
+		<EmbeddedResource Include="Language\en-US\Glash.Blazor.Client\Main+Texts.lang" />
+		<EmbeddedResource Include="Language\en-US\Glash.Blazor.Client\Model\Profile+Texts.lang" />
+		<EmbeddedResource Include="Language\en-US\Glash.Blazor.Client\ProfileManage+Texts.lang" />
+		<EmbeddedResource Include="Language\en-US\Glash.Blazor.Client\ClientTexts.lang" />
+		<EmbeddedResource Include="Language\en-US\Glash.Blazor.Client\ProxyTypes\Database+Texts.lang" />
+		<EmbeddedResource Include="Language\en-US\Glash.Blazor.Client\ProxyTypes\SSH+Texts.lang" />
+		<EmbeddedResource Include="Language\en-US\Glash.Blazor.Client\ProxyTypes\Web+Texts.lang" />
+		<EmbeddedResource Include="Language\en-US\Glash.Blazor.Client\ProxyTypes\RDP+Texts.lang" />
+		<EmbeddedResource Include="Language\zh-CN\Glash.Blazor.Client\ClientTexts.lang" />
+		<EmbeddedResource Include="Language\zh-CN\Glash.Blazor.Client\Main+Texts.lang" />
+		<EmbeddedResource Include="Language\zh-CN\Glash.Blazor.Client\Model\Profile+Texts.lang" />
+		<EmbeddedResource Include="Language\zh-CN\Glash.Blazor.Client\ProfileManage+Texts.lang" />
+		<EmbeddedResource Include="Language\zh-CN\Glash.Blazor.Client\Login+Texts.lang" />
+		<EmbeddedResource Include="Language\zh-CN\Glash.Blazor.Client\ProxyTypes\Database+Texts.lang" />
+		<EmbeddedResource Include="Language\zh-CN\Glash.Blazor.Client\ProxyTypes\RDP+Texts.lang" />
+		<EmbeddedResource Include="Language\zh-CN\Glash.Blazor.Client\ProxyTypes\SSH+Texts.lang" />
+		<EmbeddedResource Include="Language\zh-CN\Glash.Blazor.Client\ProxyTypes\Web+Texts.lang" />
+	</ItemGroup>
+
+
+	<ItemGroup>
+		<SupportedPlatform Include="browser" />
+	</ItemGroup>
+
+	<ItemGroup>
+		<PackageReference Include="Microsoft.AspNetCore.Components.Web" Version="6.0.16" />
+		<PackageReference Include="Quick.Blazor.Bootstrap.Admin" Version="4.0.10" />
+		<PackageReference Include="Quick.EntityFrameworkCore.Plus.SQLite" Version="6.0.0" />
+		<PackageReference Include="Quick.Localize" Version="1.0.4" />
+		<PackageReference Include="System.Security.Cryptography.ProtectedData" Version="7.0.1" />
+	</ItemGroup>
+
+	<ItemGroup>
+		<ProjectReference Include="..\Glash\Glash.csproj" />
+	</ItemGroup>
+
+	<ItemGroup>
+	  <Content Update="Controls\EditProfile.razor">
+	    <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+	  </Content>
+	  <Content Update="Controls\EditProxyRule.razor">
+	    <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+	  </Content>
+	  <Content Update="Index.razor">
+	    <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+	  </Content>
+	  <Content Update="Login.razor">
+	    <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+	  </Content>
+	  <Content Update="Main.razor">
+	    <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+	  </Content>
+	  <Content Update="ProfileManage.razor">
+	    <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+	  </Content>
+	  <Content Update="_Imports.razor">
+	    <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+	  </Content>
+	</ItemGroup>
+
+	<ItemGroup>
+	  <None Update="runtimes\win-x64\native\HeidiSQL\fbclient-4.0.dll">
+	    <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+	  </None>
+	  <None Update="runtimes\win-x64\native\HeidiSQL\functions-interbase.ini">
+	    <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+	  </None>
+	  <None Update="runtimes\win-x64\native\HeidiSQL\functions-mariadb.ini">
+	    <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+	  </None>
+	  <None Update="runtimes\win-x64\native\HeidiSQL\functions-mssql.ini">
+	    <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+	  </None>
+	  <None Update="runtimes\win-x64\native\HeidiSQL\functions-mysql.ini">
+	    <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+	  </None>
+	  <None Update="runtimes\win-x64\native\HeidiSQL\functions-postgresql.ini">
+	    <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+	  </None>
+	  <None Update="runtimes\win-x64\native\HeidiSQL\functions-redshift.ini">
+	    <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+	  </None>
+	  <None Update="runtimes\win-x64\native\HeidiSQL\functions-sqlite.ini">
+	    <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+	  </None>
+	  <None Update="runtimes\win-x64\native\HeidiSQL\gpl.txt">
+	    <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+	  </None>
+	  <None Update="runtimes\win-x64\native\HeidiSQL\heidisql.exe">
+	    <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+	  </None>
+	  <None Update="runtimes\win-x64\native\HeidiSQL\ibclient64-14.1.dll">
+	    <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+	  </None>
+	  <None Update="runtimes\win-x64\native\HeidiSQL\libcrypto-1_1-x64.dll">
+	    <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+	  </None>
+	  <None Update="runtimes\win-x64\native\HeidiSQL\libiconv-2.dll">
+	    <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+	  </None>
+	  <None Update="runtimes\win-x64\native\HeidiSQL\libintl-8.dll">
+	    <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+	  </None>
+	  <None Update="runtimes\win-x64\native\HeidiSQL\libmariadb.dll">
+	    <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+	  </None>
+	  <None Update="runtimes\win-x64\native\HeidiSQL\libmysql-6.1.dll">
+	    <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+	  </None>
+	  <None Update="runtimes\win-x64\native\HeidiSQL\libmysql.dll">
+	    <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+	  </None>
+	  <None Update="runtimes\win-x64\native\HeidiSQL\libpq-10.dll">
+	    <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+	  </None>
+	  <None Update="runtimes\win-x64\native\HeidiSQL\libpq-12.dll">
+	    <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+	  </None>
+	  <None Update="runtimes\win-x64\native\HeidiSQL\libpq-15.dll">
+	    <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+	  </None>
+	  <None Update="runtimes\win-x64\native\HeidiSQL\libssl-1_1-x64.dll">
+	    <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+	  </None>
+	  <None Update="runtimes\win-x64\native\HeidiSQL\LICENSE-openssl">
+	    <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+	  </None>
+	  <None Update="runtimes\win-x64\native\HeidiSQL\license.txt">
+	    <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+	  </None>
+	  <None Update="runtimes\win-x64\native\HeidiSQL\plink.exe">
+	    <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+	  </None>
+	  <None Update="runtimes\win-x64\native\HeidiSQL\plugins\authentication_windows_client.dll">
+	    <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+	  </None>
+	  <None Update="runtimes\win-x64\native\HeidiSQL\plugins\auth_ed25519.dll">
+	    <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+	  </None>
+	  <None Update="runtimes\win-x64\native\HeidiSQL\plugins\auth_gssapi.dll">
+	    <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+	  </None>
+	  <None Update="runtimes\win-x64\native\HeidiSQL\plugins\auth_gssapi_client.dll">
+	    <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+	  </None>
+	  <None Update="runtimes\win-x64\native\HeidiSQL\plugins\auth_named_pipe.dll">
+	    <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+	  </None>
+	  <None Update="runtimes\win-x64\native\HeidiSQL\plugins\caching_sha2_password.dll">
+	    <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+	  </None>
+	  <None Update="runtimes\win-x64\native\HeidiSQL\plugins\client_ed25519.dll">
+	    <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+	  </None>
+	  <None Update="runtimes\win-x64\native\HeidiSQL\plugins\dialog.dll">
+	    <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+	  </None>
+	  <None Update="runtimes\win-x64\native\HeidiSQL\plugins\mysql_clear_password.dll">
+	    <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+	  </None>
+	  <None Update="runtimes\win-x64\native\HeidiSQL\plugins\pvio_npipe.dll">
+	    <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+	  </None>
+	  <None Update="runtimes\win-x64\native\HeidiSQL\plugins\pvio_shmem.dll">
+	    <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+	  </None>
+	  <None Update="runtimes\win-x64\native\HeidiSQL\plugins\sha256_password.dll">
+	    <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+	  </None>
+	  <None Update="runtimes\win-x64\native\HeidiSQL\portable.lock">
+	    <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+	  </None>
+	  <None Update="runtimes\win-x64\native\HeidiSQL\sqlite3.dll">
+	    <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+	  </None>
+	  <None Update="runtimes\win-x64\native\PuTTY\plink.exe">
+	    <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+	  </None>
+	  <None Update="runtimes\win-x64\native\PuTTY\putty.exe">
+	    <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+	  </None>
+	  <None Update="runtimes\win-x64\native\WinSCP\WinSCP.exe">
+	    <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+	  </None>
+	</ItemGroup>
+
+	<ItemGroup>
+	  <Folder Include="runtimes\win-x64\native\HeidiSQL\" />
+	</ItemGroup>
+
+</Project>

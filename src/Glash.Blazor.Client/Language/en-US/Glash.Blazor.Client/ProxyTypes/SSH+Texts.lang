@@ -1,0 +1,6 @@
+﻿ProxyTypeName=SSH
+User=User
+Password=Password
+Terminal=Terminal
+ButtonStartTerminal=Terminal
+ButtonStartFileTransfer=File Transfer

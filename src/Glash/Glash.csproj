@@ -1,0 +1,36 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+	<PropertyGroup>
+		<TargetFramework>net6.0</TargetFramework>
+		<ImplicitUsings>enable</ImplicitUsings>
+		<Version>1.1.0</Version>
+		<GeneratePackageOnBuild>True</GeneratePackageOnBuild>
+		<Description>Glash is a reverse proxy that allows you to expose a local server located behind a NAT or firewall to other local server.</Description>
+		<PackageIcon>logo.png</PackageIcon>
+		<PackageProjectUrl>https://github.com/aaasoft/Glash</PackageProjectUrl>
+		<RepositoryUrl>https://github.com/aaasoft/Glash</RepositoryUrl>
+		<PackageTags>Glash;Proxy</PackageTags>
+	</PropertyGroup>
+
+	<ItemGroup>
+	  <None Remove="Language\en-US\Glash.Client.Protocol.QpModel\ProxyRuleInfo+Texts.lang" />
+	  <None Remove="Language\zh-CN\Glash.Client.Protocol.QpModel\ProxyRuleInfo+Texts.lang" />
+	</ItemGroup>
+
+	<ItemGroup>
+	  <EmbeddedResource Include="Language\en-US\Glash.Client.Protocol.QpModel\ProxyRuleInfo+Texts.lang" />
+	  <EmbeddedResource Include="Language\zh-CN\Glash.Client.Protocol.QpModel\ProxyRuleInfo+Texts.lang" />
+	</ItemGroup>
+
+	<ItemGroup>
+		<None Include="..\..\logo.png">
+			<Pack>True</Pack>
+			<PackagePath>\</PackagePath>
+		</None>
+	</ItemGroup>
+
+	<ItemGroup>
+		<PackageReference Include="Quick.Protocol" Version="2.2.9" />
+	</ItemGroup>
+
+</Project>

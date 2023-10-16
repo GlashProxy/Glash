@@ -1,0 +1,22 @@
+﻿@page "/"
+
+<div class="sidebar">
+    <NavMenu ActiveKey="Home">
+        <Title>
+            @Global.Instance.TextManager.GetText(Texts.Title)
+        </Title>
+        <ChildContent>
+            <NavMenuItem Key="ProfileManage" OnClick="@(() => Show<ProfileManage>())">
+                <Tab>
+                    <i class="fa fa-address-book" aria-hidden="true"></i>
+                    @Global.Instance.TextManager.GetText(Texts.ProfileManage)
+                </Tab>
+            </NavMenuItem>
+        </ChildContent>
+    </NavMenu>
+</div>
+<div class="main">
+    <div class="content px-4">
+        @Body
+    </div>
+</div>

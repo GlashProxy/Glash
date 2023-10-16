@@ -1,0 +1,8 @@
+﻿ModelName=Profile
+Name=Name
+ServerUrl=Server Url
+AgentName=Agent Name
+AgentPassword=Agent Password
+Status=Status
+Connected=Connected
+Disconnected=Disconnected

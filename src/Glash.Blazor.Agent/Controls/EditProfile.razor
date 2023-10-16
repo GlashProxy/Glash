@@ -1,0 +1,28 @@
+﻿<div class="row">
+    <div class="col-12">
+        <EditForm Model="@Model" OnValidSubmit="Ok">
+            <DataAnnotationsValidator />
+            <div class="form-group">
+                <label>@Global.Instance.TextManager.GetText(Agent.Model.Profile.Texts.Name)</label>
+                <InputText class="form-control" @bind-Value="Model.Name" />
+                <ValidationMessage For="@(() => Model.Name)" />
+            </div>
+            <div class="form-group">
+                <label>@Global.Instance.TextManager.GetText(Agent.Model.Profile.Texts.ServerUrl)</label>
+                <InputText class="form-control" @bind-Value="Model.ServerUrl" />
+                <ValidationMessage For="@(() => Model.ServerUrl)" />
+            </div>
+            <div class="form-group">
+                <label>@Global.Instance.TextManager.GetText(Agent.Model.Profile.Texts.AgentName)</label>
+                <InputText class="form-control" @bind-Value="Model.AgentName" />
+                <ValidationMessage For="@(() => Model.AgentName)" />
+            </div>
+            <div class="form-group">
+                <label>@Global.Instance.TextManager.GetText(Agent.Model.Profile.Texts.AgentPassword)</label>
+                <InputText type="password" class="form-control" @bind-Value="Model.AgentPassword" />
+                <ValidationMessage For="@(() => Model.AgentPassword)" />
+            </div>
+            <button type="submit" class="btn btn-primary col-sm-5 col-md-4 col-lg-2">@Global.Instance.TextManager.GetText(AgentTexts.Ok)</button>
+        </EditForm>
+    </div>
+</div>
