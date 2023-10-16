@@ -1,4 +1,5 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using Microsoft.Win32;
+using System.ComponentModel.DataAnnotations;
 using System.Diagnostics;
 using System.Linq;
 using System.Runtime.Versioning;
@@ -26,7 +27,6 @@ namespace Glash.Blazor.Client.ProxyTypes
         [Required]
         public string Terminal { get; set; }
 
-        private const string NATIVE_FOLDER = "runtimes/win-x64/native";
         public override string Icon => "fa fa-linux";
 
         [SupportedOSPlatform("windows")]
@@ -41,15 +41,33 @@ namespace Glash.Blazor.Client.ProxyTypes
                     {
                         if(string.IsNullOrEmpty(Terminal))
                             Terminal="putty";
-                        var process = Process.Start($"{NATIVE_FOLDER}/PuTTY/{Terminal}",$"-ssh -l {User} -pw {Password} -P {t.LocalPort} {GetLocalIPAddress(t.Config.LocalIPAddress)}");
-                        WaitForProcessMainWindow(process);
+                        try
+                        {
+                            var process = Process.Start(Terminal,$"-ssh -l {User} -pw {Password} -P {t.LocalPort} {GetLocalIPAddress(t.Config.LocalIPAddress)}");
+                            WaitForProcessMainWindow(process);
+                        }
+                        catch (System.ComponentModel.Win32Exception ex)
+                        {
+                            throw new IOException("未检测到PuTTY，请安装PuTTY！",ex);
+                        }
                     }),
                 new ProxyTypeButton(
                     Global.Instance.TextManager.GetText(Texts.ButtonStartFileTransfer),
                     "fa fa-folder",
                     t=>
                     {
-                        var process = Process.Start($"{NATIVE_FOLDER}/WinSCP/WinSCP", $"/ini=nul sftp://{GetLocalIPAddress(t.Config.LocalIPAddress)}:{t.LocalPort}/ -username={User} -password={Password}");
+#pragma warning disable CA1416 // 验证平台兼容性
+                        //从注册表中读取NSIS的安装目录
+                        var winScpKey = Registry.LocalMachine.OpenSubKey(@"SOFTWARE\WOW6432Node\Microsoft\Windows\CurrentVersion\Uninstall\winscp3_is1", false);
+                        if (winScpKey == null)
+                        {
+                            Console.WriteLine("未检测到WinSCP，请安装WinSCP！");
+                            return;
+                        }
+                        var winScpDir = winScpKey.GetValue("InstallLocation").ToString();
+                        var winScpExeFile = Path.Combine(winScpDir, "WinSCP.exe");
+#pragma warning restore CA1416 // 验证平台兼容性      
+                        var process = Process.Start(winScpExeFile, $"/ini=nul sftp://{GetLocalIPAddress(t.Config.LocalIPAddress)}:{t.LocalPort}/ -username={User} -password={Password}");
                         WaitForProcessMainWindow(process);
                     })
             };
