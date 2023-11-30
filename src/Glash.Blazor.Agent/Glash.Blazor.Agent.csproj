@@ -38,11 +38,11 @@
 	</ItemGroup>
 
 	<ItemGroup>
-		<PackageReference Include="Quick.Protocol.WebSocket.Server.AspNetCore" Version="2.2.9" />
-		<PackageReference Include="Quick.Blazor.Bootstrap.Admin" Version="4.0.10" />
-		<PackageReference Include="Quick.EntityFrameworkCore.Plus.SQLite" Version="6.0.0" />
-		<PackageReference Include="Quick.Localize" Version="1.0.4" />
-		<PackageReference Include="Quick.Protocol.AllClients" Version="2.2.9" />
+		<PackageReference Include="Quick.Protocol.WebSocket.Server.AspNetCore" Version="2.2.17" />
+		<PackageReference Include="Quick.Blazor.Bootstrap.Admin" Version="4.0.27" />
+		<PackageReference Include="Quick.EntityFrameworkCore.Plus.SQLite" Version="6.0.1" />
+		<PackageReference Include="Quick.Localize" Version="1.0.5" />
+		<PackageReference Include="Quick.Protocol.AllClients" Version="2.2.17" />
 	</ItemGroup>
 
 	<ItemGroup>
