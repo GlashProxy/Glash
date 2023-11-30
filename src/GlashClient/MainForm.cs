@@ -38,7 +38,7 @@ namespace GlashClient
                 dbContext.DatabaseEnsureCreatedAndUpdated(t => Debug.Print(t));
             ConfigDbContext.CacheContext.LoadCache();
 
-            Global.Instance.Init(Application.ProductVersion);
+            Global.Instance.Init(Application.ProductVersion.Split("+")[0]);
 
             Global.Instance.LanguageChanged += Instance_LanguageChanged;
             Global.Instance.ProfileChanged += Instance_ProfileChanged;
