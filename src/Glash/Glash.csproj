@@ -30,7 +30,7 @@
 	</ItemGroup>
 
 	<ItemGroup>
-		<PackageReference Include="Quick.Protocol" Version="2.2.17" />
+		<PackageReference Include="Quick.Protocol" Version="2.3.2" />
 	</ItemGroup>
 
 </Project>
