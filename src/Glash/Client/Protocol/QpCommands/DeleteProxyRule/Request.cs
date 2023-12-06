@@ -1,16 +1,13 @@
 ﻿using Quick.Protocol;
-using System;
-using System.Collections.Generic;
 using System.ComponentModel;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using System.Text.Json.Serialization.Metadata;
 
 namespace Glash.Client.Protocol.QpCommands.DeleteProxyRule
 {
     [DisplayName("Delete Proxy Rule")]
-    public class Request : IQpCommandRequest<Response>
+    public class Request : AbstractQpSerializer<Request>, IQpCommandRequest<Request, Response>
     {
+        protected override JsonTypeInfo<Request> GetTypeInfo() => DeleteProxyRuleCommandSerializerContext.Default.Request;
         public string ProxyRuleId { get; set; }
     }
 }

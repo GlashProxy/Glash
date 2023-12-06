@@ -1,16 +1,14 @@
 ﻿using Glash.Client.Protocol.QpModel;
-using System;
-using System.Collections.Generic;
+using Quick.Protocol;
 using System.ComponentModel;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using System.Text.Json.Serialization.Metadata;
 
 namespace Glash.Client.Protocol.QpNotices
 {
     [DisplayName("Agent login status changed")]
-    public class AgentLoginStatusChanged
+    public class AgentLoginStatusChanged : AbstractQpSerializer<AgentLoginStatusChanged>
     {
+        protected override JsonTypeInfo<AgentLoginStatusChanged> GetTypeInfo() => ClientNoticesSerializerContext.Default.AgentLoginStatusChanged;
         public AgentInfo Data { get; set; }
     }
 }

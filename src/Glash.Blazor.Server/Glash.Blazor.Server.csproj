@@ -29,7 +29,7 @@
 	</ItemGroup>
 	
 	<ItemGroup>
-		<PackageReference Include="Quick.Protocol.WebSocket.Server.AspNetCore" Version="2.3.2" />
+		<PackageReference Include="Quick.Protocol.WebSocket.Server.AspNetCore" Version="2.3.3" />
 		<PackageReference Include="Quick.Blazor.Bootstrap.Admin" Version="4.0.28" />
 		<PackageReference Include="Quick.EntityFrameworkCore.Plus.SQLite" Version="6.0.1" />
 		<PackageReference Include="Quick.Localize" Version="1.0.5" />

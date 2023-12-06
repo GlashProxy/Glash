@@ -11,26 +11,19 @@ namespace Glash.Client.Protocol
             Name = "Glash Client Protocol",
             CommandInfos = new[]
             {
-                QpCommandInfo.Create(new QpCommands.Login.Request(),
-                    QpCommands.LoginCommandSerializerContext.Default),
-                QpCommandInfo.Create(new QpCommands.GetAgentList.Request(),
-                    QpCommands.GetAgentListCommandSerializerContext.Default),
-                QpCommandInfo.Create(new QpCommands.GetProxyRuleList.Request(),
-                    QpCommands.GetProxyRuleListCommandSerializerContext.Default),
-                QpCommandInfo.Create(new QpCommands.SaveProxyRule.Request(),
-                    QpCommands.SaveProxyRuleCommandSerializerContext.Default),
-                QpCommandInfo.Create(new QpCommands.DeleteProxyRule.Request(),
-                    QpCommands.DeleteProxyRuleCommandSerializerContext.Default),
-                QpCommandInfo.Create(new QpCommands.CreateTunnel.Request(),
-                    QpCommands.CreateTunnelCommandSerializerContext.Default),
-                QpCommandInfo.Create(new QpCommands.StartTunnel.Request(),
-                    QpCommands.StartTunnelCommandSerializerContext.Default)
+                QpCommandInfo.Create(new QpCommands.Login.Request()),
+                QpCommandInfo.Create(new QpCommands.GetAgentList.Request()),
+                QpCommandInfo.Create(new QpCommands.GetProxyRuleList.Request()),
+                QpCommandInfo.Create(new QpCommands.SaveProxyRule.Request()),
+                QpCommandInfo.Create(new QpCommands.DeleteProxyRule.Request()),
+                QpCommandInfo.Create(new QpCommands.CreateTunnel.Request()),
+                QpCommandInfo.Create(new QpCommands.StartTunnel.Request())
             },
             NoticeInfos = new[]
             {
-                QpNoticeInfo.Create<G.D>(QpNotices.ClientNoticesSerializerContext.Default),
-                QpNoticeInfo.Create<TunnelClosed>(QpNotices.ClientNoticesSerializerContext.Default),
-                QpNoticeInfo.Create<QpNotices.AgentLoginStatusChanged>(QpNotices.ClientNoticesSerializerContext.Default)
+                QpNoticeInfo.Create(new G.D()),
+                QpNoticeInfo.Create(new TunnelClosed()),
+                QpNoticeInfo.Create(new QpNotices.AgentLoginStatusChanged())
             }
         };
     }

@@ -1,13 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using Quick.Protocol;
+using System.Text.Json.Serialization.Metadata;
 
 namespace Glash.Client.Protocol.QpCommands.GetProxyRuleList
 {
-    public class Response
+    public class Response : AbstractQpSerializer<Response>
     {
+        protected override JsonTypeInfo<Response> GetTypeInfo() => GetProxyRuleListCommandSerializerContext.Default.Response;
         public QpModel.ProxyRuleInfo[] Data { get; set; }
     }
 }

@@ -10,16 +10,17 @@
 		<PackageProjectUrl>https://github.com/aaasoft/Glash</PackageProjectUrl>
 		<RepositoryUrl>https://github.com/aaasoft/Glash</RepositoryUrl>
 		<PackageTags>Glash;Proxy</PackageTags>
+		<IsAotCompatible>true</IsAotCompatible>
 	</PropertyGroup>
 
 	<ItemGroup>
-	  <None Remove="Language\en-US\Glash.Client.Protocol.QpModel\ProxyRuleInfo+Texts.lang" />
-	  <None Remove="Language\zh-CN\Glash.Client.Protocol.QpModel\ProxyRuleInfo+Texts.lang" />
+		<None Remove="Language\en-US\Glash.Client.Protocol.QpModel\ProxyRuleInfo+Texts.lang" />
+		<None Remove="Language\zh-CN\Glash.Client.Protocol.QpModel\ProxyRuleInfo+Texts.lang" />
 	</ItemGroup>
 
 	<ItemGroup>
-	  <EmbeddedResource Include="Language\en-US\Glash.Client.Protocol.QpModel\ProxyRuleInfo+Texts.lang" />
-	  <EmbeddedResource Include="Language\zh-CN\Glash.Client.Protocol.QpModel\ProxyRuleInfo+Texts.lang" />
+		<EmbeddedResource Include="Language\en-US\Glash.Client.Protocol.QpModel\ProxyRuleInfo+Texts.lang" />
+		<EmbeddedResource Include="Language\zh-CN\Glash.Client.Protocol.QpModel\ProxyRuleInfo+Texts.lang" />
 	</ItemGroup>
 
 	<ItemGroup>
@@ -30,7 +31,7 @@
 	</ItemGroup>
 
 	<ItemGroup>
-		<PackageReference Include="Quick.Protocol" Version="2.3.2" />
+		<PackageReference Include="Quick.Protocol" Version="2.3.3" />
 	</ItemGroup>
 
 </Project>

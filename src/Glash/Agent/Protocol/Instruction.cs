@@ -11,17 +11,14 @@ namespace Glash.Agent.Protocol
             Name = "Glash Agent Protocol",
             NoticeInfos = new[]
             {
-                QpNoticeInfo.Create<G.D>(QpNotices.AgentNoticesSerializerContext.Default),
-                QpNoticeInfo.Create<TunnelClosed>(QpNotices.AgentNoticesSerializerContext.Default)
+                QpNoticeInfo.Create(new G.D()),
+                QpNoticeInfo.Create(new TunnelClosed())
             },
             CommandInfos = new[]
             {
-                QpCommandInfo.Create(new QpCommands.Login.Request(),
-                    QpCommands.AgentLoginCommandSerializerContext.Default),
-                QpCommandInfo.Create(new QpCommands.CreateTunnel.Request(),
-                    QpCommands.AgentCreateTunnelCommandSerializerContext.Default),
-                QpCommandInfo.Create(new QpCommands.StartTunnel.Request(),
-                    QpCommands.AgentStartTunnelCommandSerializerContext.Default)
+                QpCommandInfo.Create(new QpCommands.Login.Request()),
+                QpCommandInfo.Create(new QpCommands.CreateTunnel.Request()),
+                QpCommandInfo.Create(new QpCommands.StartTunnel.Request())
             }
         };
     }
