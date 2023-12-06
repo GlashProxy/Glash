@@ -4,7 +4,7 @@
 		<ImplicitUsings>enable</ImplicitUsings>
 		<RollForward>Major</RollForward>
 		<AppendTargetFrameworkToOutputPath>false</AppendTargetFrameworkToOutputPath>
-		<Version>1.2.2</Version>
+		<Version>1.2.3</Version>
 		<GeneratePackageOnBuild>True</GeneratePackageOnBuild>
 		<Description>Glash Server Blazor controls.</Description>
 		<PackageIcon>logo.png</PackageIcon>
