@@ -44,7 +44,10 @@ namespace Glash.Blazor.Server.Pages
             }
             if (string.IsNullOrEmpty(hostAndPort))
                 hostAndPort = $"{httpUri.Host}:{httpUri.Port}";
-            return $"{scheme}://{hostAndPort}{httpUri.PathAndQuery}glash?Password={Global.Instance.ConnectionPassword}";
+            var url = $"{scheme}://{hostAndPort}{httpUri.PathAndQuery}";
+            url = url.Substring(0, url.LastIndexOf("/"));
+            url += $"/glash?Password={Global.Instance.ConnectionPassword}";
+            return url;
         }
 
         private void Ok()
