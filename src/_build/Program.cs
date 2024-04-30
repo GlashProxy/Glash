@@ -10,7 +10,7 @@ using SharpCompress.Archives.Zip;
 using SharpCompress.Common;
 
 //版本号
-var version = "3.7." + DateTime.Now.ToString("yyyy.Mdd");
+var version = "1.2." + DateTime.Now.ToString("yyyy.Mdd");
 
 //准备目录变量
 var appFolder = QbFolder.GetAppFolder();
@@ -18,7 +18,7 @@ if (appFolder == Environment.CurrentDirectory)
     Environment.CurrentDirectory = Path.GetFullPath("../../../../../");
 var baseFolder = Environment.CurrentDirectory;
 
-var productDict =new Dictionary<string, string>();
+var productDict = new Dictionary<string, string>();
 
 foreach (var fi in new DirectoryInfo("src").GetDirectories())
 {
@@ -70,9 +70,16 @@ foreach (var productDir in productDirs)
     QbFile.ChangeHeader(outFile, "yz");
 }
 Console.WriteLine("完成");
-//如果是在Windows平台，则打开窗口
-if (RuntimeInformation.IsOSPlatform(OSPlatform.Windows))
+//打开窗口
+try
 {
-    try { QbCommand.Run("Explorer", @"bin"); }
-    catch { }
+    if (RuntimeInformation.IsOSPlatform(OSPlatform.Windows))
+    {
+        QbCommand.Run("Explorer", @"bin");
+    }
+    else
+    {
+        QbCommand.Run("xdg-open", @"bin");
+    }
 }
+catch { }
