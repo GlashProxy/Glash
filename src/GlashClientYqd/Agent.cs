@@ -16,12 +16,6 @@ public class Agent : AbstractAgent
     {
         Quick.Protocol.QpAllClients.RegisterUriSchema();
         base.Init();
-        if (AgentContext.IsContainerRuning)
-        {
-            var imageFolder = AgentContext.Container.ImageFolder;
-            var containerFolder = AgentContext.Container.ContainerFolder;
-            AddFunction(new YiQiDong.Core.Functions.AppSettingsConfig(imageFolder, containerFolder, () => AgentContext.Container.AutoStart));
-        }
     }
 
     public override void Start()
