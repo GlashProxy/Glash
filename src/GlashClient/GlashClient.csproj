@@ -4,13 +4,14 @@
 		<OutputType>WinExe</OutputType>
 		<TargetFramework>net6.0-windows</TargetFramework>
 		<UseWindowsForms>true</UseWindowsForms>
+		<EnableWindowsTargeting>true</EnableWindowsTargeting>
 		<ImplicitUsings>enable</ImplicitUsings>
 		<RollForward>Major</RollForward>
 		<AppendTargetFrameworkToOutputPath>false</AppendTargetFrameworkToOutputPath>
 		<Version>1.2.4</Version>
 		<Title>Glash Client</Title>
 		<Product>Glash Client</Product>
-		<ApplicationIcon>../../logo.ico</ApplicationIcon>
+		<ApplicationIcon>../../logo.ico</ApplicationIcon>		
 	</PropertyGroup>
 	<ItemGroup>
 		<PackageReference Include="Microsoft.AspNetCore.Components.WebView.WindowsForms" Version="6.0.553" />
