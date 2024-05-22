@@ -3,6 +3,7 @@ using Quick.EntityFrameworkCore.Plus;
 using Glash.Blazor.Client;
 using System.Diagnostics;
 
+Quick.Protocol.QpAllClients.RegisterUriSchema();
 var dbFile = SQLiteDbContextConfigHandler.CONFIG_DB_FILE;
 #if DEBUG
 dbFile = Path.Combine(Path.GetDirectoryName(typeof(Program).Assembly.Location), dbFile);
