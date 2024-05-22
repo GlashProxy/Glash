@@ -1,9 +1,0 @@
-﻿{
-  "DefaultId": "GlashClientYqd",
-  "Name": "Glash客户端",
-  "Version": "1.0.x.x",
-  "Description": "[Glash客户端]是连接Glash服务端进行端口映射的程序。",
-  "Platform": [ "any" ],
-  "Runtime": [ "dotnet-6.0" ],
-  "AgentStartup": "GlashClientYqd.dll"
-}
