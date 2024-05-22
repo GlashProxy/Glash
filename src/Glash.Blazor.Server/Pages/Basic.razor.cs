@@ -1,4 +1,5 @@
 ﻿using Quick.Blazor.Bootstrap;
+using Quick.Localize;
 using System.ComponentModel.DataAnnotations;
 
 namespace Glash.Blazor.Server.Pages
@@ -9,12 +10,9 @@ namespace Glash.Blazor.Server.Pages
         private string ConnectionPassword { get; set; }
         private ModalAlert modalAlert;
 
-        public enum Texts
-        {
-            ConnectionPassword,
-            ApiAddress,
-            ChangeConnectionPasswordSuccess
-        }
+        private static string TextConnectionPassword => Locale.GetString("Connection Password");
+        private static string TextApiAddress => Locale.GetString("Api Address");
+        private static string TextOk => Locale.GetString("OK");
 
         protected override void OnInitialized()
         {
@@ -56,13 +54,13 @@ namespace Glash.Blazor.Server.Pages
             {
                 Global.Instance.ConnectionPassword = ConnectionPassword;
                 modalAlert.Show(
-                    Global.Instance.TextManager.GetText(ServerTexts.Success),
-                    Global.Instance.TextManager.GetText(Texts.ChangeConnectionPasswordSuccess));
+                    Locale.GetString("Success"),
+                    Locale.GetString("Change connection password success."));
             }
             catch (Exception ex)
             {
                 modalAlert.Show(
-                    Global.Instance.TextManager.GetText(ServerTexts.Error),
+                    Locale.GetString("Error"),
                     ex.Message);
             }
         }

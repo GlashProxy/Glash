@@ -3,25 +3,28 @@ using Microsoft.AspNetCore.Components;
 using Newtonsoft.Json;
 using Quick.Blazor.Bootstrap;
 using Quick.EntityFrameworkCore.Plus;
+using Quick.Localize;
 
 namespace Glash.Blazor.Server.Pages
 {
     public partial class ClientManage : IDisposable
     {
-        public enum Texts
-        {
-            Operate,
-            Add,
-            Edit,
-            Delete,
-            DeleteConfirm
-        }
-
         private ModalWindow modalWindow;
         private ModalAlert modalAlert;
 
         [Parameter]
         public Action ClientChangedHandler { get; set; }
+
+        private static string TextName => Locale.GetString("Name");
+        private static string TextChannelName => Locale.GetString("Channel Name");
+        private static string TextConnectTime => Locale.GetString("Connect Time");
+
+        private static string TextOperate => Locale.GetString("Operate");
+        private static string TextAdd => Locale.GetString("Add");
+        private static string TextEdit => Locale.GetString("Edit");
+        private static string TextDelete => Locale.GetString("Delete");
+        private static string TextError => Locale.GetString("Error");
+
 
         private void setClientRelateAgents(string clientId, string[] agents)
         {
@@ -54,7 +57,7 @@ namespace Glash.Blazor.Server.Pages
 
         private void Add()
         {
-            modalWindow.Show<Controls.EditClientInfo>(Global.Instance.TextManager.GetText(Texts.Add), Controls.EditClientInfo.PrepareParameter(
+            modalWindow.Show<Controls.EditClientInfo>(TextAdd, Controls.EditClientInfo.PrepareParameter(
                 new Model.ClientInfo(),
                 (model, agents) =>
                 {
@@ -68,7 +71,7 @@ namespace Glash.Blazor.Server.Pages
                     }
                     catch (Exception ex)
                     {
-                        modalAlert.Show(Global.Instance.TextManager.GetText(ServerTexts.Error), ex.Message);
+                        modalAlert.Show(TextError, ex.Message);
                     }
                 }
             ));
@@ -76,7 +79,7 @@ namespace Glash.Blazor.Server.Pages
 
         private void Edit(Model.ClientInfo model)
         {
-            modalWindow.Show<Controls.EditClientInfo>(Global.Instance.TextManager.GetText(Texts.Edit), Controls.EditClientInfo.PrepareParameter(
+            modalWindow.Show<Controls.EditClientInfo>(TextEdit, Controls.EditClientInfo.PrepareParameter(
                 JsonConvert.DeserializeObject<Model.ClientInfo>(JsonConvert.SerializeObject(model)),
                 (editModel, agents) =>
                 {
@@ -93,7 +96,7 @@ namespace Glash.Blazor.Server.Pages
                     }
                     catch (Exception ex)
                     {
-                        modalAlert.Show(Global.Instance.TextManager.GetText(ServerTexts.Error), ex.Message);
+                        modalAlert.Show(TextError, ex.Message);
                     }
                 }
             ));
@@ -101,7 +104,7 @@ namespace Glash.Blazor.Server.Pages
 
         private void Delete(Model.ClientInfo model)
         {
-            modalAlert.Show(Global.Instance.TextManager.GetText(Texts.Delete), Global.Instance.TextManager.GetText(Texts.DeleteConfirm, model.Name), () =>
+            modalAlert.Show(TextDelete, Locale.GetString("Are you sure to delete Client[{0}]?", model.Name), () =>
             {
                 try
                 {
@@ -115,7 +118,7 @@ namespace Glash.Blazor.Server.Pages
                 {
                     Task.Delay(100).ContinueWith(t =>
                     {
-                        modalAlert.Show(Global.Instance.TextManager.GetText(ServerTexts.Error), ex.Message);
+                        modalAlert.Show(TextError, ex.Message);
                     });
                 }
             });

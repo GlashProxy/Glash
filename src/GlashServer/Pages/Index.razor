@@ -4,73 +4,71 @@
 @if (IsLogin)
 {
     <div class="sidebar">
-        <NavMenu ActiveKey="Home">
-            <Title>
-                @Global.Instance.TextManager.GetText(Texts.Title)
-            </Title>
-            <ChildContent>
-                <NavMenuItem Key="LoginPasswordManage" OnClick="@(() => Show<LoginPasswordManage>())">
-                    <Tab>
-                        <i class="fa fa-key" aria-hidden="true"></i>
-                        @Global.Instance.TextManager.GetText(Texts.LoginPasswordManage)
-                    </Tab>
-                </NavMenuItem>
-                <NavMenuItem Key="Basic" OnClick="@(() => Show<Basic>())">
-                    <Tab>
-                        <i class="fa fa-tachometer" aria-hidden="true"></i>
-                        @Global.Instance.TextManager.GetText(Texts.Basic)
-                    </Tab>
-                </NavMenuItem>
-                <NavMenuItem Key="AgentManage" OnClick="@(() => Show<AgentManage>())">
-                    <Tab>
-                        <i class="fa fa-black-tie" aria-hidden="true"></i>
-                        @Global.Instance.TextManager.GetText(Texts.AgentManage)
-                    </Tab>
-                </NavMenuItem>
-                <NavMenuItem Key="ClientManage" OnClick="@(() => Show<ClientManage>())">
-                    <Tab>
-                        <i class="fa fa-desktop" aria-hidden="true"></i>
-                        @Global.Instance.TextManager.GetText(Texts.ClientManage)
-                    </Tab>
-                </NavMenuItem>
-                <NavMenuItem Key="TunnelManage" OnClick="@(() => Show<TunnelManage>())">
-                    <Tab>
-                        <i class="fa fa-plug" aria-hidden="true"></i>
-                        @Global.Instance.TextManager.GetText(Texts.TunnelManage)
-                    </Tab>
-                </NavMenuItem>
-            </ChildContent>
-        </NavMenu>
-    </div>
+    <NavMenu ActiveKey="Home">
+        <Title>
+            @TextTitle
+        </Title>
+        <ChildContent>
+            <NavMenuItem Key="LoginPasswordManage" OnClick="@(() => Show<LoginPasswordManage>())">
+                <Tab>
+                    <i class="fa fa-key" aria-hidden="true"></i>
+                    @TextLoginPasswordManage
+                </Tab>
+            </NavMenuItem>
+            <NavMenuItem Key="Basic" OnClick="@(() => Show<Basic>())">
+                <Tab>
+                    <i class="fa fa-tachometer" aria-hidden="true"></i>
+                    @TextBasic
+                </Tab>
+            </NavMenuItem>
+            <NavMenuItem Key="AgentManage" OnClick="@(() => Show<AgentManage>())">
+                <Tab>
+                    <i class="fa fa-black-tie" aria-hidden="true"></i>
+                    @TextAgentManage
+                </Tab>
+            </NavMenuItem>
+            <NavMenuItem Key="ClientManage" OnClick="@(() => Show<ClientManage>())">
+                <Tab>
+                    <i class="fa fa-desktop" aria-hidden="true"></i>
+                    @TextClientManage
+                </Tab>
+            </NavMenuItem>
+            <NavMenuItem Key="TunnelManage" OnClick="@(() => Show<TunnelManage>())">
+                <Tab>
+                    <i class="fa fa-plug" aria-hidden="true"></i>
+                    @TextTunnelManage
+                </Tab>
+            </NavMenuItem>
+        </ChildContent>
+    </NavMenu>
+</div>
     <div class="main">
-        <div class="content px-4">
-            @Body
-        </div>
+    <div class="content px-4">
+        @Body
     </div>
+</div>
 }
 else
 {
     @*
-        登录窗口
-    *@
+登录窗口
+*@
     <Modal Visiable DialogBackdropVisiable DialogCentered>
-     <TitleContent>
-         <img src="favicon.ico" class="mr-2" width="30" height="30" />
-         @Global.Instance.TextManager.GetText(Texts.Title)
-     </TitleContent>
-     <BodyContent>
-         <div>
-             <div class="form-group">
-                 <div class="input-group">
-                     <div class="input-group-prepend">
-                         <span class="input-group-text"> <i class="fa fa-lock"></i> </span>
-                     </div>
-                     <input class="form-control @(string.IsNullOrEmpty(Message) ? "" : "is-invalid")"
-                            placeholder="请输入密码" type="password" autocomplete="off"
-                     @bind-value="Password" @bind-value:event="oninput"
-                     @onkeypress="onPasswordKeyPress"
-                            required autofocus />
-                     @if (!string.IsNullOrEmpty(Message))
+        <TitleContent>
+            <img src="favicon.ico" class="mr-2" width="30" height="30" />
+            @TextTitle)
+        </TitleContent>
+        <BodyContent>
+            <div>
+                <div class="form-group">
+                    <div class="input-group">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text"> <i class="fa fa-lock"></i> </span>
+                        </div>
+                        <input class="form-control @(string.IsNullOrEmpty(Message) ? "" : "is-invalid")"
+                            placeholder="@TextPleaseInputPassword" type="password" autocomplete="off" @bind-value="Password"
+                            @bind-value:event="oninput" @onkeypress="onPasswordKeyPress" required autofocus />
+                        @if (!string.IsNullOrEmpty(Message))
                         {
                             <div class="invalid-feedback">
                                 @(Message)
@@ -79,7 +77,7 @@ else
                     </div>
                 </div>
                 <div class="form-group">
-                    <input type="button" class="btn btn-success btn-block" value="登录" @onclick="OnPost" />
+                    <input type="button" class="btn btn-success btn-block" value="@TextLogin" @onclick="OnPost" />
                 </div>
             </div>
         </BodyContent>

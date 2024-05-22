@@ -1,12 +1,6 @@
-﻿using Glash.Blazor.Client.ProxyTypes;
-using Glash.Client.Protocol.QpModel;
+﻿using Glash.Client.Protocol.QpModel;
 using Microsoft.AspNetCore.Components;
-using Newtonsoft.Json;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using Quick.Localize;
 
 namespace Glash.Blazor.Client.Controls
 {
@@ -14,18 +8,19 @@ namespace Glash.Blazor.Client.Controls
     {
         [Parameter]
         public ProxyRuleInfo Model { get; set; }
-        private IProxyType ProxyType;
-        private RenderFragment ProxyTypeUI;
 
         [Parameter]
         public Action<ProxyRuleInfo> OkAction { get; set; }
 
+        private static string TextTabBasic=>Locale.GetString("Basic");
+        private static string TextName=>Locale.GetString("Name");
+        private static string TextAgent=>Locale.GetString("Agent");        
+        private static string TextLocal=>Locale.GetString("Local");
+        private static string TextRemote=>Locale.GetString("Remote");
+        private static string TextOk=>Locale.GetString("OK");
+
         private void Ok()
         {
-            if (ProxyType == null)
-                Model.ProxyTypeConfig = null;
-            else
-                Model.ProxyTypeConfig = JsonConvert.SerializeObject(ProxyType);
             OkAction?.Invoke(Model);
         }
 
@@ -36,33 +31,6 @@ namespace Glash.Blazor.Client.Controls
                 [nameof(Model)] = model,
                 [nameof(OkAction)] = okAction,
             };
-        }
-        
-        protected override void OnParametersSet()
-        {
-            refreshProxyType();
-        }
-
-        private void refreshProxyType()
-        {
-            if (string.IsNullOrEmpty(Model.ProxyType))
-            {
-                ProxyType = null;
-                ProxyTypeUI = null;
-            }
-            else
-            {
-                ProxyType = ProxyTypeManager.Instance
-                    .GetProxyTypeInfo(Model.ProxyType).CreateInstance(Model.ProxyTypeConfig);
-                ProxyTypeUI = ProxyType.GetUI();
-            }
-        }
-
-        private void onProxyTypeChanged(string value)
-        {
-            Model.ProxyType = value;
-            refreshProxyType();
-            InvokeAsync(StateHasChanged);
         }
     }
 }

@@ -1,13 +1,13 @@
 ﻿<table class="table">
     <thead>
         <tr>
-            <th scope="col">@Global.Instance.TextManager.GetText(Model.Profile.Texts.Name)</th>
-            <th scope="col">@Global.Instance.TextManager.GetText(Model.Profile.Texts.AgentName)</th>
-            <th scope="col">@Global.Instance.TextManager.GetText(Model.Profile.Texts.Status)</th>
+            <th scope="col">@TextName</th>
+            <th scope="col">@TextAgentName</th>
+            <th scope="col">@TextStatus</th>
             <th scope="col">
-                @Global.Instance.TextManager.GetText(Texts.Operate)
+                @TextOperate
                 <div class="btn-group btn-group-sm" role="group">
-                    <button type="button" title="@Global.Instance.TextManager.GetText(Texts.Add)" class="btn btn-secondary pt-0 pb-0" @onclick="Add">
+                    <button type="button" title="@TextAdd" class="btn btn-secondary pt-0 pb-0" @onclick="Add">
                         <i class="fa fa-plus"></i>
                     </button>
                 </div>
@@ -25,10 +25,10 @@
                     <div class="btn-toolbar">
                         <div class="btn-group">
                             <button type="button" class="btn btn-sm btn-primary" @onclick="@(()=>Edit(t.Model))">
-                                @Global.Instance.TextManager.GetText(Texts.Edit)
+                                @TextEdit
                             </button>
                             <button type="button" class="btn btn-sm btn-danger" @onclick="@(()=>Delete(t.Model))">
-                                @Global.Instance.TextManager.GetText(Texts.Delete)
+                                @TextDelete
                             </button>
                         </div>
                     </div>

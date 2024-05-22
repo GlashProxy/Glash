@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Components;
+using Quick.Localize;
 
 namespace Glash.Blazor.Server.Controls
 {
@@ -11,6 +12,10 @@ namespace Glash.Blazor.Server.Controls
         [Parameter]
         public Action<Model.AgentInfo> OkAction { get; set; }
 
+        private static string TextName=> Locale.GetString("Name");
+        private static string TextPassword=> Locale.GetString("Password");
+        private static string TextOk=> Locale.GetString("OK");
+        
         protected override void OnParametersSet()
         {
             base.OnParametersSet();

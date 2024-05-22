@@ -30,25 +30,7 @@
 	
 	<ItemGroup>
 		<PackageReference Include="Quick.Protocol.WebSocket.Server.AspNetCore" Version="2.3.4" />
-		<PackageReference Include="Quick.Blazor.Bootstrap.Admin" Version="4.0.33" />
+		<PackageReference Include="Quick.Blazor.Bootstrap.Admin" Version="4.1.0" />
 		<PackageReference Include="Quick.EntityFrameworkCore.Plus.SQLite" Version="6.0.3" />
-		<PackageReference Include="Quick.Localize" Version="1.0.5" />
-	</ItemGroup>
-
-	<ItemGroup>
-		<EmbeddedResource Include="Language\en-US\Glash.Blazor.Server\Model\AgentInfo+Texts.lang" />
-		<EmbeddedResource Include="Language\en-US\Glash.Blazor.Server\Model\ClientInfo+Texts.lang" />
-		<EmbeddedResource Include="Language\en-US\Glash.Blazor.Server\Pages\AgentManage+Texts.lang" />
-		<EmbeddedResource Include="Language\en-US\Glash.Blazor.Server\Pages\Basic+Texts.lang" />
-		<EmbeddedResource Include="Language\en-US\Glash.Blazor.Server\Pages\ClientManage+Texts.lang" />
-		<EmbeddedResource Include="Language\en-US\Glash.Blazor.Server\Pages\TunnelManage+Texts.lang" />
-		<EmbeddedResource Include="Language\en-US\Glash.Blazor.Server\ServerTexts.lang" />
-		<EmbeddedResource Include="Language\zh-CN\Glash.Blazor.Server\Model\AgentInfo+Texts.lang" />
-		<EmbeddedResource Include="Language\zh-CN\Glash.Blazor.Server\Model\ClientInfo+Texts.lang" />
-		<EmbeddedResource Include="Language\zh-CN\Glash.Blazor.Server\Pages\AgentManage+Texts.lang" />
-		<EmbeddedResource Include="Language\zh-CN\Glash.Blazor.Server\Pages\Basic+Texts.lang" />
-		<EmbeddedResource Include="Language\zh-CN\Glash.Blazor.Server\Pages\ClientManage+Texts.lang" />
-		<EmbeddedResource Include="Language\zh-CN\Glash.Blazor.Server\Pages\TunnelManage+Texts.lang" />
-		<EmbeddedResource Include="Language\zh-CN\Glash.Blazor.Server\ServerTexts.lang" />
 	</ItemGroup>
 </Project>

@@ -1,4 +1,5 @@
 ﻿using Glash.Agent;
+using Quick.Localize;
 
 namespace Glash.Blazor.Agent.Core
 {
@@ -20,7 +21,7 @@ namespace Glash.Blazor.Agent.Core
 
         private void GlashAgent_Disconnected(object sender, EventArgs e)
         {
-            Status = $"{DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss")}: {Global.Instance.TextManager.GetText(Agent.Model.Profile.Texts.Disconnected)}";
+            Status = $"{DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss")}: {Locale.GetString("Disconnected")}";
             var currentCts = cts;
             if (currentCts == null)
                 return;
@@ -42,7 +43,7 @@ namespace Glash.Blazor.Agent.Core
             try
             {
                 await glashAgent.ConnectAsync();
-                Status = $"{DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss")}: {Global.Instance.TextManager.GetText(Agent.Model.Profile.Texts.Connected)}";
+                Status = $"{DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss")}: {Locale.GetString("Connected")}";
             }
             catch (Exception ex)
             {

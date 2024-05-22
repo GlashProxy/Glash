@@ -1,18 +1,18 @@
 ﻿using Microsoft.AspNetCore.Components;
 using Microsoft.AspNetCore.Components.Web;
 using Microsoft.AspNetCore.Mvc;
+using Quick.Localize;
 
 namespace GlashAgent.Pages
 {
     public partial class Index
     {
-        public enum Texts
-        {
-            Title,
-            LoginPasswordManage,
-            ProfileManage
-        }
-
+        private static string TextTitle => Locale.GetString("Title");
+        private static string TextLoginPasswordManage => Locale.GetString("Login Password Manage");
+        private static string TextProfileManage => Locale.GetString("Profile Manage");
+        private static string TextPleaseInputPassword => Locale.GetString("Please input password");
+        private static string TextLogin => Locale.GetString("Login");
+        
         public bool IsLogin { get; private set; } = false;
         public string Message { get; private set; }
         private string CorrectPassword => Core.LoginPasswordManager.Instance.LoginPassword;
@@ -41,7 +41,7 @@ namespace GlashAgent.Pages
         {
             if (!IsLogin && CorrectPassword != Password)
             {
-                Message = "密码不正确！";
+                Message = Locale.GetString("Password is wrong");
                 return;
             }
             IsLogin = true;

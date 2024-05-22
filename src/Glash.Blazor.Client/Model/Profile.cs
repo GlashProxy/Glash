@@ -1,4 +1,5 @@
 ﻿using Quick.EntityFrameworkCore.Plus;
+using Quick.Localize;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
@@ -7,15 +8,6 @@ namespace Glash.Blazor.Client.Model
     [Table($"{nameof(Glash)}_{nameof(Client)}_{nameof(Profile)}")]
     public class Profile : BaseModel
     {
-        public enum Texts
-        {
-            ModelName,
-            Name,
-            ServerUrl,
-            ClientName,
-            ClientPassword
-        }
-
         public Profile() { }
         public Profile(string id)
         {
@@ -30,7 +22,7 @@ namespace Glash.Blazor.Client.Model
 
         public override string ToString()
         {
-            return $"{Global.Instance.TextManager.GetText(Texts.ModelName)}[{Name}]";
+            return Locale.GetString("Profile") + $"[{Name}]";
         }
     }
 }

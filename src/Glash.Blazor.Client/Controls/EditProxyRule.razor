@@ -2,78 +2,48 @@
     <div class="col-12">
         <EditForm Model="@Model" OnValidSubmit="Ok">
             <DataAnnotationsValidator />
-            <Tabs>
-                <TabPane Key="Basic">
-                    <Tab>
-                        @Global.Instance.TextManager.GetText(Glash.Client.Protocol.QpModel.ProxyRuleInfo.Texts.TabBasic)
-                    </Tab>
-                    <ChildContent>
-                        <div class="card" style="border-top: none;border-top-left-radius: 0;border-top-right-radius: 0;">
-                            <div class="card-body">
-                                <div class="form-group">
-                                    <label>@Global.Instance.TextManager.GetText(Glash.Client.Protocol.QpModel.ProxyRuleInfo.Texts.Name)</label>
-                                    <InputText class="form-control" @bind-Value="Model.Name" />
-                                    <ValidationMessage For="@(() => Model.Name)" />
-                                </div>
-                                <div class="form-group">
-                                    <label>@Global.Instance.TextManager.GetText(Glash.Client.Protocol.QpModel.ProxyRuleInfo.Texts.Agent)</label>
-                                    <InputText class="form-control" @bind-Value="Model.Agent" readonly />
-                                    <ValidationMessage For="@(() => Model.Agent)" />
-                                </div>
-                                <div class="form-group">
-                                    <label>@Global.Instance.TextManager.GetText(Glash.Client.Protocol.QpModel.ProxyRuleInfo.Texts.Local)</label>
-                                    <div class="row">
-                                        <div class="col-8">
-                                            <InputText class="form-control" @bind-Value="Model.LocalIPAddress" />
-                                        </div>
-                                        <div class="col-4">
-                                            <InputNumber class="form-control" @bind-Value="Model.LocalPort" />
-                                        </div>
-                                    </div>
-                                    <ValidationMessage For="@(() => Model.LocalIPAddress)" />
-                                    <ValidationMessage For="@(() => Model.LocalPort)" />
-                                </div>
-                                <div class="form-group">
-                                    <label>@Global.Instance.TextManager.GetText(Glash.Client.Protocol.QpModel.ProxyRuleInfo.Texts.Remote)</label>
-                                    <div class="row">
-                                        <div class="col-8">
-                                            <InputText class="form-control" @bind-Value="Model.RemoteHost" />
-                                        </div>
-                                        <div class="col-4">
-                                            <InputNumber class="form-control" @bind-Value="Model.RemotePort" />
-                                        </div>
-                                    </div>
-                                    <ValidationMessage For="@(() => Model.RemoteHost)" />
-                                    <ValidationMessage For="@(() => Model.RemotePort)" />
-                                </div>
+            <div class="card" style="border-top: none;border-top-left-radius: 0;border-top-right-radius: 0;">
+                <div class="card-body">
+                    <div class="form-group">
+                        <label>@TextName</label>
+                        <InputText class="form-control" @bind-Value="Model.Name" />
+                        <ValidationMessage For="@(() => Model.Name)" />
+                    </div>
+                    <div class="form-group">
+                        <label>@TextAgent</label>
+                        <InputText class="form-control" @bind-Value="Model.Agent" readonly />
+                        <ValidationMessage For="@(() => Model.Agent)" />
+                    </div>
+                    <div class="form-group">
+                        <label>@TextLocal</label>
+                        <div class="row">
+                            <div class="col-8">
+                                <InputText class="form-control" @bind-Value="Model.LocalIPAddress" />
+                            </div>
+                            <div class="col-4">
+                                <InputNumber class="form-control" @bind-Value="Model.LocalPort" />
                             </div>
                         </div>
-                    </ChildContent>
-                </TabPane>
-                <TabPane Key="ProxyType">
-                    <Tab>
-                        @Global.Instance.TextManager.GetText(Glash.Client.Protocol.QpModel.ProxyRuleInfo.Texts.TabProxyType)
-                    </Tab>
-                    <ChildContent>
-                        <div class="card" style="border-top: none;border-top-left-radius: 0;border-top-right-radius: 0;">
-                            <div class="card-body">
-                                <div class="form-group">
-                                    <InputSelect class="form-control" Value="Model.ProxyType" ValueExpression="@(()=>Model.ProxyType)" ValueChanged="@( (string s) => onProxyTypeChanged(s) )">
-                                        <option value="">@Global.Instance.TextManager.GetText(Glash.Client.Protocol.QpModel.ProxyRuleInfo.Texts.SelectOptionNone)</option>
-                                        @foreach (var proxyTypeInfo in Glash.Blazor.Client.ProxyTypes.ProxyTypeManager.Instance.GetProxyTypeInfos())
-                                        {
-                                            <option value="@proxyTypeInfo.Id">@proxyTypeInfo.Name</option>
-                                        }
-                                    </InputSelect>
-                                    <ValidationMessage For="@(() => Model.RemotePort)" />
-                                </div>
-                                @ProxyTypeUI
+                        <ValidationMessage For="@(() => Model.LocalIPAddress)" />
+                        <ValidationMessage For="@(() => Model.LocalPort)" />
+                    </div>
+                    <div class="form-group">
+                        <label>@TextRemote</label>
+                        <div class="row">
+                            <div class="col-8">
+                                <InputText class="form-control" @bind-Value="Model.RemoteHost" />
+                            </div>
+                            <div class="col-4">
+                                <InputNumber class="form-control" @bind-Value="Model.RemotePort" />
                             </div>
                         </div>
-                    </ChildContent>
-                </TabPane>
-            </Tabs>
-            <button type="submit" class="btn btn-primary btn-block mt-2">@Global.Instance.TextManager.GetText(ClientTexts.Ok)</button>
+                        <ValidationMessage For="@(() => Model.RemoteHost)" />
+                        <ValidationMessage For="@(() => Model.RemotePort)" />
+                    </div>
+                </div>
+            </div>
+            <button type="submit"
+                class="btn btn-primary btn-block mt-2">@TextOk</button>
         </EditForm>
     </div>
 </div>

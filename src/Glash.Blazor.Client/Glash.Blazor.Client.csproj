@@ -27,57 +27,12 @@
 	</ItemGroup>
 	
 	<ItemGroup>
-	  <None Remove="Language\en-US\Glash.Blazor.Client\ClientTexts.lang" />
-	  <None Remove="Language\en-US\Glash.Blazor.Client\Login+Texts.lang" />
-	  <None Remove="Language\en-US\Glash.Blazor.Client\Main+Texts.lang" />
-	  <None Remove="Language\en-US\Glash.Blazor.Client\Model\ProxyRule+Texts.lang" />
-	  <None Remove="Language\en-US\Glash.Blazor.Client\ProfileManage+Texts.lang" />
-	  <None Remove="Language\en-US\Glash.Blazor.Client\ProxyTypes\Database+Texts.lang" />
-	  <None Remove="Language\en-US\Glash.Blazor.Client\ProxyTypes\RDP+Texts.lang" />
-	  <None Remove="Language\en-US\Glash.Blazor.Client\ProxyTypes\SSH+Texts.lang" />
-	  <None Remove="Language\en-US\Glash.Blazor.Client\ProxyTypes\Web+Texts.lang" />
-	  <None Remove="Language\zh-CN\Glash.Blazor.Client\ClientTexts.lang" />
-	  <None Remove="Language\zh-CN\Glash.Blazor.Client\Login+Texts.lang" />
-	  <None Remove="Language\zh-CN\Glash.Blazor.Client\Main+Texts.lang" />
-	  <None Remove="Language\zh-CN\Glash.Blazor.Client\Model\Profile+Texts.lang" />
-	  <None Remove="Language\zh-CN\Glash.Blazor.Client\Model\ProxyRule+Texts.lang" />
-	  <None Remove="Language\zh-CN\Glash.Blazor.Client\ProfileManage+Texts.lang" />
-	  <None Remove="Language\zh-CN\Glash.Blazor.Client\ProxyTypes\Database+Texts.lang" />
-	  <None Remove="Language\zh-CN\Glash.Blazor.Client\ProxyTypes\RDP+Texts.lang" />
-	  <None Remove="Language\zh-CN\Glash.Blazor.Client\ProxyTypes\SSH+Texts.lang" />
-	  <None Remove="Language\zh-CN\Glash.Blazor.Client\ProxyTypes\Web+Texts.lang" />
-	</ItemGroup>
-
-	<ItemGroup>
-		<EmbeddedResource Include="Language\en-US\Glash.Blazor.Client\Login+Texts.lang" />
-		<EmbeddedResource Include="Language\en-US\Glash.Blazor.Client\Main+Texts.lang" />
-		<EmbeddedResource Include="Language\en-US\Glash.Blazor.Client\Model\Profile+Texts.lang" />
-		<EmbeddedResource Include="Language\en-US\Glash.Blazor.Client\ProfileManage+Texts.lang" />
-		<EmbeddedResource Include="Language\en-US\Glash.Blazor.Client\ClientTexts.lang" />
-		<EmbeddedResource Include="Language\en-US\Glash.Blazor.Client\ProxyTypes\Database+Texts.lang" />
-		<EmbeddedResource Include="Language\en-US\Glash.Blazor.Client\ProxyTypes\SSH+Texts.lang" />
-		<EmbeddedResource Include="Language\en-US\Glash.Blazor.Client\ProxyTypes\Web+Texts.lang" />
-		<EmbeddedResource Include="Language\en-US\Glash.Blazor.Client\ProxyTypes\RDP+Texts.lang" />
-		<EmbeddedResource Include="Language\zh-CN\Glash.Blazor.Client\ClientTexts.lang" />
-		<EmbeddedResource Include="Language\zh-CN\Glash.Blazor.Client\Main+Texts.lang" />
-		<EmbeddedResource Include="Language\zh-CN\Glash.Blazor.Client\Model\Profile+Texts.lang" />
-		<EmbeddedResource Include="Language\zh-CN\Glash.Blazor.Client\ProfileManage+Texts.lang" />
-		<EmbeddedResource Include="Language\zh-CN\Glash.Blazor.Client\Login+Texts.lang" />
-		<EmbeddedResource Include="Language\zh-CN\Glash.Blazor.Client\ProxyTypes\Database+Texts.lang" />
-		<EmbeddedResource Include="Language\zh-CN\Glash.Blazor.Client\ProxyTypes\RDP+Texts.lang" />
-		<EmbeddedResource Include="Language\zh-CN\Glash.Blazor.Client\ProxyTypes\SSH+Texts.lang" />
-		<EmbeddedResource Include="Language\zh-CN\Glash.Blazor.Client\ProxyTypes\Web+Texts.lang" />
-	</ItemGroup>
-
-
-	<ItemGroup>
 		<SupportedPlatform Include="browser" />
 	</ItemGroup>
 
 	<ItemGroup>
-		<PackageReference Include="Quick.Blazor.Bootstrap.Admin" Version="4.0.33" />
+		<PackageReference Include="Quick.Blazor.Bootstrap.Admin" Version="4.1.0" />
 		<PackageReference Include="Quick.EntityFrameworkCore.Plus.SQLite" Version="6.0.3" />
-		<PackageReference Include="Quick.Localize" Version="1.0.5" />
 		<PackageReference Include="System.Security.Cryptography.ProtectedData" Version="8.0.0" />
 	</ItemGroup>
 

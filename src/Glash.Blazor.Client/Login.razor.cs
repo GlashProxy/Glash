@@ -2,18 +2,17 @@
 using Microsoft.AspNetCore.Components;
 using Quick.Blazor.Bootstrap;
 using Quick.EntityFrameworkCore.Plus;
+using Quick.Localize;
 
 namespace Glash.Blazor.Client
 {
     public partial class Login
     {
-        public enum Texts
-        {
-            Title,
-            ChooseProfile,
-            Login,
-            ProfileManage
-        }
+        private static string TextTitle => Locale.GetString("Title");
+        private static string TextChooseProfile => Locale.GetString("Choose Profile");
+        private static string TextLogin => Locale.GetString("Login");
+        private static string TextProfileManage => Locale.GetString("Profile Manage");
+        private static string TextError => Locale.GetString("Error");
 
         private ModalWindow modalWindow;
         private ModalAlert modalAlert;
@@ -37,7 +36,7 @@ namespace Glash.Blazor.Client
         private void ShowProfileManageWindow()
         {
             modalWindow.Show<ProfileManage>(
-                Global.Instance.TextManager.GetText(Texts.ProfileManage),
+                TextProfileManage,
                 ProfileManage.PrepareParameter(
                     () => InvokeAsync(StateHasChanged)
                 )
@@ -67,7 +66,7 @@ namespace Glash.Blazor.Client
             {
                 Global.Instance.GlashClient?.Dispose();
                 Global.Instance.GlashClient = null;
-                modalAlert.Show(Global.Instance.TextManager.GetText(ClientTexts.Error), ex.Message);
+                modalAlert.Show(TextError, ex.Message);
             }
             modalLoading.Close();
         }

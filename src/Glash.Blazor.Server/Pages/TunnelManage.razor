@@ -3,13 +3,13 @@
 <table class="table">
     <thead>
         <tr>
-            <th scope="col">@Global.Instance.TextManager.GetText(Texts.Id)</th>
-            <th scope="col">@Global.Instance.TextManager.GetText(Texts.Agent)</th>
-            <th scope="col">@Global.Instance.TextManager.GetText(Texts.Client)/@Global.Instance.TextManager.GetText(Texts.Target)</th>
-            <th scope="col">@Global.Instance.TextManager.GetText(Texts.ConnectTime)</th>
-            <th scope="col">@Global.Instance.TextManager.GetText(Texts.TotalBytes)</th>
-            <th scope="col">@Global.Instance.TextManager.GetText(Texts.CurrentSpeed)</th>
-            <th scope="col">@Global.Instance.TextManager.GetText(Texts.Operate)</th>
+            <th scope="col">@TextId</th>
+            <th scope="col">@TextAgent</th>
+            <th scope="col">@TextClient/@TextTarget</th>
+            <th scope="col">@TextConnectTime</th>
+            <th scope="col">@TextTotalBytes</th>
+            <th scope="col">@TextCurrentSpeed</th>
+            <th scope="col">@TextOperate</th>
         </tr>
     </thead>
     <tbody>
@@ -40,7 +40,7 @@
                         <div class="btn-toolbar">
                             <div class="btn-group">
                                 <button type="button" class="btn btn-sm btn-danger" @onclick="@(()=>CloseTunnel(t))">
-                                    @Global.Instance.TextManager.GetText(Texts.CloseTunnel)
+                                    @TextCloseTunnel
                                 </button>
                             </div>
                         </div>

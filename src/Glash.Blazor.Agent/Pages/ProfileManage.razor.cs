@@ -2,6 +2,7 @@
 using Newtonsoft.Json;
 using Quick.Blazor.Bootstrap;
 using Quick.EntityFrameworkCore.Plus;
+using Quick.Localize;
 
 namespace Glash.Blazor.Agent.Pages
 {
@@ -10,14 +11,13 @@ namespace Glash.Blazor.Agent.Pages
         private ModalWindow modalWindow;
         private ModalAlert modalAlert;
 
-        public enum Texts
-        {
-            Operate,
-            Add,
-            Edit,
-            Delete,
-            DeleteConfirm
-        }
+        private static string TextName => Locale.GetString("Name");
+        private static string TextAgentName => Locale.GetString("Agent Name");
+        private static string TextStatus => Locale.GetString("Status");
+        private static string TextOperate => Locale.GetString("Operate");
+        private static string TextAdd => Locale.GetString("Add");
+        private static string TextEdit => Locale.GetString("Edit");
+        private static string TextDelete => Locale.GetString("Delete");
 
         private CancellationTokenSource cts = new CancellationTokenSource();
 
@@ -48,7 +48,7 @@ namespace Glash.Blazor.Agent.Pages
 
         private void Add()
         {
-            modalWindow.Show<Controls.EditProfile>(Global.Instance.TextManager.GetText(Texts.Add), Controls.EditProfile.PrepareParameter(
+            modalWindow.Show<Controls.EditProfile>(Locale.GetString("Add"), Controls.EditProfile.PrepareParameter(
                 new Model.Profile(Guid.NewGuid().ToString("N")),
                 model =>
                 {
@@ -61,7 +61,7 @@ namespace Glash.Blazor.Agent.Pages
                     }
                     catch (Exception ex)
                     {
-                        modalAlert.Show(Global.Instance.TextManager.GetText(AgentTexts.Error), ex.Message);
+                        modalAlert.Show(Locale.GetString("Error"), ex.Message);
                     }
                 }
             ));
@@ -69,7 +69,7 @@ namespace Glash.Blazor.Agent.Pages
 
         private void Edit(Model.Profile model)
         {
-            modalWindow.Show<Controls.EditProfile>(Global.Instance.TextManager.GetText(Texts.Edit), Controls.EditProfile.PrepareParameter(
+            modalWindow.Show<Controls.EditProfile>(Locale.GetString("Edit"), Controls.EditProfile.PrepareParameter(
                 JsonConvert.DeserializeObject<Model.Profile>(JsonConvert.SerializeObject(model)),
                 editModel =>
                 {
@@ -87,7 +87,7 @@ namespace Glash.Blazor.Agent.Pages
                     }
                     catch (Exception ex)
                     {
-                        modalAlert.Show(Global.Instance.TextManager.GetText(AgentTexts.Error), ex.Message);
+                        modalAlert.Show(Locale.GetString("Error"), ex.Message);
                     }
                 }
             ));
@@ -95,7 +95,7 @@ namespace Glash.Blazor.Agent.Pages
 
         private void Delete(Model.Profile model)
         {
-            modalAlert.Show(Global.Instance.TextManager.GetText(Texts.Delete), Global.Instance.TextManager.GetText(Texts.DeleteConfirm, model.Name), () =>
+            modalAlert.Show(Locale.GetString("Delete"), Locale.GetString("Are you sure to delete profile[{0}]?", model.Name), () =>
             {
                 try
                 {
@@ -107,7 +107,7 @@ namespace Glash.Blazor.Agent.Pages
                 {
                     Task.Delay(100).ContinueWith(t =>
                     {
-                        modalAlert.Show(Global.Instance.TextManager.GetText(AgentTexts.Error), ex.Message);
+                        modalAlert.Show(Locale.GetString("Error"), ex.Message);
                     });
                 }
             });

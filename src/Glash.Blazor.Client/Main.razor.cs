@@ -1,36 +1,16 @@
-﻿using Glash.Blazor.Client.ProxyTypes;
-using Glash.Client;
+﻿using Glash.Client;
 using Glash.Client.Protocol.QpModel;
 using Microsoft.AspNetCore.Components;
 using Newtonsoft.Json;
 using Quick.Blazor.Bootstrap;
 using Quick.Blazor.Bootstrap.Admin;
 using Quick.Blazor.Bootstrap.Admin.Utils;
+using Quick.Localize;
 
 namespace Glash.Blazor.Client
 {
     public partial class Main
     {
-        public enum Texts
-        {
-            AddProxyRule,
-            DuplicateProxyRule,
-            EditProxyRule,
-            DeleteProxyRule,
-            DeleteProxyRuleConfirm,
-            Logout,
-            LogoutConfirm,
-            EnableAll,
-            DisableAll,
-            System,
-            Local,
-            Remote,
-            DisplayRows,
-            DisconnectedFromServer,
-            AgentNotLogin
-        }
-
-
         [Parameter]
         public INavigator INavigator { get; set; }
         [Parameter]
@@ -42,6 +22,21 @@ namespace Glash.Blazor.Client
         [Parameter]
         public ProxyRuleInfo[] ProxyRules { get; set; }
 
+
+        private static string TextAddProxyRule=>Locale.GetString("Add Proxy Rule");
+        private static string TextDuplicateProxyRule => Locale.GetString("Duplicate Proxy Rule");
+        private static string TextEditProxyRule => Locale.GetString("Edit Proxy Rule");
+        private static string TextDeleteProxyRule => Locale.GetString("Delete Proxy Rule");
+        private static string TextLogout => Locale.GetString("Logout");
+        private static string TextEnableAll => Locale.GetString("Enable All");
+        private static string TextDisableAll => Locale.GetString("Disable All");
+        private static string TextSystem => Locale.GetString("System");
+        private static string TextLocal => Locale.GetString("Local");
+        private static string TextRemote => Locale.GetString("Remote");
+        private static string TextDisplayRows => Locale.GetString("Display Rows");
+        private static string TextDisconnectedFromServer => Locale.GetString("Disconnected from server");
+        private static string TextAgentNotLogin => Locale.GetString("Agent not login");
+        private static string TextError => Locale.GetString("Error");
         private Dictionary<string, AgentInfo> agentDict;
 
         private bool isUserLogout = false;
@@ -115,10 +110,9 @@ namespace Glash.Blazor.Client
         {
             if (isUserLogout)
                 return;
-
             INavigator.Alert(
-                Global.Instance.TextManager.GetText(ClientTexts.Error),
-                Global.Instance.TextManager.GetText(Texts.DisconnectedFromServer));
+                TextError,
+                TextDisconnectedFromServer);
             logout();
         }
 
@@ -142,8 +136,8 @@ namespace Glash.Blazor.Client
         private void Logout()
         {
             modalAlert.Show(
-                @Global.Instance.TextManager.GetText(Texts.Logout),
-                @Global.Instance.TextManager.GetText(Texts.LogoutConfirm),
+                TextLogout,
+                Locale.GetString("Are you sure to logout?"),
                 () =>
                 {
                     logout();
@@ -153,7 +147,7 @@ namespace Glash.Blazor.Client
 
         private void AddProxyRule(string agent)
         {
-            modalWindow.Show<Controls.EditProxyRule>(Global.Instance.TextManager.GetText(Texts.AddProxyRule), Controls.EditProxyRule.PrepareParameter(
+            modalWindow.Show<Controls.EditProxyRule>(TextAddProxyRule, Controls.EditProxyRule.PrepareParameter(
                 new ProxyRuleInfo()
                 {
                     LocalIPAddress = "127.0.0.1",
@@ -164,7 +158,7 @@ namespace Glash.Blazor.Client
                 },
                 async model =>
                 {
-                    modalLoading.Show(Global.Instance.TextManager.GetText(Texts.AddProxyRule), null, true);
+                    modalLoading.Show(TextAddProxyRule, null, true);
                     try
                     {
                         model = await GlashClient.SaveProxyRule(model);
@@ -174,7 +168,7 @@ namespace Glash.Blazor.Client
                     }
                     catch (Exception ex)
                     {
-                        modalAlert.Show(Global.Instance.TextManager.GetText(ClientTexts.Error), ex.Message);
+                        modalAlert.Show(TextError, ex.Message);
                     }
                     modalLoading.Close();
                 }
@@ -183,7 +177,7 @@ namespace Glash.Blazor.Client
 
         private void DuplicateProxyRule(ProxyRuleInfo model)
         {
-            modalPrompt.Show(@Global.Instance.TextManager.GetText(Texts.DuplicateProxyRule), model.Name, async newName =>
+            modalPrompt.Show(TextDuplicateProxyRule, model.Name, async newName =>
             {
                 var newModel = new ProxyRuleInfo()
                 {
@@ -196,7 +190,7 @@ namespace Glash.Blazor.Client
                     ProxyType = model.ProxyType,
                     ProxyTypeConfig = model.ProxyTypeConfig
                 };
-                modalLoading.Show(Global.Instance.TextManager.GetText(Texts.DuplicateProxyRule), null, true);
+                modalLoading.Show(TextDuplicateProxyRule, null, true);
                 try
                 {
                     newModel = await GlashClient.SaveProxyRule(newModel);
@@ -206,7 +200,7 @@ namespace Glash.Blazor.Client
                 }
                 catch (Exception ex)
                 {
-                    modalAlert.Show(Global.Instance.TextManager.GetText(ClientTexts.Error), ex.Message);
+                    modalAlert.Show(TextError, ex.Message);
                 }
                 modalLoading.Close();
             });
@@ -214,11 +208,11 @@ namespace Glash.Blazor.Client
 
         private void EditProxyRule(ProxyRuleInfo model)
         {
-            modalWindow.Show<Controls.EditProxyRule>(Global.Instance.TextManager.GetText(Texts.EditProxyRule), Controls.EditProxyRule.PrepareParameter(
+            modalWindow.Show<Controls.EditProxyRule>(Locale.GetString(TextEditProxyRule), Controls.EditProxyRule.PrepareParameter(
                 JsonConvert.DeserializeObject<ProxyRuleInfo>(JsonConvert.SerializeObject(model)),
                 async editModel =>
                 {
-                    modalLoading.Show(Global.Instance.TextManager.GetText(Texts.EditProxyRule), null, true);
+                    modalLoading.Show(Locale.GetString(TextEditProxyRule), null, true);
                     try
                     {
                         model.Name = editModel.Name;
@@ -237,7 +231,7 @@ namespace Glash.Blazor.Client
                     }
                     catch (Exception ex)
                     {
-                        modalAlert.Show(Global.Instance.TextManager.GetText(ClientTexts.Error), ex.Message);
+                        modalAlert.Show(TextError, ex.Message);
                     }
                     modalLoading.Close();
                 }
@@ -247,11 +241,11 @@ namespace Glash.Blazor.Client
         private void DeleteProxyRule(ProxyRuleInfo model)
         {
             modalAlert.Show(
-                Global.Instance.TextManager.GetText(Texts.DeleteProxyRule),
-                Global.Instance.TextManager.GetText(Texts.DeleteProxyRuleConfirm, model.Name),
+                TextDeleteProxyRule,
+                Locale.GetString("Are you sure to delete ProxyRule[{0}]?", model.Name),
                 async () =>
                 {
-                    modalLoading.Show(Global.Instance.TextManager.GetText(Texts.DeleteProxyRule), null, true);
+                    modalLoading.Show(TextDeleteProxyRule, null, true);
                     try
                     {
                         GlashClient.UnloadProxyRule(model.Id);
@@ -262,7 +256,7 @@ namespace Glash.Blazor.Client
                     {
                         _ = Task.Delay(100).ContinueWith(t =>
                         {
-                            modalAlert.Show(Global.Instance.TextManager.GetText(ClientTexts.Error), ex.Message);
+                            modalAlert.Show(TextError, ex.Message);
                         });
                     }
                     modalLoading.Close();
@@ -281,7 +275,7 @@ namespace Glash.Blazor.Client
             }
             catch (Exception ex)
             {
-                modalAlert.Show(Global.Instance.TextManager.GetText(ClientTexts.Error), ex.Message);
+                modalAlert.Show(TextError, ex.Message);
                 await Task.Delay(100);
                 await InvokeAsync(StateHasChanged);
             }
@@ -309,43 +303,6 @@ namespace Glash.Blazor.Client
                 try { GlashClient.DisableProxyRule(item); }
                 catch { }
             InvokeAsync(StateHasChanged);
-        }
-
-        private IProxyType GetProxyTypeInstance(ProxyRuleContext proxyRuleContext)
-        {
-            var proxyType = proxyRuleContext.GetExtendProperty<IProxyType>();
-            if (proxyType == null)
-            {
-                if (string.IsNullOrEmpty(proxyRuleContext.Config.ProxyType))
-                    return null;
-                proxyType = ProxyTypeManager.Instance
-                    .GetProxyTypeInfo(proxyRuleContext.Config.ProxyType)
-                    .CreateInstance(proxyRuleContext.Config.ProxyTypeConfig);
-                proxyRuleContext.SetExtendProperty(proxyType);
-            }
-            return proxyType;
-        }
-
-        private string GetProxyRuleContextIcon(ProxyRuleContext proxyRuleContext)
-        {
-            return GetProxyTypeInstance(proxyRuleContext)?.Icon ?? "fa fa-cube";
-        }
-
-        private async Task ButtonInvoke(ProxyTypeButton button, ProxyRuleContext proxyRuleContext)
-        {
-            try
-            {
-                modalLoading.Show(button.Name, null, true);
-                await Task.Run(() => button.Invoke(proxyRuleContext));
-            }
-            catch (Exception ex)
-            {
-                modalAlert.Show(button.Name, ExceptionUtils.GetExceptionString(ex));
-            }
-            finally
-            {
-                modalLoading.Close();
-            }
         }
     }
 }

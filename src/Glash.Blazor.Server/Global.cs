@@ -11,7 +11,6 @@ namespace Glash.Blazor.Server
     public class Global : IAgentManager, IClientManager
     {
         public static Global Instance { get; } = new Global();
-        public TextManager TextManager { get; private set; }
         public GlashServer GlashServer { get; private set; }
         public QpServerOptions ServerOptions { get; private set; }
 
@@ -44,14 +43,9 @@ namespace Glash.Blazor.Server
             modelBuilder.Entity<Model.ProxyRuleInfo>();
         }
 
-        public void ChangeLanguage(string language)
-        {
-            TextManager = TextManager.GetInstance(language);
-        }
 
         public void Init(Quick.Protocol.WebSocket.Server.AspNetCore.QpWebSocketServerOptions serverOptions, int maxTunnelCount)
         {
-            TextManager = TextManager.DefaultInstance;
             GlashServer = new GlashServer(new GlashServerOptions()
             {
                 MaxTunnelCount = maxTunnelCount,
@@ -185,7 +179,7 @@ namespace Glash.Blazor.Server
         {
             IClientManager manager = this;
             if (!manager.IsClientRelateAgent(clientName, proxyRule.Agent))
-                throw new ApplicationException($"Client[{clientName}] not relate to Agent[{proxyRule.Agent}].");
+                throw new ApplicationException(Locale.GetString("Client[{0}] not relate to Agent[{1}].",clientName,proxyRule.Agent));
 
             var model = new Model.ProxyRuleInfo()
             {
@@ -220,10 +214,10 @@ namespace Glash.Blazor.Server
         {
             var model = ConfigDbContext.CacheContext.Find(new Model.ProxyRuleInfo(proxyRuleId));
             if (model == null)
-                throw new ApplicationException($"Can't found ProxyRule with Id[{proxyRuleId}].");
+                throw new ApplicationException(Locale.GetString("Can't found ProxyRule with Id[{0}].", proxyRuleId));
 
             if (model.ClientName != model.ClientName)
-                throw new ApplicationException($"ProxyRule[{proxyRuleId}] not belong to Client[{clientName}].");
+                throw new ApplicationException(Locale.GetString("ProxyRule[{0}] not belong to Client[{1}].", proxyRuleId, clientName));
 
             ConfigDbContext.CacheContext.Remove(model);
         }
@@ -232,9 +226,9 @@ namespace Glash.Blazor.Server
         {
             var model = ConfigDbContext.CacheContext.Find(new Model.ProxyRuleInfo(proxyRuleId));
             if (model == null)
-                throw new ApplicationException($"Can't found ProxyRule with Id[{proxyRuleId}].");
-            if(model.ClientName != clientName)
-                throw new ApplicationException($"ProxyRule[Id:{proxyRuleId}]'s client name not match.");
+                throw new ApplicationException(Locale.GetString("Can't found ProxyRule with Id[{0}].", proxyRuleId));
+            if (model.ClientName != clientName)
+                throw new ApplicationException(Locale.GetString("ProxyRule[Id:{0}]'s client name not match.", proxyRuleId));
             return model;
         }
     }

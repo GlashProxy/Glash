@@ -1,8 +1,0 @@
-﻿ModelName=配置
-Name=名称
-ServerUrl=服务端地址
-AgentName=代理名称
-AgentPassword=代理密码
-Status=状态
-Connected=已连接
-Disconnected=已断开

@@ -3,7 +3,7 @@
         <EditForm Model="@Model" OnValidSubmit="Ok">
             <DataAnnotationsValidator />
             <div class="form-group">
-                <label>@Global.Instance.TextManager.GetText(Server.Model.AgentInfo.Texts.Name)</label>
+                <label>@TextName</label>
                 @if (IsAdd)
                 {
                     <InputText class="form-control" @bind-Value="Model.Name" />
@@ -15,11 +15,11 @@
                 <ValidationMessage For="@(() => Model.Name)" />
             </div>
             <div class="form-group">
-                <label>@Global.Instance.TextManager.GetText(Server.Model.AgentInfo.Texts.Password)</label>
+                <label>@TextPassword</label>
                 <InputText class="form-control" @bind-Value="Model.Password" />
                 <ValidationMessage For="@(() => Model.Password)" />
             </div>
-            <button type="submit" class="btn btn-primary col-sm-5 col-md-4 col-lg-2">@Global.Instance.TextManager.GetText(ServerTexts.Ok)</button>
+            <button type="submit" class="btn btn-primary col-sm-5 col-md-4 col-lg-2">@TextOk</button>
         </EditForm>
     </div>
 </div>

@@ -9,13 +9,6 @@ namespace Glash.Blazor.Server.Model
     [Table($"{nameof(Glash)}_{nameof(Server)}_{nameof(ClientInfo)}")]
     public class ClientInfo
     {
-        public enum Texts
-        {
-            ModelName,
-            Name,
-            Password
-        }
-
         public ClientInfo() { }
         public ClientInfo(string name) { Name = name; }
 

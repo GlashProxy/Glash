@@ -14,14 +14,6 @@
 	</PropertyGroup>
 
 	<ItemGroup>
-	  <None Remove="Language\en-US\Glash.Blazor.Agent\AgentTexts.lang" />
-	  <None Remove="Language\en-US\Glash.Blazor.Agent\Pages\ProfileManage+Texts.lang" />
-	  <None Remove="Language\zh-CN\Glash.Blazor.Agent\AgentTexts.lang" />
-	  <None Remove="Language\zh-CN\Glash.Blazor.Agent\Model\Profile+Texts.lang" />
-	  <None Remove="Language\zh-CN\Glash.Blazor.Agent\Pages\ProfileManage+Texts.lang" />
-	</ItemGroup>
-
-	<ItemGroup>
 		<None Include="..\..\logo.png">
 			<Pack>True</Pack>
 			<PackagePath>\</PackagePath>
@@ -29,19 +21,9 @@
 	</ItemGroup>
 
 	<ItemGroup>
-		<EmbeddedResource Include="Language\en-US\Glash.Blazor.Agent\Model\Profile+Texts.lang" />
-		<EmbeddedResource Include="Language\en-US\Glash.Blazor.Agent\AgentTexts.lang" />
-		<EmbeddedResource Include="Language\en-US\Glash.Blazor.Agent\Pages\ProfileManage+Texts.lang" />
-		<EmbeddedResource Include="Language\zh-CN\Glash.Blazor.Agent\Model\Profile+Texts.lang" />
-		<EmbeddedResource Include="Language\zh-CN\Glash.Blazor.Agent\AgentTexts.lang" />
-		<EmbeddedResource Include="Language\zh-CN\Glash.Blazor.Agent\Pages\ProfileManage+Texts.lang" />
-	</ItemGroup>
-
-	<ItemGroup>
 		<PackageReference Include="Quick.Protocol.WebSocket.Server.AspNetCore" Version="2.3.4" />
-		<PackageReference Include="Quick.Blazor.Bootstrap.Admin" Version="4.0.33" />
+		<PackageReference Include="Quick.Blazor.Bootstrap.Admin" Version="4.1.0" />
 		<PackageReference Include="Quick.EntityFrameworkCore.Plus.SQLite" Version="6.0.3" />
-		<PackageReference Include="Quick.Localize" Version="1.0.5" />
 		<PackageReference Include="Quick.Protocol.AllClients" Version="2.3.4" />
 	</ItemGroup>
 
