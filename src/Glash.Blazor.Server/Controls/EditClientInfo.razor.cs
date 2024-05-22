@@ -1,10 +1,11 @@
 ﻿using Microsoft.AspNetCore.Components;
+using Quick.Blazor.Bootstrap;
 using Quick.EntityFrameworkCore.Plus;
 using Quick.Localize;
 
 namespace Glash.Blazor.Server.Controls
 {
-    public partial class EditClientInfo
+    public partial class EditClientInfo : ComponentBase_WithGettextSupport
     {
         private bool IsAdd;
 

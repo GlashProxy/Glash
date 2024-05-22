@@ -1,4 +1,6 @@
-﻿<div class="row">
+﻿@inherits ComponentBase_WithGettextSupport
+
+<div class="row">
     <div class="col-12">
         <EditForm Model="@Model" OnValidSubmit="Ok">
             <DataAnnotationsValidator />

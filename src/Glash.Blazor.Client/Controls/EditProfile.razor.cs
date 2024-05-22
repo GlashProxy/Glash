@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Components;
+using Quick.Blazor.Bootstrap;
 using Quick.Localize;
 using System;
 using System.Collections.Generic;
@@ -8,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace Glash.Blazor.Client.Controls
 {
-    public partial class EditProfile
+    public partial class EditProfile : ComponentBase_WithGettextSupport
     {
         [Parameter]
         public Model.Profile Model { get; set; }

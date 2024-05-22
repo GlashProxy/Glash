@@ -6,7 +6,7 @@ using Quick.Localize;
 
 namespace Glash.Blazor.Agent.Pages
 {
-    public partial class ProfileManage : IDisposable
+    public partial class ProfileManage : ComponentBase_WithGettextSupport
     {
         private ModalWindow modalWindow;
         private ModalAlert modalAlert;
@@ -41,8 +41,9 @@ namespace Glash.Blazor.Agent.Pages
             });
         }
 
-        public void Dispose()
+        public override void Dispose()
         {
+            base.Dispose();
             cts.Cancel();
         }
 

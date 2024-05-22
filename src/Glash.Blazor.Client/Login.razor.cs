@@ -6,7 +6,7 @@ using Quick.Localize;
 
 namespace Glash.Blazor.Client
 {
-    public partial class Login
+    public partial class Login : ComponentBase_WithGettextSupport
     {
         private static string TextTitle => Locale.GetString("Glash Client");
         private static string TextChooseProfile => Locale.GetString("Choose Profile");

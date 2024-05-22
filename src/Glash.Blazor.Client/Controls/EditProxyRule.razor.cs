@@ -1,10 +1,11 @@
 ﻿using Glash.Client.Protocol.QpModel;
 using Microsoft.AspNetCore.Components;
+using Quick.Blazor.Bootstrap;
 using Quick.Localize;
 
 namespace Glash.Blazor.Client.Controls
 {
-    public partial class EditProxyRule
+    public partial class EditProxyRule : ComponentBase_WithGettextSupport
     {
         [Parameter]
         public ProxyRuleInfo Model { get; set; }

@@ -1,11 +1,12 @@
 ﻿using Microsoft.AspNetCore.Components;
 using Microsoft.AspNetCore.Components.Web;
 using Microsoft.AspNetCore.Mvc;
+using Quick.Blazor.Bootstrap;
 using Quick.Localize;
 
 namespace GlashAgent.Pages
 {
-    public partial class Index
+    public partial class Index : ComponentBase_WithGettextSupport
     {
         private static string TextTitle => Locale.GetString("Glash Agent");
         private static string TextLoginPasswordManage => Locale.GetString("Login Password Manage");
