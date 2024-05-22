@@ -8,7 +8,7 @@ namespace Glash.Blazor.Client
 {
     public partial class Login
     {
-        private static string TextTitle => Locale.GetString("Title");
+        private static string TextTitle => Locale.GetString("Glash Client");
         private static string TextChooseProfile => Locale.GetString("Choose Profile");
         private static string TextLogin => Locale.GetString("Login");
         private static string TextProfileManage => Locale.GetString("Profile Manage");

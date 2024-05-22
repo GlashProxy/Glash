@@ -5,24 +5,6 @@ namespace Glash.Client.Protocol.QpModel
 {
     public class ProxyRuleInfo
     {
-        public enum Texts
-        {
-            ModelName,
-            TabBasic,
-            TabProxyType,
-            SelectOptionNone,
-            Name,
-            Agent,
-            Local,
-            LocalIPAddress,
-            LocalPort,
-            Remote,
-            RemoteHost,
-            RemotePort,
-            ProxyType,
-            ProxyTypeConfig
-        }
-
         [Key]
         public string Id { get; set; }
         [Required]

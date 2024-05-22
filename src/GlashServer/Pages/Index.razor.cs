@@ -7,7 +7,7 @@ namespace GlashServer.Pages
 {
     public partial class Index
     {
-        private static string TextTitle => Locale.GetString("Title");
+        private static string TextTitle => Locale.GetString("Glash Server");
         private static string TextBasic => Locale.GetString("Basic");
         private static string TextAgentManage => Locale.GetString("Agent Manage");
         private static string TextClientManage => Locale.GetString("Client Manage");

@@ -7,7 +7,7 @@ namespace GlashAgent.Pages
 {
     public partial class Index
     {
-        private static string TextTitle => Locale.GetString("Title");
+        private static string TextTitle => Locale.GetString("Glash Agent");
         private static string TextLoginPasswordManage => Locale.GetString("Login Password Manage");
         private static string TextProfileManage => Locale.GetString("Profile Manage");
         private static string TextPleaseInputPassword => Locale.GetString("Please input password");

@@ -6,15 +6,9 @@
 		<RollForward>Major</RollForward>
 		<AppendTargetFrameworkToOutputPath>false</AppendTargetFrameworkToOutputPath>
 	</PropertyGroup>
-
+	
 	<ItemGroup>
-	  <None Remove="Language\en-US\GlashAgent\Pages\Index+Texts.lang" />
-	  <None Remove="Language\zh-CN\GlashAgent\Pages\Index+Texts.lang" />
-	</ItemGroup>
-
-	<ItemGroup>
-	  <EmbeddedResource Include="Language\en-US\GlashAgent\Pages\Index+Texts.lang" />
-	  <EmbeddedResource Include="Language\zh-CN\GlashAgent\Pages\Index+Texts.lang" />
+		<EmbeddedResource Include="locale/zh.mo" />
 	</ItemGroup>
 
 	<ItemGroup>

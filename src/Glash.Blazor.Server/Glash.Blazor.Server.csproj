@@ -32,5 +32,9 @@
 		<PackageReference Include="Quick.Protocol.WebSocket.Server.AspNetCore" Version="2.3.4" />
 		<PackageReference Include="Quick.Blazor.Bootstrap.Admin" Version="4.1.0" />
 		<PackageReference Include="Quick.EntityFrameworkCore.Plus.SQLite" Version="6.0.3" />
+		<PackageReference Include="Quick.Localize" Version="2.0.3" />
+	</ItemGroup>
+	<ItemGroup>
+		<EmbeddedResource Include="locale/zh.mo" />
 	</ItemGroup>
 </Project>

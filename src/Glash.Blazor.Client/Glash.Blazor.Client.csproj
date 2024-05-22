@@ -34,8 +34,11 @@
 		<PackageReference Include="Quick.Blazor.Bootstrap.Admin" Version="4.1.0" />
 		<PackageReference Include="Quick.EntityFrameworkCore.Plus.SQLite" Version="6.0.3" />
 		<PackageReference Include="System.Security.Cryptography.ProtectedData" Version="8.0.0" />
+		<PackageReference Include="Quick.Localize" Version="2.0.3" />
 	</ItemGroup>
-
+	<ItemGroup>
+		<EmbeddedResource Include="locale/zh.mo" />
+	</ItemGroup>
 	<ItemGroup>
 		<ProjectReference Include="..\Glash\Glash.csproj" />
 	</ItemGroup>
