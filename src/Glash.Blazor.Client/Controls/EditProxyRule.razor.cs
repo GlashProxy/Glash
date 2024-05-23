@@ -13,7 +13,6 @@ namespace Glash.Blazor.Client.Controls
         [Parameter]
         public Action<ProxyRuleInfo> OkAction { get; set; }
 
-        private static string TextTabBasic=>Locale.GetString("Basic");
         private static string TextName=>Locale.GetString("Name");
         private static string TextAgent=>Locale.GetString("Agent");        
         private static string TextLocal=>Locale.GetString("Local");

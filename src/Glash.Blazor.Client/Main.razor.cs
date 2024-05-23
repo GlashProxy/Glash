@@ -13,22 +13,22 @@ namespace Glash.Blazor.Client
     public partial class Main : ComponentBase_WithGettextSupport
     {
         private static string TextProfile => Locale.GetString("Profile");
-        private static string TextChooseProfile => Locale.GetString("Choose Profile");
         private static string TextEnable => Locale.GetString("Enable");
         private static string TextDisable => Locale.GetString("Disable");
         private static string TextAdd => Locale.GetString("Add");
         private static string TextEdit => Locale.GetString("Edit");
+        private static string TextDuplicate => Locale.GetString("Duplicate");
         private static string TextDelete => Locale.GetString("Delete");
+        private static string TextAgent => Locale.GetString("Agent");
+        private static string TextProxyRule => Locale.GetString("Proxy Rule");
         private static string TextError => Locale.GetString("Error");
         private static string TextAddProxyRule => Locale.GetString("Add Proxy Rule");
         private static string TextDuplicateProxyRule => Locale.GetString("Duplicate Proxy Rule");
         private static string TextEditProxyRule => Locale.GetString("Edit Proxy Rule");
         private static string TextDeleteProxyRule => Locale.GetString("Delete Proxy Rule");
-        private static string TextLogout => Locale.GetString("Logout");
         private static string TextEnableAll => Locale.GetString("Enable All");
         private static string TextDisableAll => Locale.GetString("Disable All");
-        private static string TextSystem => Locale.GetString("System");
-        private static string TextLocal => Locale.GetString("Local");
+                private static string TextLocal => Locale.GetString("Local");
         private static string TextRemote => Locale.GetString("Remote");
         private static string TextDisplayRows => Locale.GetString("Display Rows");
         private static string TextDisconnectedFromServer => Locale.GetString("Disconnected from server");
@@ -41,6 +41,7 @@ namespace Glash.Blazor.Client
         private ProfileContext[] ProfileContexts => ProfileContextManager.Instance.GetProfileContexts();
         //当前配置上下文
         private ProfileContext CurrentProfileContext;
+        private AgentInfo CurrentAgent;
 
         private string _CurrentProfileId;
         public string CurrentProfileId
@@ -52,9 +53,26 @@ namespace Glash.Blazor.Client
                 CurrentProfileContext = null;
                 if (!string.IsNullOrEmpty(value))
                     CurrentProfileContext = ProfileContextManager.Instance.Get(value);
+                CurrentAgentName = CurrentProfileContext?.Agents?.FirstOrDefault()?.AgentName;
             }
         }
 
+        private string _CurrentAgentName;
+        private string CurrentAgentName
+        {
+            get { return _CurrentAgentName; }
+            set
+            {
+                _CurrentAgentName = value;
+                CurrentAgent = CurrentProfileContext?.Agents?.FirstOrDefault(t => t.AgentName == value);
+            }
+        }
+
+        protected override void OnInitialized()
+        {
+            base.OnInitialized();
+            CurrentProfileId = ProfileContextManager.Instance.GetProfileContexts()?.FirstOrDefault()?.Profile?.Id;
+        }
 
         private void AddProfile()
         {
@@ -102,6 +120,8 @@ namespace Glash.Blazor.Client
             try
             {
                 await profileContext.Enable();
+                CurrentAgentName = profileContext?.Agents?.FirstOrDefault()?.AgentName;
+                profileContext.EnableStateChanged += profileContext_EnableStateChanged;
             }
             catch (Exception ex)
             {
@@ -111,6 +131,13 @@ namespace Glash.Blazor.Client
             {
                 modalLoading.Close();
             }
+        }
+
+        private void profileContext_EnableStateChanged(object sender,bool e)
+        {
+            var profileContext = (ProfileContext)sender;
+            profileContext.EnableStateChanged -= profileContext_EnableStateChanged;
+            InvokeAsync(StateHasChanged);
         }
 
         private void EditProfile()
