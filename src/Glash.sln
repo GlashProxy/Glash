@@ -15,8 +15,6 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Glash.Blazor.Server", "Glas
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "GlashServer", "GlashServer\GlashServer.csproj", "{F503D3FF-DF90-4854-83CE-3996CF6952A1}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "_build", "_build\_build.csproj", "{1A14AD0D-146B-45D5-93D4-F7FBC05A3DF1}"
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GlashClient", "GlashClient\GlashClient.csproj", "{ECFC11FC-ABD8-4BAC-A960-4B8B29346826}"
 EndProject
 Global
@@ -49,10 +47,6 @@ Global
 		{F503D3FF-DF90-4854-83CE-3996CF6952A1}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{F503D3FF-DF90-4854-83CE-3996CF6952A1}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{F503D3FF-DF90-4854-83CE-3996CF6952A1}.Release|Any CPU.Build.0 = Release|Any CPU
-		{1A14AD0D-146B-45D5-93D4-F7FBC05A3DF1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{1A14AD0D-146B-45D5-93D4-F7FBC05A3DF1}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{1A14AD0D-146B-45D5-93D4-F7FBC05A3DF1}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{1A14AD0D-146B-45D5-93D4-F7FBC05A3DF1}.Release|Any CPU.Build.0 = Release|Any CPU
 		{ECFC11FC-ABD8-4BAC-A960-4B8B29346826}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{ECFC11FC-ABD8-4BAC-A960-4B8B29346826}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{ECFC11FC-ABD8-4BAC-A960-4B8B29346826}.Release|Any CPU.ActiveCfg = Release|Any CPU
