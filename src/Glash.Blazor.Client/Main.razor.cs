@@ -122,6 +122,7 @@ namespace Glash.Blazor.Client
                 await profileContext.Enable();
                 CurrentAgentName = profileContext?.Agents?.FirstOrDefault()?.AgentName;
                 profileContext.EnableStateChanged += profileContext_EnableStateChanged;
+                profileContext.AgentLoginStatusChanged += profileContext_AgentLoginStatusChanged;
             }
             catch (Exception ex)
             {
@@ -133,11 +134,20 @@ namespace Glash.Blazor.Client
             }
         }
 
-        private void profileContext_EnableStateChanged(object sender,bool e)
+        private void profileContext_EnableStateChanged(object sender, bool e)
         {
             var profileContext = (ProfileContext)sender;
             profileContext.EnableStateChanged -= profileContext_EnableStateChanged;
+            profileContext.AgentLoginStatusChanged -= profileContext_AgentLoginStatusChanged;
+            CurrentAgentName = null;
             InvokeAsync(StateHasChanged);
+        }
+
+        private void profileContext_AgentLoginStatusChanged(object sender, AgentInfo agent)
+        {
+            var profileContext = (ProfileContext)sender;
+            if (profileContext == CurrentProfileContext)
+                InvokeAsync(StateHasChanged);
         }
 
         private void EditProfile()
@@ -318,10 +328,13 @@ namespace Glash.Blazor.Client
 
         private ProxyRuleContext[] GetProxyRuleContexts(string agent)
         {
-            return CurrentProfileContext.GlashClient.ProxyRuleContexts
-                .Where(t => t.Config.Agent == agent)
-                .OrderBy(t => t.Config.Name)
+            var ret = CurrentProfileContext?.GlashClient?.ProxyRuleContexts?
+                .Where(t => t.Config.Agent == agent)?
+                .OrderBy(t => t.Config.Name)?
                 .ToArray();
+            if (ret == null)
+                ret = new ProxyRuleContext[0];
+            return ret;
         }
 
         private void EnableAllProxyRules(string agent)

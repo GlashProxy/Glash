@@ -81,6 +81,7 @@ public class ProfileContext
                 GlashClient.Disconnected -= GlashClient_Disconnected;
                 GlashClient.Dispose();
                 GlashClient = null;
+                Enabled = false;
             }
         });
     }
