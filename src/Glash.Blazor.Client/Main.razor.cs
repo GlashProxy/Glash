@@ -5,25 +5,22 @@ using Newtonsoft.Json;
 using Quick.Blazor.Bootstrap;
 using Quick.Blazor.Bootstrap.Admin;
 using Quick.Blazor.Bootstrap.Admin.Utils;
+using Quick.EntityFrameworkCore.Plus;
 using Quick.Localize;
 
 namespace Glash.Blazor.Client
 {
-    public partial class Main
+    public partial class Main : ComponentBase_WithGettextSupport
     {
-        [Parameter]
-        public INavigator INavigator { get; set; }
-        [Parameter]
-        public Model.Profile CurrentProfile { get; set; }
-        [Parameter]
-        public GlashClient GlashClient { get; set; }
-        [Parameter]
-        public AgentInfo[] Agents { get; set; }
-        [Parameter]
-        public ProxyRuleInfo[] ProxyRules { get; set; }
-
-
-        private static string TextAddProxyRule=>Locale.GetString("Add Proxy Rule");
+        private static string TextProfile => Locale.GetString("Profile");
+        private static string TextChooseProfile => Locale.GetString("Choose Profile");
+        private static string TextEnable => Locale.GetString("Enable");
+        private static string TextDisable => Locale.GetString("Disable");
+        private static string TextAdd => Locale.GetString("Add");
+        private static string TextEdit => Locale.GetString("Edit");
+        private static string TextDelete => Locale.GetString("Delete");
+        private static string TextError => Locale.GetString("Error");
+        private static string TextAddProxyRule => Locale.GetString("Add Proxy Rule");
         private static string TextDuplicateProxyRule => Locale.GetString("Duplicate Proxy Rule");
         private static string TextEditProxyRule => Locale.GetString("Edit Proxy Rule");
         private static string TextDeleteProxyRule => Locale.GetString("Delete Proxy Rule");
@@ -36,113 +33,129 @@ namespace Glash.Blazor.Client
         private static string TextDisplayRows => Locale.GetString("Display Rows");
         private static string TextDisconnectedFromServer => Locale.GetString("Disconnected from server");
         private static string TextAgentNotLogin => Locale.GetString("Agent not login");
-        private static string TextError => Locale.GetString("Error");
-        private Dictionary<string, AgentInfo> agentDict;
 
-        private bool isUserLogout = false;
         private ModalAlert modalAlert;
         private ModalWindow modalWindow;
         private ModalLoading modalLoading;
         private ModalPrompt modalPrompt;
-        private LogViewControl logViewControl;
+        private ProfileContext[] ProfileContexts => ProfileContextManager.Instance.GetProfileContexts();
+        //当前配置上下文
+        private ProfileContext CurrentProfileContext;
 
-        private Queue<string> logQueue = new Queue<string>();
-        private string Logs;
-        private int LogRows = 25;
-        private int MAX_LOG_LINES = 1000;
-
-        public static Dictionary<string, object> PrepareParameter(
-            Model.Profile currentProfile,
-            GlashClient glashClient,
-            AgentInfo[] agents,
-            ProxyRuleInfo[] proxyRules)
+        private string _CurrentProfileId;
+        public string CurrentProfileId
         {
-            return new Dictionary<string, object>()
+            get { return _CurrentProfileId; }
+            set
             {
-                [nameof(CurrentProfile)] = currentProfile,
-                [nameof(GlashClient)] = glashClient,
-                [nameof(Agents)] = agents,
-                [nameof(ProxyRules)] = proxyRules
-            };
-        }
-
-        protected override void OnParametersSet()
-        {
-            agentDict = Agents.ToDictionary(t => t.AgentName, t => t);
-            GlashClient.AgentLoginStatusChanged += GlashClient_AgentLoginStatusChanged;
-            GlashClient.LogPushed += GlashClient_LogPushed;
-            GlashClient.Disconnected += GlashClient_Disconnected;
-            var agentHashSet = Agents.Select(t => t.AgentName).ToHashSet();
-            GlashClient.LoadProxyRules(ProxyRules);
-        }
-
-        private void GlashClient_AgentLoginStatusChanged(
-            object sender,
-            Glash.Client.Protocol.QpNotices.AgentLoginStatusChanged e)
-        {
-            Task.Run(() =>
-            {
-                var data = e.Data;
-                if (!agentDict.ContainsKey(data.AgentName))
-                    return;
-                var agentInfo = agentDict[data.AgentName];
-                agentInfo.IsLoggedIn = data.IsLoggedIn;
-                if (!data.IsLoggedIn)
-                    GlashClient.DisableAgentProxyRules(agentInfo.AgentName);
-                InvokeAsync(StateHasChanged);
-            });
-        }
-
-        private void GlashClient_LogPushed(object sender, string e)
-        {
-            var line = $"{DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss")}: {e}";
-            lock (logQueue)
-            {
-                logQueue.Enqueue(line);
-                while (logQueue.Count > MAX_LOG_LINES)
-                    logQueue.Dequeue();
-                Logs = string.Join(Environment.NewLine, logQueue);
+                _CurrentProfileId = value;
+                CurrentProfileContext = null;
+                if (!string.IsNullOrEmpty(value))
+                    CurrentProfileContext = ProfileContextManager.Instance.Get(value);
             }
-            logViewControl?.SetContent(Logs);
         }
 
-        private void GlashClient_Disconnected(object sender, EventArgs e)
-        {
-            if (isUserLogout)
-                return;
-            INavigator.Alert(
-                TextError,
-                TextDisconnectedFromServer);
-            logout();
-        }
 
-        private void logout()
+        private void AddProfile()
         {
-            isUserLogout = true;
-            if (GlashClient != null)
-            {
-                foreach (var proxyRuleContext in GlashClient.ProxyRuleContexts)
-                    GlashClient.UnloadProxyRule(proxyRuleContext);
-                GlashClient.AgentLoginStatusChanged -= GlashClient_AgentLoginStatusChanged;
-                GlashClient.LogPushed -= GlashClient_LogPushed;
-                GlashClient.Disconnected -= GlashClient_Disconnected;
-                GlashClient.Dispose();
-                GlashClient = null;
-            }
-            Global.Instance.Profile = null;
-            INavigator.Navigate<Login>();
-        }
-
-        private void Logout()
-        {
-            modalAlert.Show(
-                TextLogout,
-                Locale.GetString("Are you sure to logout?"),
-                () =>
+            modalWindow.Show<Controls.EditProfile>(TextAdd, Controls.EditProfile.PrepareParameter(
+                new Model.Profile(Guid.NewGuid().ToString("N")),
+                model =>
                 {
-                    logout();
+                    try
+                    {
+                        ProfileContextManager.Instance.Add(model);
+                        CurrentProfileId = model.Id;
+                        InvokeAsync(StateHasChanged);
+                        modalWindow.Close();
+                    }
+                    catch (Exception ex)
+                    {
+                        modalAlert.Show(TextError, ex.Message);
+                    }
                 }
-            );
+            ));
+        }
+
+        private async Task DisableProfile()
+        {
+            var profileContext = CurrentProfileContext;
+            modalLoading.Show(TextDisable, Locale.GetString("Disabling profile[{0}]...", profileContext.Profile.Name), true);
+            try
+            {
+                await profileContext.Disable();
+            }
+            catch (Exception ex)
+            {
+                modalAlert.Show(TextDisable, Locale.GetString("Disable profile[{0}] error.Reason: {1}", profileContext.Profile.Name, ExceptionUtils.GetExceptionMessage(ex)));
+            }
+            finally
+            {
+                modalLoading.Close();
+            }
+        }
+
+        private async Task EnableProfile()
+        {
+            var profileContext = CurrentProfileContext;
+            modalLoading.Show(TextDisable, Locale.GetString("Enabling profile[{0}]...", profileContext.Profile.Name), true);
+            try
+            {
+                await profileContext.Enable();
+            }
+            catch (Exception ex)
+            {
+                modalAlert.Show(TextDisable, Locale.GetString("Enable profile[{0}] error.Reason: {1}", profileContext.Profile.Name, ExceptionUtils.GetExceptionMessage(ex)));
+            }
+            finally
+            {
+                modalLoading.Close();
+            }
+        }
+
+        private void EditProfile()
+        {
+            var model = CurrentProfileContext.Profile;
+            modalWindow.Show<Controls.EditProfile>(TextEdit, Controls.EditProfile.PrepareParameter(
+                JsonConvert.DeserializeObject<Model.Profile>(JsonConvert.SerializeObject(model)),
+                editModel =>
+                {
+                    try
+                    {
+                        model.Name = editModel.Name;
+                        model.ServerUrl = editModel.ServerUrl;
+                        model.ClientName = editModel.ClientName;
+                        model.ClientPassword = editModel.ClientPassword;
+                        ProfileContextManager.Instance.Update(model);
+                        InvokeAsync(StateHasChanged);
+                        modalWindow.Close();
+                    }
+                    catch (Exception ex)
+                    {
+                        modalAlert.Show(TextError, ex.Message);
+                    }
+                }
+            ));
+        }
+
+        private void DeleteProfile()
+        {
+            var model = CurrentProfileContext.Profile;
+            modalAlert.Show(TextDelete, Locale.GetString("Are you sure to delete Profile[{0}]?", model.Name), () =>
+            {
+                try
+                {
+                    ProfileContextManager.Instance.Remove(model);
+                    InvokeAsync(StateHasChanged);
+                }
+                catch (Exception ex)
+                {
+                    Task.Delay(100).ContinueWith(t =>
+                    {
+                        modalAlert.Show(TextError, ex.Message);
+                    });
+                }
+            });
         }
 
         private void AddProxyRule(string agent)
@@ -161,8 +174,7 @@ namespace Glash.Blazor.Client
                     modalLoading.Show(TextAddProxyRule, null, true);
                     try
                     {
-                        model = await GlashClient.SaveProxyRule(model);
-                        GlashClient.LoadProxyRule(model);
+                        await CurrentProfileContext.AddProxyRule(model);
                         _ = InvokeAsync(StateHasChanged);
                         modalWindow.Close();
                     }
@@ -193,8 +205,7 @@ namespace Glash.Blazor.Client
                 modalLoading.Show(TextDuplicateProxyRule, null, true);
                 try
                 {
-                    newModel = await GlashClient.SaveProxyRule(newModel);
-                    GlashClient.LoadProxyRule(newModel);
+                    await CurrentProfileContext.DuplicateProxyRule(newModel);
                     _ = InvokeAsync(StateHasChanged);
                     modalWindow.Close();
                 }
@@ -223,9 +234,7 @@ namespace Glash.Blazor.Client
                         model.ProxyType = editModel.ProxyType;
                         model.ProxyTypeConfig = editModel.ProxyTypeConfig;
 
-                        GlashClient.UnloadProxyRule(model.Id);
-                        model = await GlashClient.SaveProxyRule(model);
-                        GlashClient.LoadProxyRule(model);
+                        await CurrentProfileContext.EditProxyRule(model);
                         _ = InvokeAsync(StateHasChanged);
                         modalWindow.Close();
                     }
@@ -248,8 +257,7 @@ namespace Glash.Blazor.Client
                     modalLoading.Show(TextDeleteProxyRule, null, true);
                     try
                     {
-                        GlashClient.UnloadProxyRule(model.Id);
-                        await GlashClient.DeleteProxyRule(model.Id);
+                        await CurrentProfileContext.DeleteProxyRule(model);
                         _ = InvokeAsync(StateHasChanged);
                     }
                     catch (Exception ex)
@@ -269,9 +277,9 @@ namespace Glash.Blazor.Client
             try
             {
                 if (proxyRuleContext.Config.Enable)
-                    GlashClient.EnableProxyRule(proxyRuleContext);
+                    CurrentProfileContext.GlashClient.EnableProxyRule(proxyRuleContext);
                 else
-                    GlashClient.DisableProxyRule(proxyRuleContext);
+                    CurrentProfileContext.GlashClient.DisableProxyRule(proxyRuleContext);
             }
             catch (Exception ex)
             {
@@ -283,7 +291,7 @@ namespace Glash.Blazor.Client
 
         private ProxyRuleContext[] GetProxyRuleContexts(string agent)
         {
-            return GlashClient.ProxyRuleContexts
+            return CurrentProfileContext.GlashClient.ProxyRuleContexts
                 .Where(t => t.Config.Agent == agent)
                 .OrderBy(t => t.Config.Name)
                 .ToArray();
@@ -292,7 +300,7 @@ namespace Glash.Blazor.Client
         private void EnableAllProxyRules(string agent)
         {
             foreach (var item in GetProxyRuleContexts(agent))
-                try { GlashClient.EnableProxyRule(item); }
+                try { CurrentProfileContext.GlashClient.EnableProxyRule(item); }
                 catch { }
             InvokeAsync(StateHasChanged);
         }
@@ -300,7 +308,7 @@ namespace Glash.Blazor.Client
         private void DisableAllProxyRules(string agent)
         {
             foreach (var item in GetProxyRuleContexts(agent))
-                try { GlashClient.DisableProxyRule(item); }
+                try { CurrentProfileContext.GlashClient.DisableProxyRule(item); }
                 catch { }
             InvokeAsync(StateHasChanged);
         }
