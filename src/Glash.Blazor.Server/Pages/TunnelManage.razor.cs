@@ -5,7 +5,7 @@ using Quick.Localize;
 
 namespace Glash.Blazor.Server.Pages
 {
-    public partial class TunnelManage : IDisposable
+    public partial class TunnelManage : ComponentBase_WithGettextSupport
     {
         private ModalAlert modalAlert;
         private UnitStringConverting storageUSC = UnitStringConverting.StorageUnitStringConverting;
@@ -42,8 +42,9 @@ namespace Glash.Blazor.Server.Pages
             });
         }
 
-        public void Dispose()
+        public override void Dispose()
         {
+            base.Dispose();
             cts.Cancel();
         }
 

@@ -7,7 +7,7 @@ using Quick.Localize;
 
 namespace Glash.Blazor.Server.Pages
 {
-    public partial class AgentManage : IDisposable
+    public partial class AgentManage : ComponentBase_WithGettextSupport
     {
         private ModalWindow modalWindow;
         private ModalAlert modalAlert;
@@ -112,10 +112,11 @@ namespace Glash.Blazor.Server.Pages
             InvokeAsync(StateHasChanged);
         }
 
-        public void Dispose()
+        public override void Dispose()
         {
             Global.Instance.GlashServer.AgentConnected -= GlashServer_AgentConnectedOrDisconnected;
             Global.Instance.GlashServer.AgentDisconnected -= GlashServer_AgentConnectedOrDisconnected;
+            base.Dispose();
         }
     }
 }

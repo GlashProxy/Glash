@@ -28,7 +28,7 @@ namespace Glash.Blazor.Client
         private static string TextDeleteProxyRule => Locale.GetString("Delete Proxy Rule");
         private static string TextEnableAll => Locale.GetString("Enable All");
         private static string TextDisableAll => Locale.GetString("Disable All");
-                private static string TextLocal => Locale.GetString("Local");
+        private static string TextLocal => Locale.GetString("Local");
         private static string TextRemote => Locale.GetString("Remote");
         private static string TextDisplayRows => Locale.GetString("Display Rows");
         private static string TextDisconnectedFromServer => Locale.GetString("Disconnected from server");
@@ -139,8 +139,12 @@ namespace Glash.Blazor.Client
             var profileContext = (ProfileContext)sender;
             profileContext.EnableStateChanged -= profileContext_EnableStateChanged;
             profileContext.AgentLoginStatusChanged -= profileContext_AgentLoginStatusChanged;
-            CurrentAgentName = null;
-            InvokeAsync(StateHasChanged);
+
+            if (profileContext == CurrentProfileContext)
+            {
+                CurrentAgentName = null;
+                InvokeAsync(StateHasChanged);
+            }
         }
 
         private void profileContext_AgentLoginStatusChanged(object sender, AgentInfo agent)
@@ -351,6 +355,18 @@ namespace Glash.Blazor.Client
                 try { CurrentProfileContext.GlashClient.DisableProxyRule(item); }
                 catch { }
             InvokeAsync(StateHasChanged);
+        }
+
+        public override void Dispose()
+        {
+            foreach (var profileContext in ProfileContextManager.Instance.GetProfileContexts())
+            {
+                profileContext.EnableStateChanged -= profileContext_EnableStateChanged;
+                profileContext.AgentLoginStatusChanged -= profileContext_AgentLoginStatusChanged;
+            }
+            CurrentAgentName = null;
+            CurrentProfileId = null;
+            base.Dispose();
         }
     }
 }

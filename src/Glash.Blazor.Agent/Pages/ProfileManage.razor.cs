@@ -1,5 +1,4 @@
-﻿using Microsoft.AspNetCore.Components;
-using Newtonsoft.Json;
+﻿using Newtonsoft.Json;
 using Quick.Blazor.Bootstrap;
 using Quick.EntityFrameworkCore.Plus;
 using Quick.Localize;

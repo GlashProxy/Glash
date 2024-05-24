@@ -4,10 +4,11 @@ using Newtonsoft.Json;
 using Quick.Blazor.Bootstrap;
 using Quick.EntityFrameworkCore.Plus;
 using Quick.Localize;
+using Quick.Protocol;
 
 namespace Glash.Blazor.Server.Pages
 {
-    public partial class ClientManage : IDisposable
+    public partial class ClientManage : ComponentBase_WithGettextSupport
     {
         private ModalWindow modalWindow;
         private ModalAlert modalAlert;
@@ -144,10 +145,11 @@ namespace Glash.Blazor.Server.Pages
             InvokeAsync(StateHasChanged);
         }
 
-        public void Dispose()
+        public override void Dispose()
         {
             Global.Instance.GlashServer.ClientConnected -= GlashServer_ClientConnectedOrDisconnected;
             Global.Instance.GlashServer.ClientDisconnected -= GlashServer_ClientConnectedOrDisconnected;
+            base.Dispose();
         }
     }
 }

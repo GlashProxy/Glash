@@ -1,11 +1,15 @@
-﻿using Quick.Blazor.Bootstrap;
+﻿using Microsoft.AspNetCore.Components;
+using Quick.Blazor.Bootstrap;
 using Quick.Localize;
 using System.ComponentModel.DataAnnotations;
 
 namespace Glash.Blazor.Server.Pages
 {
-    public partial class Basic
+    public partial class Basic : ComponentBase_WithGettextSupport
     {
+        [Inject]
+        private NavigationManager NavigationManager { get; set; }
+
         [Required]
         private string ConnectionPassword { get; set; }
         private ModalAlert modalAlert;
