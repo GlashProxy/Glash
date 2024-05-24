@@ -7,13 +7,18 @@
 		<GeneratePackageOnBuild>True</GeneratePackageOnBuild>
 		<Description>Glash is a reverse proxy that allows you to expose a local server located behind a NAT or firewall to other local server.</Description>
 		<PackageIcon>logo.png</PackageIcon>
-		<PackageProjectUrl>https://github.com/aaasoft/Glash</PackageProjectUrl>
-		<RepositoryUrl>https://github.com/aaasoft/Glash</RepositoryUrl>
+		<PackageProjectUrl>https://github.com/GlashProxy/Glash</PackageProjectUrl>
+		<RepositoryUrl>https://github.com/GlashProxy/Glash</RepositoryUrl>
 		<PackageTags>Glash;Proxy</PackageTags>
 		<IsAotCompatible>true</IsAotCompatible>
+		<PackageReadmeFile>README.md</PackageReadmeFile>
 	</PropertyGroup>
 
 	<ItemGroup>
+		<None Include="README.md">
+			<Pack>True</Pack>
+			<PackagePath>\</PackagePath>
+		</None>
 		<None Include="..\..\logo.png">
 			<Pack>True</Pack>
 			<PackagePath>\</PackagePath>

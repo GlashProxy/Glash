@@ -4,22 +4,21 @@
 		<ImplicitUsings>enable</ImplicitUsings>
 		<RollForward>Major</RollForward>
 		<AppendTargetFrameworkToOutputPath>false</AppendTargetFrameworkToOutputPath>
-		<Version>1.3.0</Version>
+		<Version>1.3.1</Version>
 		<GeneratePackageOnBuild>True</GeneratePackageOnBuild>
 		<Description>Glash Client Blazor controls.</Description>
 		<PackageIcon>logo.png</PackageIcon>
-		<PackageProjectUrl>https://github.com/aaasoft/Glash</PackageProjectUrl>
-		<RepositoryUrl>https://github.com/aaasoft/Glash</RepositoryUrl>
+		<PackageProjectUrl>https://github.com/GlashProxy/Glash</PackageProjectUrl>
+		<RepositoryUrl>https://github.com/GlashProxy/Glash</RepositoryUrl>
 		<PackageTags>Glash;Proxy</PackageTags>
+		<PackageReadmeFile>README.md</PackageReadmeFile>
 	</PropertyGroup>
+		
 	<ItemGroup>
-	  <Compile Remove="runtimes\**" />
-	  <Content Remove="runtimes\**" />
-	  <EmbeddedResource Remove="runtimes\**" />
-	  <None Remove="runtimes\**" />
-	</ItemGroup>
-	
-	<ItemGroup>
+		<None Include="README.md">
+			<Pack>True</Pack>
+			<PackagePath>\</PackagePath>
+		</None>
 		<None Include="..\..\logo.png">
 			<Pack>True</Pack>
 			<PackagePath>\</PackagePath>
