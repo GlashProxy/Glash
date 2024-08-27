@@ -12,7 +12,7 @@ public class ProfileContextManager
     {
         profileContextDict = new Dictionary<string, ProfileContext>();
 
-        var profileModels = Quick.EntityFrameworkCore.Plus.ConfigDbContext.CacheContext.Query<Model.Profile>();
+        var profileModels = ConfigDbContext.CacheContext.Query<Model.Profile>();
         foreach (var model in profileModels)
         {
             profileContextDict[model.Id] = new ProfileContext(model);
@@ -41,5 +41,6 @@ public class ProfileContextManager
     public void Remove(Profile model)
     {
         ConfigDbContext.CacheContext.Remove(model, true);
+        profileContextDict.Remove(model.Id);
     }
 }

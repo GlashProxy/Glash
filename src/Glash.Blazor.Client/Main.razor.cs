@@ -1,11 +1,8 @@
 ﻿using Glash.Client;
 using Glash.Client.Protocol.QpModel;
-using Microsoft.AspNetCore.Components;
 using Newtonsoft.Json;
 using Quick.Blazor.Bootstrap;
-using Quick.Blazor.Bootstrap.Admin;
 using Quick.Blazor.Bootstrap.Admin.Utils;
-using Quick.EntityFrameworkCore.Plus;
 using Quick.Localize;
 
 namespace Glash.Blazor.Client
@@ -116,7 +113,7 @@ namespace Glash.Blazor.Client
         private async Task EnableProfile()
         {
             var profileContext = CurrentProfileContext;
-            modalLoading.Show(TextDisable, Locale.GetString("Enabling profile[{0}]...", profileContext.Profile.Name), true);
+            modalLoading.Show(TextEnable, Locale.GetString("Enabling profile[{0}]...", profileContext.Profile.Name), true);
             try
             {
                 await profileContext.Enable();
@@ -126,7 +123,7 @@ namespace Glash.Blazor.Client
             }
             catch (Exception ex)
             {
-                modalAlert.Show(TextDisable, Locale.GetString("Enable profile[{0}] error.Reason: {1}", profileContext.Profile.Name, ExceptionUtils.GetExceptionMessage(ex)));
+                modalAlert.Show(TextEnable, Locale.GetString("Enable profile[{0}] error.Reason: {1}", profileContext.Profile.Name, ExceptionUtils.GetExceptionMessage(ex)));
             }
             finally
             {
