@@ -1,19 +1,16 @@
-using Quick.EntityFrameworkCore.Plus.SQLite;
-using Quick.EntityFrameworkCore.Plus;
 using Glash.Blazor.Client;
+using Quick.LiteDB.Plus;
 using System.Diagnostics;
 
 Quick.Protocol.QpAllClients.RegisterUriSchema();
-var dbFile = SQLiteDbContextConfigHandler.CONFIG_DB_FILE;
+var dbFile = "Config.litedb";
 #if DEBUG
 dbFile = Path.Combine(Path.GetDirectoryName(typeof(Program).Assembly.Location), dbFile);
 #endif
-ConfigDbContext.Init(new SQLiteDbContextConfigHandler(dbFile), modelBuilder =>
+ConfigDbContext.Init(dbFile, modelBuilder =>
 {
     Global.Instance.OnModelCreating(modelBuilder);
 });
-using (var dbContext = new ConfigDbContext())
-    dbContext.DatabaseEnsureCreatedAndUpdated(t => Debug.Print(t));
 ConfigDbContext.CacheContext.LoadCache();
 
 var builder = WebApplication.CreateBuilder(args);

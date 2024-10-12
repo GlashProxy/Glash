@@ -1,6 +1,6 @@
 ﻿using Newtonsoft.Json;
 using Quick.Blazor.Bootstrap;
-using Quick.EntityFrameworkCore.Plus;
+using Quick.LiteDB.Plus;
 using Quick.Localize;
 
 namespace Glash.Blazor.Agent.Pages

@@ -1,6 +1,6 @@
 ﻿using Glash.Blazor.Server;
 using Glash.Server;
-using Quick.EntityFrameworkCore.Plus;
+using Quick.LiteDB.Plus;
 using Quick.Protocol.WebSocket.Server.AspNetCore;
 
 namespace Microsoft.AspNetCore.Builder

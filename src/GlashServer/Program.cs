@@ -1,18 +1,14 @@
-using Quick.EntityFrameworkCore.Plus.SQLite;
-using Quick.EntityFrameworkCore.Plus;
 using Glash.Blazor.Server;
-using System.Diagnostics;
+using Quick.LiteDB.Plus;
 
-var dbFile = SQLiteDbContextConfigHandler.CONFIG_DB_FILE;
+var dbFile = "Config.litedb";
 #if DEBUG
 dbFile = Path.Combine(Path.GetDirectoryName(typeof(Program).Assembly.Location), dbFile);
 #endif
-ConfigDbContext.Init(new SQLiteDbContextConfigHandler(dbFile), modelBuilder =>
+ConfigDbContext.Init(dbFile, modelBuilder =>
 {
     Global.Instance.OnModelCreating(modelBuilder);
 });
-using (var dbContext = new ConfigDbContext())
-    dbContext.DatabaseEnsureCreatedAndUpdated(t => Debug.Print(t));
 ConfigDbContext.CacheContext.LoadCache();
 GlashServer.Core.LoginPasswordManager.Instance.Init();
 

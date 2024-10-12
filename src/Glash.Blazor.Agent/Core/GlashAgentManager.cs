@@ -1,4 +1,4 @@
-﻿using Quick.EntityFrameworkCore.Plus;
+﻿using Quick.LiteDB.Plus;
 
 namespace Glash.Blazor.Agent.Core
 {

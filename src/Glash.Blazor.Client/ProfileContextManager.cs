@@ -1,6 +1,6 @@
 ﻿
 using Glash.Blazor.Client.Model;
-using Quick.EntityFrameworkCore.Plus;
+using Quick.LiteDB.Plus;
 
 namespace Glash.Blazor.Client;
 

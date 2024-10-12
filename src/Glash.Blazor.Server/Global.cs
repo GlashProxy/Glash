@@ -1,8 +1,7 @@
 ﻿using Glash.Client.Protocol.QpModel;
 using Glash.Core;
 using Glash.Server;
-using Microsoft.EntityFrameworkCore;
-using Quick.EntityFrameworkCore.Plus;
+using Quick.LiteDB.Plus;
 using Quick.Localize;
 using Quick.Protocol;
 
@@ -35,12 +34,11 @@ namespace Glash.Blazor.Server
 
         public void OnModelCreating(ModelBuilder modelBuilder)
         {
-            modelBuilder.Entity<Model.Config>();
-            modelBuilder.Entity<Model.AgentInfo>();
-            modelBuilder.Entity<Model.ClientInfo>();
-            modelBuilder.Entity<Model.ClientAgentRelation>()
-                .HasKey(t => new { t.ClientName, t.AgentName });
-            modelBuilder.Entity<Model.ProxyRuleInfo>();
+            modelBuilder.Entity<Model.Config>(c => c.EnsureIndex(t => t.Id, true));
+            modelBuilder.Entity<Model.AgentInfo>(c => c.EnsureIndex(t => t.Name, true));
+            modelBuilder.Entity<Model.ClientInfo>(c => c.EnsureIndex(t => t.Name, true));
+            modelBuilder.Entity<Model.ClientAgentRelation>(c => c.EnsureIndex("ClientAgentRelationIndex", t => new { t.ClientName, t.AgentName }, true));
+            modelBuilder.Entity<Model.ProxyRuleInfo>(c => c.EnsureIndex(t => t.Id, true));
         }
 
 

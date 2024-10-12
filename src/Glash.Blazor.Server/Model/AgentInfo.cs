@@ -1,6 +1,6 @@
 ﻿using Glash.Server;
 using Newtonsoft.Json;
-using Quick.EntityFrameworkCore.Plus;
+using Quick.LiteDB.Plus;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 

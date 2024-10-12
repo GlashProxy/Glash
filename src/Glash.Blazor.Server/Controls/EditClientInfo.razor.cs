@@ -1,6 +1,6 @@
 ﻿using Microsoft.AspNetCore.Components;
 using Quick.Blazor.Bootstrap;
-using Quick.EntityFrameworkCore.Plus;
+using Quick.LiteDB.Plus;
 using Quick.Localize;
 
 namespace Glash.Blazor.Server.Controls

@@ -35,13 +35,8 @@
 		<PackageReference Include="Quick.Protocol.WebSocket.Server.AspNetCore" Version="2.3.4" />
 		<PackageReference Include="Quick.Blazor.Bootstrap.Admin" Version="4.1.18" />
 		<PackageReference Include="Quick.Localize" Version="2.0.4" />
+		<PackageReference Include="Quick.LiteDB.Plus" Version="1.0.2" />
 	</ItemGroup>
-	<ItemGroup Condition="'$(TargetFramework)' == 'net6.0'">
-      <PackageReference Include="Quick.EntityFrameworkCore.Plus.SQLite" Version="6.0.35" />
-  	</ItemGroup>
-	<ItemGroup Condition="'$(TargetFramework)' == 'net8.0'">
-      <PackageReference Include="Quick.EntityFrameworkCore.Plus.SQLite" Version="8.0.10" />
-  	</ItemGroup>
 	<ItemGroup>
 		<EmbeddedResource Include="locale/zh.mo" />
 	</ItemGroup>

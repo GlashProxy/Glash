@@ -1,4 +1,4 @@
-﻿using Quick.EntityFrameworkCore.Plus;
+﻿using Quick.LiteDB.Plus;
 using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Glash.Blazor.Server.Model

@@ -1,4 +1,4 @@
-﻿using Quick.EntityFrameworkCore.Plus;
+﻿using Quick.LiteDB.Plus;
 using Quick.Localize;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
