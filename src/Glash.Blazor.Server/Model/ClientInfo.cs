@@ -13,6 +13,7 @@ namespace Glash.Blazor.Server.Model
         public ClientInfo(string name) { Name = name; }
 
         [Key]
+        [LiteDB.BsonId]
         [Required]
         [MaxLength(100)]
         public string Name { get; set; }

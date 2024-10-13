@@ -34,11 +34,11 @@ namespace Glash.Blazor.Server
 
         public void OnModelCreating(ModelBuilder modelBuilder)
         {
-            modelBuilder.Entity<Model.Config>(c => c.EnsureIndex(t => t.Id, true));
-            modelBuilder.Entity<Model.AgentInfo>(c => c.EnsureIndex(t => t.Name, true));
-            modelBuilder.Entity<Model.ClientInfo>(c => c.EnsureIndex(t => t.Name, true));
+            modelBuilder.Entity<Model.Config>();
+            modelBuilder.Entity<Model.AgentInfo>();
+            modelBuilder.Entity<Model.ClientInfo>();
             modelBuilder.Entity<Model.ClientAgentRelation>();
-            modelBuilder.Entity<Model.ProxyRuleInfo>(c => c.EnsureIndex(t => t.Id, true));
+            modelBuilder.Entity<Model.ProxyRuleInfo>();
         }
 
         public void Init(Quick.Protocol.WebSocket.Server.AspNetCore.QpWebSocketServerOptions serverOptions, int maxTunnelCount)

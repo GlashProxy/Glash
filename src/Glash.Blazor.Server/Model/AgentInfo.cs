@@ -15,11 +15,13 @@ namespace Glash.Blazor.Server.Model
         [Key]
         [Required]
         [MaxLength(100)]
+        [LiteDB.BsonId]
         public string Name { get; set; }
         [Required]
         public string Password { get; set; }
         [NotMapped]
         [JsonIgnore]
+        [LiteDB.BsonIgnore]
         public GlashAgentContext Context { get; set; }
 
         public override int GetHashCode()

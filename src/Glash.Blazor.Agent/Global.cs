@@ -9,8 +9,8 @@ namespace Glash.Blazor.Agent
 
         public void OnModelCreating(ModelBuilder modelBuilder)
         {
-            modelBuilder.Entity<Model.Config>(c => c.EnsureIndex(t => t.Id, true));
-            modelBuilder.Entity<Model.Profile>(c => c.EnsureIndex(t => t.Id, true));
+            modelBuilder.Entity<Model.Config>();
+            modelBuilder.Entity<Model.Profile>();
         }
     }
 }
