@@ -2,7 +2,7 @@
 	<PropertyGroup>
 		<TargetFrameworks>net6.0;net8.0</TargetFrameworks>
 		<ImplicitUsings>enable</ImplicitUsings>
-		<Version>1.4.2</Version>
+		<Version>1.4.3</Version>
 		<GeneratePackageOnBuild>True</GeneratePackageOnBuild>
 		<Description>Glash Server Blazor controls.</Description>
 		<PackageIcon>logo.png</PackageIcon>
