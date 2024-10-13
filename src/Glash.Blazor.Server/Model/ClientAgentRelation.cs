@@ -11,6 +11,20 @@ namespace Glash.Blazor.Server.Model
         public string ClientName { get; set; }
         public string AgentName { get; set; }
 
+        public override bool Equals(object obj)
+        {
+            return this.Equals(obj,
+                t => t.ClientName,
+                t => t.AgentName);
+        }
+
+        public override int GetHashCode()
+        {
+            return this.GetHashCode(
+                t => t.ClientName,
+                t => t.AgentName);
+        }
+
         public ModelDependcyInfo[] GetDependcyRelation()
         {
             return new ModelDependcyInfo[]
