@@ -34,7 +34,6 @@ namespace Glash.Blazor.Server.Pages
                 .ToHashSet();
             var newModels = agents.Select(t => new Model.ClientAgentRelation()
             {
-                Id = Guid.NewGuid().ToString("N"),
                 AgentName = t,
                 ClientName = clientId
             }).ToHashSet();

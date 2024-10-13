@@ -4,8 +4,10 @@ using System.ComponentModel.DataAnnotations.Schema;
 namespace Glash.Blazor.Server.Model
 {
     [Table($"{nameof(Glash)}_{nameof(Server)}_{nameof(ClientAgentRelation)}")]
-    public class ClientAgentRelation : BaseModel,IHasDependcyRelation
+    public class ClientAgentRelation : IHasDependcyRelation
     {
+        [LiteDB.BsonId(true)]
+        public LiteDB.ObjectId Id { get; set; }
         public string ClientName { get; set; }
         public string AgentName { get; set; }
 
