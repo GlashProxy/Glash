@@ -1,6 +1,6 @@
-﻿using Glash.Client;
+﻿using System.Text.Json;
+using Glash.Client;
 using Glash.Client.Protocol.QpModel;
-using Newtonsoft.Json;
 using Quick.Blazor.Bootstrap;
 using Quick.Blazor.Bootstrap.Admin.Utils;
 using Quick.Localize;
@@ -155,7 +155,7 @@ namespace Glash.Blazor.Client
         {
             var model = CurrentProfileContext.Profile;
             modalWindow.Show<Controls.EditProfile>(TextEdit, Controls.EditProfile.PrepareParameter(
-                JsonConvert.DeserializeObject<Model.Profile>(JsonConvert.SerializeObject(model)),
+                JsonSerializer.Deserialize<Model.Profile>(JsonSerializer.Serialize(model)),
                 editModel =>
                 {
                     try
@@ -258,7 +258,7 @@ namespace Glash.Blazor.Client
         private void EditProxyRule(ProxyRuleInfo model)
         {
             modalWindow.Show<Controls.EditProxyRule>(Locale.GetString(TextEditProxyRule), Controls.EditProxyRule.PrepareParameter(
-                JsonConvert.DeserializeObject<ProxyRuleInfo>(JsonConvert.SerializeObject(model)),
+                JsonSerializer.Deserialize<ProxyRuleInfo>(JsonSerializer.Serialize(model)),
                 async editModel =>
                 {
                     modalLoading.Show(Locale.GetString(TextEditProxyRule), null, true);

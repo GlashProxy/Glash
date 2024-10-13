@@ -1,4 +1,4 @@
-﻿using Newtonsoft.Json;
+﻿using System.Text.Json;
 using Quick.Blazor.Bootstrap;
 using Quick.LiteDB.Plus;
 using Quick.Localize;
@@ -70,7 +70,7 @@ namespace Glash.Blazor.Agent.Pages
         private void Edit(Model.Profile model)
         {
             modalWindow.Show<Controls.EditProfile>(Locale.GetString("Edit"), Controls.EditProfile.PrepareParameter(
-                JsonConvert.DeserializeObject<Model.Profile>(JsonConvert.SerializeObject(model)),
+                JsonSerializer.Deserialize<Model.Profile>(JsonSerializer.Serialize(model)),
                 editModel =>
                 {
                     try

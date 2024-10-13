@@ -1,8 +1,8 @@
 ﻿using Glash.Server;
-using Newtonsoft.Json;
 using Quick.LiteDB.Plus;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
+using System.Text.Json.Serialization;
 
 namespace Glash.Blazor.Server.Model
 {

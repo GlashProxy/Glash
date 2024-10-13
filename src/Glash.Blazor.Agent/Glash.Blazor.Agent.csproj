@@ -25,10 +25,10 @@
 
 	<ItemGroup>
 		<PackageReference Include="Quick.Protocol.WebSocket.Server.AspNetCore" Version="2.3.4" />
-		<PackageReference Include="Quick.Blazor.Bootstrap.Admin" Version="4.1.18" />		
+		<PackageReference Include="Quick.Blazor.Bootstrap.Admin" Version="4.1.21" />		
 		<PackageReference Include="Quick.Protocol.AllClients" Version="2.3.4" />
 		<PackageReference Include="Quick.Localize" Version="2.0.4" />
-		<PackageReference Include="Quick.LiteDB.Plus" Version="1.0.2" />
+		<PackageReference Include="Quick.LiteDB.Plus" Version="1.0.3" />
 	</ItemGroup>
 	<ItemGroup>
 		<EmbeddedResource Include="locale/zh.mo" />

@@ -1,6 +1,6 @@
-﻿using Glash.Server;
+﻿using System.Text.Json;
+using Glash.Server;
 using Microsoft.AspNetCore.Components;
-using Newtonsoft.Json;
 using Quick.Blazor.Bootstrap;
 using Quick.LiteDB.Plus;
 using Quick.Localize;
@@ -81,7 +81,7 @@ namespace Glash.Blazor.Server.Pages
         private void Edit(Model.ClientInfo model)
         {
             modalWindow.Show<Controls.EditClientInfo>(TextEdit, Controls.EditClientInfo.PrepareParameter(
-                JsonConvert.DeserializeObject<Model.ClientInfo>(JsonConvert.SerializeObject(model)),
+                JsonSerializer.Deserialize<Model.ClientInfo>(JsonSerializer.Serialize(model)),
                 (editModel, agents) =>
                 {
                     try

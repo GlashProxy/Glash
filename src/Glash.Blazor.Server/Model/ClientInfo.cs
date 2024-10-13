@@ -1,8 +1,8 @@
 ﻿using Glash.Server;
-using Newtonsoft.Json;
 using Quick.LiteDB.Plus;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
+using System.Text.Json.Serialization;
 
 namespace Glash.Blazor.Server.Model
 {
@@ -20,6 +20,7 @@ namespace Glash.Blazor.Server.Model
         public string Password { get; set; }
         [NotMapped]
         [JsonIgnore]
+        [LiteDB.BsonIgnore]
         public GlashClientContext Context { get; set; }
 
         public override int GetHashCode()
