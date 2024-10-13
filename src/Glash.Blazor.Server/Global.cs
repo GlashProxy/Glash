@@ -43,6 +43,7 @@ namespace Glash.Blazor.Server
 
         public void Init(Quick.Protocol.WebSocket.Server.AspNetCore.QpWebSocketServerOptions serverOptions, int maxTunnelCount)
         {
+            ServerOptions = serverOptions;
             GlashServer = new GlashServer(new GlashServerOptions()
             {
                 MaxTunnelCount = maxTunnelCount,
