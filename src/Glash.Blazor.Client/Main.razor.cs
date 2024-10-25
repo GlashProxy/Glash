@@ -2,8 +2,8 @@
 using Glash.Client;
 using Glash.Client.Protocol.QpModel;
 using Quick.Blazor.Bootstrap;
-using Quick.Blazor.Bootstrap.Admin.Utils;
 using Quick.Localize;
+using Quick.Protocol.Utils;
 
 namespace Glash.Blazor.Client
 {

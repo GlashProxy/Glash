@@ -1,6 +1,6 @@
 ﻿using Glash.Server;
+using Glash.Utils;
 using Quick.Blazor.Bootstrap;
-using Quick.Blazor.Bootstrap.Admin.Utils;
 using Quick.Localize;
 
 namespace Glash.Blazor.Server.Pages
