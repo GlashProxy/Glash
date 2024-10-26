@@ -15,7 +15,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Glash.Blazor.Server", "Glas
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "GlashServer", "GlashServer\GlashServer.csproj", "{F503D3FF-DF90-4854-83CE-3996CF6952A1}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GlashClient", "GlashClient\GlashClient.csproj", "{ECFC11FC-ABD8-4BAC-A960-4B8B29346826}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "GlashClient", "GlashClient\GlashClient.csproj", "{ECFC11FC-ABD8-4BAC-A960-4B8B29346826}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
