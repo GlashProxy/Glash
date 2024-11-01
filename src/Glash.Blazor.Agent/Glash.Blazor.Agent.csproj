@@ -2,7 +2,7 @@
 	<PropertyGroup>
 		<TargetFrameworks>net6.0;net8.0</TargetFrameworks>
 		<ImplicitUsings>enable</ImplicitUsings>
-		<Version>1.5.2</Version>
+		<Version>1.5.3</Version>
 		<GeneratePackageOnBuild>True</GeneratePackageOnBuild>
 		<Description>Glash Agent Blazor controls.</Description>
 		<PackageIcon>logo.png</PackageIcon>
@@ -24,7 +24,7 @@
 	</ItemGroup>
 
 	<ItemGroup>
-		<PackageReference Include="Quick.Blazor.Bootstrap" Version="4.1.2" />
+		<PackageReference Include="Quick.Blazor.Bootstrap" Version="4.2.0" />
 		<PackageReference Include="Quick.Protocol.WebSocket.Server.AspNetCore" Version="2.4.1" />		
 		<PackageReference Include="Quick.Protocol.AllClients" Version="2.4.1" />
 		<PackageReference Include="Quick.Localize" Version="2.0.4" />

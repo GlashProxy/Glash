@@ -2,7 +2,7 @@
 	<PropertyGroup>
 		<TargetFrameworks>net6.0;net8.0</TargetFrameworks>
 		<ImplicitUsings>enable</ImplicitUsings>
-		<Version>1.5.2</Version>
+		<Version>1.5.3</Version>
 		<GeneratePackageOnBuild>True</GeneratePackageOnBuild>
 		<Description>Glash Client Blazor controls.</Description>
 		<PackageIcon>logo.png</PackageIcon>
@@ -28,7 +28,7 @@
 	</ItemGroup>
 
 	<ItemGroup>
-		<PackageReference Include="Quick.Blazor.Bootstrap" Version="4.1.2" />
+		<PackageReference Include="Quick.Blazor.Bootstrap" Version="4.2.0" />
 		<PackageReference Include="System.Security.Cryptography.ProtectedData" Version="8.0.0" />
 		<PackageReference Include="Quick.Localize" Version="2.0.4" />
 		<PackageReference Include="Quick.LiteDB.Plus" Version="1.0.3" />
