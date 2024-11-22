@@ -8,7 +8,7 @@
 	</PropertyGroup>
 
 	<ItemGroup>
-		<PackageReference Include="Quick.Protocol.AllClients" Version="2.4.1" />
+		<PackageReference Include="Quick.Protocol.AllClients" Version="2.4.3" />
 	</ItemGroup>
 
 	<ItemGroup>

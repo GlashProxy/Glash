@@ -1,7 +1,7 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
 	<PropertyGroup>
-		<TargetFrameworks>net6.0;net8.0</TargetFrameworks>
+		<TargetFrameworks>net8.0</TargetFrameworks>
 		<ImplicitUsings>enable</ImplicitUsings>
 		<Version>1.5.2</Version>
 		<GeneratePackageOnBuild>True</GeneratePackageOnBuild>
@@ -26,7 +26,7 @@
 	</ItemGroup>
 
 	<ItemGroup>
-		<PackageReference Include="Quick.Protocol" Version="2.4.1" />
+		<PackageReference Include="Quick.Protocol" Version="2.4.3" />
 	</ItemGroup>
 
 	<ItemGroup>
