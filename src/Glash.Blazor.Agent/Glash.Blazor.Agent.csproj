@@ -24,7 +24,7 @@
 	</ItemGroup>
 
 	<ItemGroup>
-		<PackageReference Include="Quick.Blazor.Bootstrap" Version="4.2.0" />
+		<PackageReference Include="Quick.Blazor.Bootstrap" Version="4.2.3" />
 		<PackageReference Include="Quick.Protocol.WebSocket.Server.AspNetCore" Version="2.4.3" />		
 		<PackageReference Include="Quick.Protocol.AllClients" Version="2.4.3" />
 		<PackageReference Include="Quick.Localize" Version="2.0.4" />
