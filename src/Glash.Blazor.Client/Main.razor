@@ -1,110 +1,106 @@
 ﻿@inherits ComponentBase_WithGettextSupport
 
 <EditForm Model="this">
-    <div class="row">
-        <div class="col-12">
-            <nav class="navbar p-0 pb-1">
-                <div class="btn-toolbar" role="toolbar">
-                    <div class="btn-toolbar" role="toolbar">
-                        <div class="btn-group mr-2 mt-1">
-                            <div class="input-group">
-                                <div class="input-group-prepend">
-                                    <span class="input-group-text">@TextProfile</span>
-                                </div>
-                                <div class="input-group-prepend">
-                                    <button class="btn btn-secondary" type="button" @onclick="AddProfile" title="@TextAdd">
-                                        <i class="fa fa-plus" aria-hidden="true"></i>
-                                    </button>
-                                </div>
-                                <InputSelect @bind-Value="@CurrentProfileId" class="form-control">
-                                    @foreach (var t in ProfileContexts)
-                                    {
-                                        <option value="@t.Profile.Id">@t.Profile.Name</option>
-                                    }
-                                </InputSelect>
-                                @if (CurrentProfileContext != null)
-                                {
-                                    @if (CurrentProfileContext.Enabled)
-                                    {
-                                        <div class="input-group-append">
-                                            <button class="btn btn-secondary" type="button" @onclick="DisableProfile" title="@TextDisable">
-                                                <i class="fa fa-stop" aria-hidden="true"></i>
-                                            </button>
-                                        </div>
-                                    }
-                                    else
-                                    {
-                                        <div class="input-group-append">
-                                            <button class="btn btn-secondary" type="button" @onclick="EnableProfile" title="@TextEnable">                                                
-                                                <i class="fa fa-play" aria-hidden="true"></i>
-                                            </button>
-                                            <button class="btn btn-secondary" type="button" @onclick="EditProfile" title="@TextEdit">
-                                                <i class="fa fa-pencil" aria-hidden="true"></i>
-                                            </button>
-                                            <button class="btn btn-secondary" type="button" @onclick="DeleteProfile" title="@TextDelete">
-                                                <i class="fa fa-trash" aria-hidden="true"></i>
-                                            </button>
-                                        </div>                                                                    
-                                    }                                    
-                                }
-                            </div>
+    <div class="sticky-top">
+        <div class="btn-toolbar" role="toolbar">
+            <div class="btn-toolbar" role="toolbar">
+                <div class="btn-group mr-2 mt-1">
+                    <div class="input-group">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text">@TextProfile</span>
                         </div>
-                        @if(CurrentProfileContext!=null && CurrentProfileContext.Enabled)
-                        {
-                        <div class="btn-group mr-2 mt-1">
-                            <div class="input-group">
-                                <div class="input-group-prepend">
-                                    <span class="input-group-text">@TextAgent</span>
-                                </div>
-                                <InputSelect @bind-Value="@CurrentAgentName" class="form-control">
-                                    @if(CurrentProfileContext.Agents!=null)
-                                    {
-                                        @foreach (var t in CurrentProfileContext.Agents)
-                                        {
-                                            <option value="@t.AgentName">@t.AgentName</option>
-                                        }
-                                    }
-                                </InputSelect>
-                            </div>
+                        <div class="input-group-prepend">
+                            <button class="btn btn-secondary" type="button" @onclick="AddProfile" title="@TextAdd">
+                                <i class="fa fa-plus" aria-hidden="true"></i>
+                            </button>
                         </div>
-                        }
-                        @if(CurrentAgent!=null)
+                        <InputSelect @bind-Value="@CurrentProfileId" class="form-control">
+                            @foreach (var t in ProfileContexts)
+                            {
+                                <option value="@t.Profile.Id">@t.Profile.Name</option>
+                            }
+                        </InputSelect>
+                        @if (CurrentProfileContext != null)
                         {
-                        <div class="btn-group mr-2 mt-1">
-                            <div class="input-group">
-                                <div class="input-group-prepend">
-                                    <span class="input-group-text">@TextProxyRule</span>
-                                </div>
+                            @if (CurrentProfileContext.Enabled)
+                            {
                                 <div class="input-group-append">
-                                    <button type="button" class="btn btn-secondary" title="@TextAdd"
-                                            @onclick=@(e=>AddProxyRule(CurrentAgent.AgentName))>
-                                        <i class="fa fa-plus" aria-hidden="true"></i>
+                                    <button class="btn btn-secondary" type="button" @onclick="DisableProfile" title="@TextDisable">
+                                        <i class="fa fa-stop" aria-hidden="true"></i>
                                     </button>
-                                    @if (CurrentAgent.IsLoggedIn)
-                                    {
-                                        <button type="button" class="btn btn-secondary" title="@TextEnableAll"
-                                            @onclick="@(e=>EnableAllProxyRules(CurrentAgent.AgentName))">
-                                            <i class="fa fa-play" aria-hidden="true"></i>
-                                            @TextEnableAll
-                                        </button>
-                                        <button type="button" class="btn btn-secondary" title="@TextDisableAll"
-                                            @onclick="@(e=>DisableAllProxyRules(CurrentAgent.AgentName))">
-                                            <i class="fa fa-stop" aria-hidden="true"></i>
-                                            @TextDisableAll
-                                        </button>
-                                    }
                                 </div>
-                            </div>
-                        </div>
+                            }
+                            else
+                            {
+                                <div class="input-group-append">
+                                    <button class="btn btn-secondary" type="button" @onclick="EnableProfile" title="@TextEnable">                                                
+                                        <i class="fa fa-play" aria-hidden="true"></i>
+                                    </button>
+                                    <button class="btn btn-secondary" type="button" @onclick="EditProfile" title="@TextEdit">
+                                        <i class="fa fa-pencil" aria-hidden="true"></i>
+                                    </button>
+                                    <button class="btn btn-secondary" type="button" @onclick="DeleteProfile" title="@TextDelete">
+                                        <i class="fa fa-trash" aria-hidden="true"></i>
+                                    </button>
+                                </div>                                                                    
+                            }                                    
                         }
                     </div>
                 </div>
-            </nav>
+                @if(CurrentProfileContext!=null && CurrentProfileContext.Enabled)
+                {
+                <div class="btn-group mr-2 mt-1">
+                    <div class="input-group">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text">@TextAgent</span>
+                        </div>
+                        <InputSelect @bind-Value="@CurrentAgentName" class="form-control">
+                            @if(CurrentProfileContext.Agents!=null)
+                            {
+                                @foreach (var t in CurrentProfileContext.Agents)
+                                {
+                                    <option value="@t.AgentName">@t.AgentName</option>
+                                }
+                            }
+                        </InputSelect>
+                    </div>
+                </div>
+                }
+                @if(CurrentAgent!=null)
+                {
+                <div class="btn-group mr-2 mt-1">
+                    <div class="input-group">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text">@TextProxyRule</span>
+                        </div>
+                        <div class="input-group-append">
+                            <button type="button" class="btn btn-secondary" title="@TextAdd"
+                                    @onclick=@(e=>AddProxyRule(CurrentAgent.AgentName))>
+                                <i class="fa fa-plus" aria-hidden="true"></i>
+                            </button>
+                            @if (CurrentAgent.IsLoggedIn)
+                            {
+                                <button type="button" class="btn btn-secondary" title="@TextEnableAll"
+                                    @onclick="@(e=>EnableAllProxyRules(CurrentAgent.AgentName))">
+                                    <i class="fa fa-play" aria-hidden="true"></i>
+                                    @TextEnableAll
+                                </button>
+                                <button type="button" class="btn btn-secondary" title="@TextDisableAll"
+                                    @onclick="@(e=>DisableAllProxyRules(CurrentAgent.AgentName))">
+                                    <i class="fa fa-stop" aria-hidden="true"></i>
+                                    @TextDisableAll
+                                </button>
+                            }
+                        </div>
+                    </div>
+                </div>
+                }
+            </div>
         </div>
     </div>
     @if(CurrentAgent!=null)
     {
-        <div class="row">
+        <div class="row ml-0 mr-0 mb-2">
             @if (!CurrentAgent.IsLoggedIn)
             {
                 <div class="col-12">
@@ -115,7 +111,7 @@
             }
             @foreach (var proxyRuleContext in GetProxyRuleContexts(CurrentAgent.AgentName))
             {
-                <div class="col-xl-3 col-lg-4 col-sm-6 col-12 mt-2">
+                <div class="col-xl-3 col-lg-4 col-sm-6 col-12 p-2">
                     <div class="card">
                         <div class="card-header">
                             <i class="fa fa-cube mr-1" aria-hidden="true"></i>
