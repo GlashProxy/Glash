@@ -23,7 +23,7 @@
             <tr>
                 <td>@item.Name</td>
                 <td>@item.Context?.Channel?.ChannelName</td>
-                <td>@item.Context?.CreateTime</td>
+                <td>@item.Context?.CreateTime.ToString("yyyy-MM-dd HH:mm:ss")</td>
                 <td>
                     <div class="btn-toolbar">
                         <div class="btn-group">
