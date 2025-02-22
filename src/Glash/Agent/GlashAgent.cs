@@ -9,6 +9,7 @@ namespace Glash.Agent
     {
         private QpClient qpClient;
         private string agentName;
+        private string url;
         private string password;
         private Dictionary<int, GlashTunnelContext> tunnelContextDict = new Dictionary<int, GlashTunnelContext>();
 
@@ -17,29 +18,8 @@ namespace Glash.Agent
 
         public GlashAgent(string url, string agentName, string password)
         {
+            this.url = url;
             this.password = password;
-            var qpClientOptions = QpClientOptions.Parse(new Uri(url));
-            qpClientOptions.InstructionSet = new[]
-            {
-                Glash.Agent.Protocol.Instruction.Instance
-            };
-
-            var commandExecuterManager = new CommandExecuterManager();
-            commandExecuterManager.Register(
-                new Glash.Agent.Protocol.QpCommands.CreateTunnel.Request(),
-                executeCommand_CreateTunnel);
-            commandExecuterManager.Register(
-                new Glash.Agent.Protocol.QpCommands.StartTunnel.Request(),
-                executeCommand_StartTunnel);
-            qpClientOptions.RegisterCommandExecuterManager(commandExecuterManager);
-
-            var noticeHandlerManager = new NoticeHandlerManager();
-            noticeHandlerManager.Register<G.D>(OnTunnelDataAviliable);
-            noticeHandlerManager.Register<TunnelClosed>(OnTunnelClosed);
-            qpClientOptions.RegisterNoticeHandlerManager(noticeHandlerManager);
-
-            qpClient = qpClientOptions.CreateClient();
-            qpClient.Disconnected += QpClient_Disconnected;
             this.agentName = agentName;
         }
 
@@ -53,11 +33,31 @@ namespace Glash.Agent
             }
             foreach (var tunnel in tunnels)
                 tunnel.Dispose();
+            if (qpClient != null)
+                qpClient.Disconnected -= QpClient_Disconnected;
             Disconnected?.Invoke(this, EventArgs.Empty);
         }
 
         public async Task ConnectAsync()
         {
+            var commandExecuterManager = new CommandExecuterManager();
+            commandExecuterManager.Register(
+                new Glash.Agent.Protocol.QpCommands.CreateTunnel.Request(),
+                executeCommand_CreateTunnel);
+            commandExecuterManager.Register(
+                new Glash.Agent.Protocol.QpCommands.StartTunnel.Request(),
+                executeCommand_StartTunnel);
+
+            var noticeHandlerManager = new NoticeHandlerManager();
+            noticeHandlerManager.Register<G.D>(OnTunnelDataAviliable);
+            noticeHandlerManager.Register<TunnelClosed>(OnTunnelClosed);
+
+            var qpClientOptions = QpClientOptions.Parse(new Uri(url));
+            qpClientOptions.InstructionSet = [Protocol.Instruction.Instance];
+            qpClientOptions.RegisterCommandExecuterManager(commandExecuterManager);
+            qpClientOptions.RegisterNoticeHandlerManager(noticeHandlerManager);
+            qpClient = qpClientOptions.CreateClient();
+            qpClient.Disconnected += QpClient_Disconnected;
             //Connect
             await qpClient.ConnectAsync();
             //Register
