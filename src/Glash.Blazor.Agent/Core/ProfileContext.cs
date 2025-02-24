@@ -57,8 +57,12 @@ namespace Glash.Blazor.Agent.Core
         {
             cts?.Cancel();
             cts = null;
-            glashAgent?.Dispose();
-            glashAgent = null;
+            if (glashAgent != null)
+            {
+                glashAgent.Disconnected -= GlashAgent_Disconnected;
+                glashAgent.Dispose();
+                glashAgent = null;
+            }
         }
     }
 }
