@@ -3,7 +3,7 @@
 	<PropertyGroup>
 		<TargetFrameworks>net8.0</TargetFrameworks>
 		<ImplicitUsings>enable</ImplicitUsings>
-		<Version>1.5.6</Version>
+		<Version>1.5.7</Version>
 		<Description>Glash is a reverse proxy that allows you to expose a local server located behind a NAT or firewall to other local server.</Description>
 		<PackageIcon>logo.png</PackageIcon>
 		<PackageProjectUrl>https://github.com/GlashProxy/Glash</PackageProjectUrl>
