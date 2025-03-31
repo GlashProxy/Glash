@@ -5,22 +5,10 @@ namespace Glash.Blazor.Client;
 
 public class ProfileContext
 {
-    public static int MaxLogLines = 1000;
-
     public Model.Profile Profile { get; private set; }
     public GlashClient GlashClient { get; private set; }
     public AgentInfo[] Agents { get; private set; }
     public ProxyRuleInfo[] ProxyRules { get; private set; }
-    private Queue<string> logQueue = new Queue<string>();
-    public string[] Logs
-    {
-        get
-        {
-            lock (logQueue)
-                return logQueue.ToArray();
-        }
-    }
-
     private Dictionary<string, AgentInfo> agentDict;
 
     private bool _Enabled;
@@ -96,6 +84,31 @@ public class ProfileContext
     }
 
 
+    public static int MaxLogLines = 100;
+    private Queue<string> logQueue = new ();
+    public string[] Logs
+    {
+        get
+        {
+            lock (logQueue)
+                return logQueue.ToArray();
+        }
+    }
+    private void pushLog(string line)
+    {
+        line = $"{DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss")}: {line}";
+        lock (logQueue)
+        {
+            logQueue.Enqueue(line);
+            while (true)
+            {
+                var currentCount = logQueue.Count;
+                if (currentCount == 0 || currentCount <= MaxLogLines)
+                    break;
+                logQueue.Dequeue();
+            }
+        }
+    }
 
     private void GlashClient_AgentLoginStatusChanged(
         object sender,
@@ -116,18 +129,7 @@ public class ProfileContext
 
     private void GlashClient_LogPushed(object sender, string e)
     {
-        var line = $"{DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss")}: {e}";
-        lock (logQueue)
-        {
-            logQueue.Enqueue(line);
-            while (true)
-            {
-                var currentCount = logQueue.Count;
-                if (currentCount == 0 || currentCount <= MaxLogLines)
-                    break;
-                logQueue.Dequeue();
-            }
-        }
+        pushLog(e);
         LogChanged?.Invoke(this, Logs);
     }
 

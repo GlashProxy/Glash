@@ -68,7 +68,7 @@ namespace Glash.Blazor.Agent.Pages
             ));
         }
 
-        private void ShowLog(Model.Profile model)
+        private void ShowLogs(Model.Profile model)
         {
             var context = Core.GlashAgentManager.Instance.GetContext(model);
             if (context == null)

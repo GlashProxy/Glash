@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Glash.Blazor.Client\n"
-"POT-Creation-Date: 2024-05-23 22:18:18+0800\n"
-"PO-Revision-Date: 2024-05-23 22:18+0800\n"
+"POT-Creation-Date: 2025-03-31 21:29:42+0800\n"
+"PO-Revision-Date: 2025-03-31 21:29+0800\n"
 "Last-Translator: 张鹏 <scbeta@qq.com>\n"
 "Language-Team: \n"
 "Language: zh\n"
@@ -11,141 +11,145 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "X-Generator: Poedit 3.4.4\n"
 
-#: ../../Main.razor.cs:28
-msgid "Delete Proxy Rule"
-msgstr "删除代理规则"
+#: ..\..\Controls\EditProfile.razor.cs:19
+#: ..\..\Controls\EditProxyRule.razor.cs:16
+msgid "Name"
+msgstr "名称"
 
-#: ../../Main.razor.cs:128
+#: ..\..\Main.razor.cs:127
 #, csharp-format
 msgid "Enable profile[{0}] error.Reason: {1}"
 msgstr "启用配置[{0}]时出错。原因：{1}"
 
-#: ../../Main.razor.cs:23
-msgid "Proxy Rule"
-msgstr "代理规则"
-
-#: ../../Main.razor.cs:19
-msgid "Edit"
-msgstr "编辑"
-
-#: ../../Main.razor.cs:25
-msgid "Add Proxy Rule"
-msgstr "添加代理规则"
-
-#: ../../Controls/EditProfile.razor.cs:22
-msgid "Client Password"
-msgstr "客户端密码"
-
-#: ../../Main.razor.cs:20
-msgid "Duplicate"
-msgstr "复制"
-
-#: ../../Main.razor.cs:34
-msgid "Disconnected from server"
-msgstr "从服务端断开"
-
-#: ../../Main.razor.cs:108
+#: ..\..\Main.razor.cs:106
 #, csharp-format
 msgid "Disable profile[{0}] error.Reason: {1}"
 msgstr "禁用配置[{0}]时出错。原因：{1}"
 
-#: ../../Controls/EditProxyRule.razor.cs:16
-#: ../../Controls/EditProfile.razor.cs:19
-msgid "Name"
-msgstr "名称"
-
-#: ../../Controls/EditProxyRule.razor.cs:20
-#: ../../Controls/EditProfile.razor.cs:23
-msgid "OK"
-msgstr "确定"
-
-#: ../../Main.razor.cs:31 ../../Controls/EditProxyRule.razor.cs:18
-msgid "Local"
-msgstr "本地"
-
-#: ../../Main.razor.cs:22 ../../Controls/EditProxyRule.razor.cs:17
-msgid "Agent"
-msgstr "代理端"
-
-#: ../../Main.razor.cs:27
-msgid "Edit Proxy Rule"
-msgstr "编辑代理规则"
-
-#: ../../Main.razor.cs:101
+#: ..\..\Main.razor.cs:99
 #, csharp-format
 msgid "Disabling profile[{0}]..."
 msgstr "正在禁用配置[{0}]。。。"
 
-#: ../../Main.razor.cs:26
-msgid "Duplicate Proxy Rule"
-msgstr "复制代理规则"
+#: ..\..\Main.razor.cs:18
+msgid "Duplicate"
+msgstr "复制"
 
-#: ../../Main.razor.cs:30
-msgid "Disable All"
-msgstr "全部禁用"
-
-#: ../../Main.razor.cs:35
-msgid "Agent not login"
-msgstr "代理端未登录"
-
-#: ../../Main.razor.cs:15 ../../Model/Profile.cs:25
-msgid "Profile"
-msgstr "配置"
-
-#: ../../Controls/EditProfile.razor.cs:20
-msgid "Server Url"
-msgstr "服务端URL"
-
-#: ../../Main.razor.cs:21
-msgid "Delete"
-msgstr "删除"
-
-#: ../../Main.razor.cs:16
+#: ..\..\Main.razor.cs:13
 msgid "Enable"
 msgstr "启用"
 
-#: ../../Main.razor.cs:18
-msgid "Add"
-msgstr "添加"
+#: ..\..\Controls\EditProfile.razor.cs:22
+msgid "Client Password"
+msgstr "客户端密码"
 
-#: ../../Main.razor.cs:171
-#, csharp-format
-msgid "Are you sure to delete Profile[{0}]?"
-msgstr "确定要删除配置[{0}]？"
-
-#: ../../Controls/EditProfile.razor.cs:21
-msgid "Client Name"
-msgstr "客户端名称"
-
-#: ../../Main.razor.cs:24
-msgid "Error"
-msgstr "错误"
-
-#: ../../Main.razor.cs:119
+#: ..\..\Main.razor.cs:117
 #, csharp-format
 msgid "Enabling profile[{0}]..."
 msgstr "正在启用配置[{0}]。。。"
 
-#: ../../Main.razor.cs:32 ../../Controls/EditProxyRule.razor.cs:19
-msgid "Remote"
-msgstr "远程"
+#: ..\..\Main.razor.cs:12 ..\..\Model\Profile.cs:25
+msgid "Profile"
+msgstr "配置"
 
-#: ../../Main.razor.cs:33
-msgid "Display Rows"
-msgstr "显示行数"
-
-#: ../../Main.razor.cs:17
-msgid "Disable"
-msgstr "禁用"
-
-#: ../../Main.razor.cs:281
+#: ..\..\Main.razor.cs:305
 #, csharp-format
 msgid "Are you sure to delete ProxyRule[{0}]?"
 msgstr "确定要删除代理规则[{0}]？"
 
-#: ../../Main.razor.cs:29
+#: ..\..\Controls\EditProxyRule.razor.cs:17 ..\..\Main.razor.cs:20
+msgid "Agent"
+msgstr "代理端"
+
+#: ..\..\Main.razor.cs:24
+msgid "Duplicate Proxy Rule"
+msgstr "复制代理规则"
+
+#: ..\..\Main.razor.cs:28
+msgid "Disable All"
+msgstr "全部禁用"
+
+#: ..\..\Controls\EditProfile.razor.cs:20
+msgid "Server Url"
+msgstr "服务端URL"
+
+#: ..\..\Main.razor.cs:23
+msgid "Add Proxy Rule"
+msgstr "添加代理规则"
+
+#: ..\..\Main.razor.cs:14
+msgid "Disable"
+msgstr "禁用"
+
+#: ..\..\Controls\EditProxyRule.razor.cs:18 ..\..\Main.razor.cs:29
+msgid "Local"
+msgstr "本地"
+
+#: ..\..\Controls\EditProxyRule.razor.cs:19 ..\..\Main.razor.cs:30
+msgid "Remote"
+msgstr "远程"
+
+#: ..\..\Main.razor.cs:32
+msgid "Disconnected from server"
+msgstr "从服务端断开"
+
+#: ..\..\Main.razor.cs:15
+msgid "Add"
+msgstr "添加"
+
+#: ..\..\Main.razor.cs:31
+msgid "Display Rows"
+msgstr "显示行数"
+
+#: ..\..\Main.razor.cs:16
+msgid "Logs"
+msgstr "日志"
+
+#: ..\..\Main.razor.cs:17
+msgid "Edit"
+msgstr "编辑"
+
+#: ..\..\Main.razor.cs:21
+msgid "Proxy Rule"
+msgstr "代理规则"
+
+#: ..\..\Main.razor.cs:19
+msgid "Delete"
+msgstr "删除"
+
+#: ..\..\Controls\EditProfile.razor.cs:21
+msgid "Client Name"
+msgstr "客户端名称"
+
+#: ..\..\Main.razor.cs:27
 msgid "Enable All"
 msgstr "全部启用"
+
+#: ..\..\Main.razor.cs:33
+msgid "Agent not login"
+msgstr "代理端未登录"
+
+#: ..\..\Controls\EditProfile.razor.cs:23
+#: ..\..\Controls\EditProxyRule.razor.cs:20
+msgid "OK"
+msgstr "确定"
+
+#: ..\..\Main.razor.cs:25
+msgid "Edit Proxy Rule"
+msgstr "编辑代理规则"
+
+#: ..\..\Main.razor.cs:26
+msgid "Delete Proxy Rule"
+msgstr "删除代理规则"
+
+#: ..\..\Main.razor.cs:195
+#, csharp-format
+msgid "Are you sure to delete Profile[{0}]?"
+msgstr "确定要删除配置[{0}]？"
+
+#: ..\..\Main.razor.cs:22
+msgid "Error"
+msgstr "错误"
 
 #~ msgid "Basic"
 #~ msgstr "基本"

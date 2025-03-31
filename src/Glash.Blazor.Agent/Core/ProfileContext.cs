@@ -5,13 +5,14 @@ using Quick.Localize;
 namespace Glash.Blazor.Agent.Core
 {
     public class ProfileContext : IDisposable
-    {
-        public static int MaxLogLines = 100;
+    {        
         private CancellationTokenSource cts;
-        private GlashAgent glashAgent;
-        private Queue<string> logQueue;
+        private GlashAgent glashAgent;        
         public Model.Profile Model { get; private set; }
         public string Status { get; private set; }
+        
+        public static int MaxLogLines = 100;
+        private Queue<string> logQueue = new ();
         public string[] Logs
         {
             get
@@ -20,7 +21,6 @@ namespace Glash.Blazor.Agent.Core
                     return logQueue.ToArray();
             }
         }
-
         private void pushLog(string line)
         {
             line = $"{DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss")}: {line}";
@@ -41,7 +41,6 @@ namespace Glash.Blazor.Agent.Core
         {
             Model = model;
             cts = new CancellationTokenSource();
-            logQueue = new();
             glashAgent = new GlashAgent(Model.ServerUrl, Model.AgentName, Model.AgentPassword);
             glashAgent.LogPushed += GlashAgent_LogPushed;
             glashAgent.Disconnected += GlashAgent_Disconnected;

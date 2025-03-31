@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: \n"
-"POT-Creation-Date: 2024-05-22 16:47:33+0800\n"
-"PO-Revision-Date: 2024-05-22 16:49+0800\n"
+"POT-Creation-Date: 2025-03-31 21:29:20+0800\n"
+"PO-Revision-Date: 2025-03-31 21:29+0800\n"
 "Last-Translator: 张鹏 <scbeta@qq.com>\n"
 "Language-Team: \n"
 "Language: zh\n"
@@ -11,64 +11,68 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "X-Generator: Poedit 3.4.4\n"
 
-#: ../../Model/Profile.cs:25
-msgid "Profile"
-msgstr "配置"
-
-#: ../../Controls/EditProfile.razor.cs:18 ../../Pages/ProfileManage.razor.cs:14
-msgid "Name"
-msgstr "名称"
-
-#: ../../Pages/ProfileManage.razor.cs:64 ../../Pages/ProfileManage.razor.cs:90
-#: ../../Pages/ProfileManage.razor.cs:110
-msgid "Error"
-msgstr "错误"
-
-#: ../../Pages/ProfileManage.razor.cs:19 ../../Pages/ProfileManage.razor.cs:72
-msgid "Edit"
-msgstr "编辑"
-
-#: ../../Pages/ProfileManage.razor.cs:20 ../../Pages/ProfileManage.razor.cs:98
-msgid "Delete"
-msgstr "删除"
-
-#: ../../Controls/EditProfile.razor.cs:22
-msgid "OK"
-msgstr "确定"
-
-#: ../../Controls/EditProfile.razor.cs:21
-msgid "Agent Password"
-msgstr "代理密码"
-
-#: ../../Controls/EditProfile.razor.cs:19
-msgid "Server Url"
-msgstr "服务端URL"
-
-#: ../../Pages/ProfileManage.razor.cs:18 ../../Pages/ProfileManage.razor.cs:51
-msgid "Add"
-msgstr "添加"
-
-#: ../../Core/ProfileContext.cs:46
-msgid "Connected"
-msgstr "已连接"
-
-#: ../../Pages/ProfileManage.razor.cs:98
+#: ..\..\Pages\ProfileManage.razor.cs:110
 #, csharp-format
 msgid "Are you sure to delete profile[{0}]?"
 msgstr "确定要删除配置[{0}]？"
 
-#: ../../Controls/EditProfile.razor.cs:20 ../../Pages/ProfileManage.razor.cs:15
-msgid "Agent Name"
-msgstr "代理名称"
+#: ..\..\Core\ProfileContext.cs:80 ..\..\Core\ProfileContext.cs:81
+msgid "Connected"
+msgstr "已连接"
 
-#: ../../Pages/ProfileManage.razor.cs:16
+#: ..\..\Pages\ProfileManage.razor.cs:19 ..\..\Pages\ProfileManage.razor.cs:84
+msgid "Edit"
+msgstr "编辑"
+
+#: ..\..\Controls\EditProfile.razor.cs:23
+msgid "OK"
+msgstr "确定"
+
+#: ..\..\Model\Profile.cs:25
+msgid "Profile"
+msgstr "配置"
+
+#: ..\..\Pages\ProfileManage.razor.cs:20 ..\..\Pages\ProfileManage.razor.cs:110
+msgid "Delete"
+msgstr "删除"
+
+#: ..\..\Pages\ProfileManage.razor.cs:15
 msgid "Status"
 msgstr "状态"
 
-#: ../../Core/ProfileContext.cs:24
+#: ..\..\Pages\ProfileManage.razor.cs:13 ..\..\Controls\EditProfile.razor.cs:19
+msgid "Name"
+msgstr "名称"
+
+#: ..\..\Pages\ProfileManage.razor.cs:16
+msgid "Operate"
+msgstr "操作"
+
+#: ..\..\Controls\EditProfile.razor.cs:22
+msgid "Agent Password"
+msgstr "代理密码"
+
+#: ..\..\Pages\ProfileManage.razor.cs:65 ..\..\Pages\ProfileManage.razor.cs:102
+#: ..\..\Pages\ProfileManage.razor.cs:122
+msgid "Error"
+msgstr "错误"
+
+#: ..\..\Pages\ProfileManage.razor.cs:14 ..\..\Controls\EditProfile.razor.cs:21
+msgid "Agent Name"
+msgstr "代理名称"
+
+#: ..\..\Core\ProfileContext.cs:57 ..\..\Core\ProfileContext.cs:58
 msgid "Disconnected"
 msgstr "已断开"
 
-#: ../../Pages/ProfileManage.razor.cs:17
-msgid "Operate"
-msgstr "操作"
+#: ..\..\Controls\EditProfile.razor.cs:20
+msgid "Server Url"
+msgstr "服务端URL"
+
+#: ..\..\Pages\ProfileManage.razor.cs:17 ..\..\Pages\ProfileManage.razor.cs:52
+msgid "Add"
+msgstr "添加"
+
+#: ..\..\Pages\ProfileManage.razor.cs:18
+msgid "Logs"
+msgstr "日志"

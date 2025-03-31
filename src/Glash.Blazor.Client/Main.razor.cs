@@ -152,7 +152,7 @@ namespace Glash.Blazor.Client
                 InvokeAsync(StateHasChanged);
         }
 
-        private void ShowLog()
+        private void ShowLogs()
         {
             var model = CurrentProfileContext.Profile;
             var context = ProfileContextManager.Instance.GetContext(model);

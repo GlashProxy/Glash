@@ -21,6 +21,7 @@ namespace Glash.Blazor.Server.Pages
 
         private static string TextOperate => Locale.GetString("Operate");
         private static string TextAdd => Locale.GetString("Add");
+        private static string TextLogs => Locale.GetString("Logs");
         private static string TextEdit => Locale.GetString("Edit");
         private static string TextDelete => Locale.GetString("Delete");
         private static string TextError => Locale.GetString("Error");
