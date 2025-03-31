@@ -13,6 +13,32 @@ namespace Glash.Blazor.Server
         public GlashServer GlashServer { get; private set; }
         public QpServerOptions ServerOptions { get; private set; }
 
+        public static int MaxLogLines = 100;
+        private Queue<string> logQueue = new();
+        public string[] Logs
+        {
+            get
+            {
+                lock (logQueue)
+                    return logQueue.ToArray();
+            }
+        }
+        private void pushLog(string line)
+        {
+            line = $"{DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss")}: {line}";
+            lock (logQueue)
+            {
+                logQueue.Enqueue(line);
+                while (true)
+                {
+                    var currentCount = logQueue.Count;
+                    if (currentCount == 0 || currentCount <= MaxLogLines)
+                        break;
+                    logQueue.Dequeue();
+                }
+            }
+        }
+
         public string ConnectionPassword
         {
             get
@@ -54,6 +80,7 @@ namespace Glash.Blazor.Server
             GlashServer.AgentDisconnected += GlashServer_AgentDisconnected;
             GlashServer.ClientConnected += GlashServer_ClientConnected;
             GlashServer.ClientDisconnected += GlashServer_ClientDisconnected;
+            GlashServer.LogPushed += GlashServer_ClientDisconnected;
             GlashServer.HandleServerOptions(serverOptions);
         }
 
@@ -112,6 +139,11 @@ namespace Glash.Blazor.Server
             if (clientInfo == null)
                 return;
             clientInfo.Context = null;
+        }
+
+        private void GlashServer_ClientDisconnected(object sender,string e)
+        {
+            pushLog(e);
         }
 
         bool IAgentManager.Login(LoginInfo loginInfo)

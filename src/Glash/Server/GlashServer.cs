@@ -1,5 +1,6 @@
 ﻿using Glash.Core;
 using Quick.Protocol;
+using Quick.Protocol.Utils;
 
 namespace Glash.Server
 {
@@ -144,8 +145,10 @@ namespace Glash.Server
                 {
                     Console.WriteLine("ExecuteCommand_Agent_Login->channel.Disconnected->context.Dispose or tunnel.OnError:" + ex.ToString());
                 }
+                LogPushed?.Invoke(this, $"Agent[{agent.Name}] disconnected.Reason:{ExceptionUtils.GetExceptionMessage(channel.LastException)}");
                 AgentDisconnected?.Invoke(this, context);
             };
+            LogPushed?.Invoke(this, $"Agent[{agent.Name}] connected.");
             AgentConnected?.Invoke(this, agent);
             return new Agent.Protocol.QpCommands.Login.Response();
         }
@@ -200,8 +203,10 @@ namespace Glash.Server
                 {
                     Console.WriteLine("ExecuteCommand_Client_Login->channel.Disconnected->context.Dispose or tunnel.OnError:" + ex.ToString());
                 }
+                LogPushed?.Invoke(this, $"Client[{client.Name}] disconnected.Reason:{ExceptionUtils.GetExceptionMessage(channel.LastException)}");
                 ClientDisconnected?.Invoke(this, context);
             };
+            LogPushed?.Invoke(this, $"Client[{client.Name}] connected.");
             ClientConnected?.Invoke(this, client);
             return new Client.Protocol.QpCommands.Login.Response();
         }
@@ -334,6 +339,7 @@ namespace Glash.Server
                 Tunnels = serverTunnelContextDict.Values.ToArray();
             }
             TunnelCreated?.Invoke(this, tunnel);
+            LogPushed?.Invoke(this, $"Tunnel[{tunnelInfo.Id}] created.ProxyRule:[Id:{proxyRule.Id},Name:{proxyRule.Name}]");
             return new Client.Protocol.QpCommands.CreateTunnel.Response() { Data = tunnelInfo };
         }
 
@@ -352,6 +358,7 @@ namespace Glash.Server
             if (serverTunnelContext.Client != clientContext)
                 throw new ArgumentException($"Tunnel[{tunnelId}] client context not match.");
             serverTunnelContext.StartAgentTunnel();
+            LogPushed?.Invoke(this, $"Tunnel[{tunnelId}] started.");
             return new Client.Protocol.QpCommands.StartTunnel.Response();
         }
 
