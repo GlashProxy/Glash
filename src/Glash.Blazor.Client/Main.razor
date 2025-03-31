@@ -21,27 +21,32 @@
                     </InputSelect>
                 @if (CurrentProfileContext != null)
                 {
+                    <div class="input-group-append">
+                        <button class="btn btn-secondary" type="button" @onclick="ShowLog" title="@TextLogs">
+                            <i class="fa fa-file" aria-hidden="true"></i>
+                        </button>
+                    </div>
                     @if (CurrentProfileContext.Enabled)
                     {
-                                    <div class="input-group-append">
-                                        <button class="btn btn-secondary" type="button" @onclick="DisableProfile" title="@TextDisable">
-                                            <i class="fa fa-stop" aria-hidden="true"></i>
-                                        </button>
-                                    </div>
+                        <div class="input-group-append">
+                            <button class="btn btn-secondary" type="button" @onclick="DisableProfile" title="@TextDisable">
+                                <i class="fa fa-stop" aria-hidden="true"></i>
+                            </button>
+                        </div>
                     }
                     else
                     {
-                                    <div class="input-group-append">
-                                        <button class="btn btn-secondary" type="button" @onclick="EnableProfile" title="@TextEnable">                                                
-                                            <i class="fa fa-play" aria-hidden="true"></i>
-                                        </button>
-                                        <button class="btn btn-secondary" type="button" @onclick="EditProfile" title="@TextEdit">
-                                            <i class="fa fa-pencil" aria-hidden="true"></i>
-                                        </button>
-                                        <button class="btn btn-secondary" type="button" @onclick="DeleteProfile" title="@TextDelete">
-                                            <i class="fa fa-trash" aria-hidden="true"></i>
-                                        </button>
-                                    </div>                                                                    
+                        <div class="input-group-append">
+                            <button class="btn btn-secondary" type="button" @onclick="EnableProfile" title="@TextEnable">                                                
+                                <i class="fa fa-play" aria-hidden="true"></i>
+                            </button>
+                            <button class="btn btn-secondary" type="button" @onclick="EditProfile" title="@TextEdit">
+                                <i class="fa fa-pencil" aria-hidden="true"></i>
+                            </button>
+                            <button class="btn btn-secondary" type="button" @onclick="DeleteProfile" title="@TextDelete">
+                                <i class="fa fa-trash" aria-hidden="true"></i>
+                            </button>
+                        </div>                                                                    
                     }                                    
                 }
                 </div>

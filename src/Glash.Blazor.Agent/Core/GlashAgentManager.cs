@@ -15,6 +15,16 @@ namespace Glash.Blazor.Agent.Core
                 OnAdd(profile);
         }
 
+        public ProfileContext GetContext(Model.Profile model)
+        {
+            lock (profileDict)
+            {
+                if(profileDict.TryGetValue(model,out var context))
+                    return context;
+            }
+            return null;
+        }
+
         public void OnAdd(Model.Profile model)
         {
             lock (profileDict)

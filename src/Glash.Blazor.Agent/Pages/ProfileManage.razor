@@ -26,6 +26,9 @@
                 <td>
                     <div class="btn-toolbar">
                         <div class="btn-group">
+                            <button type="button" class="btn btn-sm btn-primary" @onclick="@(()=>ShowLog(t.Model))">
+                                @TextLogs
+                            </button>
                             <button type="button" class="btn btn-sm btn-primary" @onclick="@(()=>Edit(t.Model))">
                                 @TextEdit
                             </button>

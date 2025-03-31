@@ -15,6 +15,7 @@ namespace Glash.Blazor.Agent.Pages
         private static string TextStatus => Locale.GetString("Status");
         private static string TextOperate => Locale.GetString("Operate");
         private static string TextAdd => Locale.GetString("Add");
+        private static string TextLogs => Locale.GetString("Logs");
         private static string TextEdit => Locale.GetString("Edit");
         private static string TextDelete => Locale.GetString("Delete");
 
@@ -65,6 +66,17 @@ namespace Glash.Blazor.Agent.Pages
                     }
                 }
             ));
+        }
+
+        private void ShowLog(Model.Profile model)
+        {
+            var context = Core.GlashAgentManager.Instance.GetContext(model);
+            if (context == null)
+            {
+                modalAlert.Show("错误", $"未找到{model}的上下文！");
+                return;
+            }
+            modalAlert.Show("日志", string.Join(Environment.NewLine, context.Logs), usePreTag: true);
         }
 
         private void Edit(Model.Profile model)

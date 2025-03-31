@@ -13,6 +13,7 @@ namespace Glash.Blazor.Client
         private static string TextEnable => Locale.GetString("Enable");
         private static string TextDisable => Locale.GetString("Disable");
         private static string TextAdd => Locale.GetString("Add");
+        private static string TextLogs => Locale.GetString("Logs");
         private static string TextEdit => Locale.GetString("Edit");
         private static string TextDuplicate => Locale.GetString("Duplicate");
         private static string TextDelete => Locale.GetString("Delete");
@@ -149,6 +150,18 @@ namespace Glash.Blazor.Client
             var profileContext = (ProfileContext)sender;
             if (profileContext == CurrentProfileContext)
                 InvokeAsync(StateHasChanged);
+        }
+
+        private void ShowLog()
+        {
+            var model = CurrentProfileContext.Profile;
+            var context = ProfileContextManager.Instance.GetContext(model);
+            if (context == null)
+            {
+                modalAlert.Show("错误", $"未找到{model}的上下文！");
+                return;
+            }
+            modalAlert.Show("日志", string.Join(Environment.NewLine, context.Logs), usePreTag: true);
         }
 
         private void EditProfile()

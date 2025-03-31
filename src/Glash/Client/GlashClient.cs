@@ -50,6 +50,7 @@ namespace Glash.Client
 
         private void QpClient_Disconnected(object sender, EventArgs e)
         {
+            LogPushed?.Invoke(this, $"Disconnected.Message:{ExceptionUtils.GetExceptionMessage(qpClient?.LastException)}");
             closeAllTunnel();
             Disconnected?.Invoke(this, EventArgs.Empty);
         }

@@ -5,13 +5,22 @@ namespace Glash.Blazor.Client;
 
 public class ProfileContext
 {
+    public static int MaxLogLines = 1000;
+
     public Model.Profile Profile { get; private set; }
     public GlashClient GlashClient { get; private set; }
     public AgentInfo[] Agents { get; private set; }
     public ProxyRuleInfo[] ProxyRules { get; private set; }
     private Queue<string> logQueue = new Queue<string>();
-    public string Logs { get; private set; }
-    private int MAX_LOG_LINES = 1000;
+    public string[] Logs
+    {
+        get
+        {
+            lock (logQueue)
+                return logQueue.ToArray();
+        }
+    }
+
     private Dictionary<string, AgentInfo> agentDict;
 
     private bool _Enabled;
@@ -29,7 +38,7 @@ public class ProfileContext
     }
     public EventHandler<bool> EnableStateChanged;
     public EventHandler<AgentInfo> AgentLoginStatusChanged;
-    public EventHandler<string> LogChanged;
+    public EventHandler<string[]> LogChanged;
 
     public ProfileContext(Model.Profile profile)
     {
@@ -111,9 +120,13 @@ public class ProfileContext
         lock (logQueue)
         {
             logQueue.Enqueue(line);
-            while (logQueue.Count > MAX_LOG_LINES)
+            while (true)
+            {
+                var currentCount = logQueue.Count;
+                if (currentCount == 0 || currentCount <= MaxLogLines)
+                    break;
                 logQueue.Dequeue();
-            Logs = string.Join(Environment.NewLine, logQueue);
+            }
         }
         LogChanged?.Invoke(this, Logs);
     }

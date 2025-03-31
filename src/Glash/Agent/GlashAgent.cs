@@ -41,6 +41,7 @@ namespace Glash.Agent
 
         private void QpClient_Disconnected(object sender, EventArgs e)
         {
+            LogPushed?.Invoke(this, $"Disconnected.Message:{ExceptionUtils.GetExceptionMessage(qpClient?.LastException)}");
             GlashTunnelContext[] tunnels = null;
             lock (tunnelContextDict)
             {
