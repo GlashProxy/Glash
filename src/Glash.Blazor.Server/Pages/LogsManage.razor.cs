@@ -9,7 +9,8 @@ namespace Glash.Blazor.Server.Pages
         {
             if (firstRender)
             {
-                logViewControl.SetContent(string.Join(Environment.NewLine, Global.Instance.Logs));
+                foreach (var line in Global.Instance.Logs)
+                    logViewControl.AddLine(line);
                 Global.Instance.GlashServer.LogPushed += GlashServer_LogPushed;
             }
         }
