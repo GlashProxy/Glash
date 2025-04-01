@@ -286,61 +286,68 @@ namespace Glash.Server
             var proxyRule = options.ClientManager.GetProxyRule(clientContext.Name, request.ProxyRuleId);
             if (proxyRule == null)
                 throw new ApplicationException($"ProxyRule[Id:{request.ProxyRuleId}] not found.");
-
             var tunnelInfo = new TunnelInfo()
             {
                 Agent = proxyRule.Agent,
                 Host = proxyRule.RemoteHost,
                 Port = proxyRule.RemotePort
             };
-            lock (serverTunnelContextDict)
+            try
             {
-                if (serverTunnelContextDict.Count >= options.MaxTunnelCount)
-                    throw new ApplicationException($"Current tunnel count({serverTunnelContextDict.Count}) reach max tunnel count({options.MaxTunnelCount}).");
-                var tunnelId = nextTunnelId;
-                while (true)
+                lock (serverTunnelContextDict)
                 {
-                    if (!serverTunnelContextDict.ContainsKey(tunnelId))
-                        break;
-                    tunnelId++;
-                    if (tunnelId >= options.MaxTunnelCount)
-                        tunnelId = 0;
-                }
-                nextTunnelId = tunnelId + 1;
-                if (nextTunnelId >= options.MaxTunnelCount)
-                    nextTunnelId = 0;
-                tunnelInfo.Id = tunnelId;
-            }
-            GlashAgentContext agentContext = null;
-            if (!agentDict.TryGetValue(tunnelInfo.Agent, out agentContext))
-                throw new ArgumentException($"Agent[{tunnelInfo.Agent}] not login.");
-            agentContext.CreateTunnelAsync(tunnelInfo).Wait();
-
-            var tunnel = new GlashServerTunnelContext(
-                tunnelInfo,
-                clientContext,
-                agentContext,
-                ex =>
-                {
-                    GlashServerTunnelContext serverTunnelContext;
-                    lock (serverTunnelContextDict)
+                    if (serverTunnelContextDict.Count >= options.MaxTunnelCount)
+                        throw new ApplicationException($"Current tunnel count({serverTunnelContextDict.Count}) reach max tunnel count({options.MaxTunnelCount}).");
+                    var tunnelId = nextTunnelId;
+                    while (true)
                     {
-                        if (!serverTunnelContextDict.TryGetValue(tunnelInfo.Id, out serverTunnelContext))
-                            return;
-                        serverTunnelContextDict.Remove(tunnelInfo.Id);
-                        Tunnels = serverTunnelContextDict.Values.ToArray();
+                        if (!serverTunnelContextDict.ContainsKey(tunnelId))
+                            break;
+                        tunnelId++;
+                        if (tunnelId >= options.MaxTunnelCount)
+                            tunnelId = 0;
                     }
-                    serverTunnelContext.Dispose();
-                });
+                    nextTunnelId = tunnelId + 1;
+                    if (nextTunnelId >= options.MaxTunnelCount)
+                        nextTunnelId = 0;
+                    tunnelInfo.Id = tunnelId;
+                }
+                GlashAgentContext agentContext = null;
+                if (!agentDict.TryGetValue(tunnelInfo.Agent, out agentContext))
+                    throw new ArgumentException($"Agent[{tunnelInfo.Agent}] not login.");
 
-            lock (serverTunnelContextDict)
-            {
-                serverTunnelContextDict[tunnelInfo.Id] = tunnel;
-                Tunnels = serverTunnelContextDict.Values.ToArray();
+                agentContext.CreateTunnelAsync(tunnelInfo).Wait();
+                var tunnel = new GlashServerTunnelContext(
+                    tunnelInfo,
+                    clientContext,
+                    agentContext,
+                    ex =>
+                    {
+                        GlashServerTunnelContext serverTunnelContext;
+                        lock (serverTunnelContextDict)
+                        {
+                            if (!serverTunnelContextDict.TryGetValue(tunnelInfo.Id, out serverTunnelContext))
+                                return;
+                            serverTunnelContextDict.Remove(tunnelInfo.Id);
+                            Tunnels = serverTunnelContextDict.Values.ToArray();
+                        }
+                        serverTunnelContext.Dispose();
+                    });
+
+                lock (serverTunnelContextDict)
+                {
+                    serverTunnelContextDict[tunnelInfo.Id] = tunnel;
+                    Tunnels = serverTunnelContextDict.Values.ToArray();
+                }
+                TunnelCreated?.Invoke(this, tunnel);
+                LogPushed?.Invoke(this, $"Tunnel[{tunnelInfo.Id}] created.ProxyRule:[Id:{proxyRule.Id},Name:{proxyRule.Name}]");
+                return new Client.Protocol.QpCommands.CreateTunnel.Response() { Data = tunnelInfo };
             }
-            TunnelCreated?.Invoke(this, tunnel);
-            LogPushed?.Invoke(this, $"Tunnel[{tunnelInfo.Id}] created.ProxyRule:[Id:{proxyRule.Id},Name:{proxyRule.Name}]");
-            return new Client.Protocol.QpCommands.CreateTunnel.Response() { Data = tunnelInfo };
+            catch (Exception ex)
+            {
+                LogPushed?.Invoke(this, $"Tunnel[{tunnelInfo.Id}] create failed.ProxyRule:[Id:{proxyRule.Id},Name:{proxyRule.Name}].Reason:{ExceptionUtils.GetExceptionMessage(ex)}");
+                throw;
+            }
         }
 
         private Client.Protocol.QpCommands.StartTunnel.Response ExecuteCommand_Client_StartTunnel(

@@ -104,29 +104,36 @@ namespace Glash.Agent
         {
             var tunnelInfo = request.Data;
             var tunnelId = tunnelInfo.Id;
-
-            var tcpClient = new TcpClient();
-            tcpClient.Connect(tunnelInfo.Host, tunnelInfo.Port);
-            var tunnelContext = new GlashTunnelContext(
-                channel, tunnelInfo,
-                tcpClient.GetStream(),
-                ex =>
-                {
-                    LogPushed?.Invoke(this, $"Tunnel[{tunnelId}] error.Message:{ExceptionUtils.GetExceptionMessage(ex)}");
-                    channel.SendNoticePackage(new Core.TunnelClosed() { TunnelId = tunnelId });
-                    GlashTunnelContext tunnelContext = null;
-                    lock (tunnelContextDict)
+            try
+            {
+                var tcpClient = new TcpClient();
+                tcpClient.Connect(tunnelInfo.Host, tunnelInfo.Port);
+                var tunnelContext = new GlashTunnelContext(
+                    channel, tunnelInfo,
+                    tcpClient.GetStream(),
+                    ex =>
                     {
-                        if (!tunnelContextDict.ContainsKey(tunnelId))
-                            return;
-                        tunnelContext = tunnelContextDict[tunnelId];
-                    }
-                    tunnelContext.Dispose();
-                });
-            lock (tunnelContextDict)
-                tunnelContextDict[tunnelId] = tunnelContext;
-            LogPushed?.Invoke(this, $"Create tunnel[{tunnelId}] to {tunnelInfo.Host}:{tunnelInfo.Port} success.");
-            return new Protocol.QpCommands.CreateTunnel.Response();
+                        LogPushed?.Invoke(this, $"Tunnel[{tunnelId}] error.Message:{ExceptionUtils.GetExceptionMessage(ex)}");
+                        channel.SendNoticePackage(new Core.TunnelClosed() { TunnelId = tunnelId });
+                        GlashTunnelContext tunnelContext = null;
+                        lock (tunnelContextDict)
+                        {
+                            if (!tunnelContextDict.ContainsKey(tunnelId))
+                                return;
+                            tunnelContext = tunnelContextDict[tunnelId];
+                        }
+                        tunnelContext.Dispose();
+                    });
+                lock (tunnelContextDict)
+                    tunnelContextDict[tunnelId] = tunnelContext;
+                LogPushed?.Invoke(this, $"Create tunnel[{tunnelId}] to {tunnelInfo.Host}:{tunnelInfo.Port} success.");
+                return new Protocol.QpCommands.CreateTunnel.Response();
+            }
+            catch (Exception ex)
+            {
+                LogPushed?.Invoke(this, $"Create tunnel[{tunnelId}] to {tunnelInfo.Host}:{tunnelInfo.Port} error.Reason: {ExceptionUtils.GetExceptionMessage(ex)}");
+                throw;
+            }
         }
 
         private Protocol.QpCommands.StartTunnel.Response executeCommand_StartTunnel(
