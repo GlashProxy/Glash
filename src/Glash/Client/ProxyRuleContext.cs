@@ -36,6 +36,8 @@ namespace Glash.Client
 
         public void Start()
         {
+            Stop();
+            
             cts?.Cancel();
             cts = new CancellationTokenSource();
 

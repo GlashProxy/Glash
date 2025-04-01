@@ -81,6 +81,9 @@ namespace Glash.Client
         {
             try
             {
+                //如果已经启用，则返回
+                if (context.Config.Enable)
+                    return;
                 context.Start();
                 context.Config.Enable = true;
                 LogPushed?.Invoke(this, $"{context.Config} enabled.");
@@ -105,6 +108,8 @@ namespace Glash.Client
         {
             try
             {
+                if (!context.Config.Enable)
+                    return;
                 context.Stop();
                 context.Config.Enable = false;
                 LogPushed?.Invoke(this, $"{context.Config} disabled.");
