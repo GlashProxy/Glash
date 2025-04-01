@@ -2,7 +2,7 @@
 	<PropertyGroup>
 		<TargetFrameworks>net8.0</TargetFrameworks>
 		<ImplicitUsings>enable</ImplicitUsings>
-		<Version>1.5.9</Version>
+		<Version>1.5.10</Version>
 		<Description>Glash Agent Blazor controls.</Description>
 		<PackageIcon>logo.png</PackageIcon>
 		<PackageProjectUrl>https://github.com/GlashProxy/Glash</PackageProjectUrl>
