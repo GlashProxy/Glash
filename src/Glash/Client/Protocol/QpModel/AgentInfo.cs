@@ -4,5 +4,6 @@
     {
         public string AgentName { get; set; }
         public bool IsLoggedIn { get; set; }
+        public string[] AutoEnableRuleIds { get; set; }
     }
 }

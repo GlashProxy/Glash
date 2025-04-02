@@ -15,7 +15,7 @@ namespace Glash.Client
         public event EventHandler<AgentLoginStatusChanged> AgentLoginStatusChanged;
         public event EventHandler Disconnected;
         public event EventHandler<string> LogPushed;
-        
+
         public ProxyRuleContext[] ProxyRuleContexts => proxyRuleContextDict.Values.ToArray();
 
         public GlashClient(string url, string password = null)
@@ -271,7 +271,7 @@ namespace Glash.Client
             });
         }
 
-        public void DisableAgentProxyRules(string agentName)
+        public IEnumerable<string> DisableAgentProxyRules(string agentName)
         {
             foreach (var context in ProxyRuleContexts)
             {
@@ -280,6 +280,7 @@ namespace Glash.Client
                 if (!context.Config.Enable)
                     continue;
                 DisableProxyRule(context);
+                yield return context.Config.Id;
             }
         }
     }
