@@ -327,10 +327,11 @@ namespace Glash.Blazor.Client
             await Task.Delay(100);
             try
             {
+                proxyRuleContext.Config.Enable = !proxyRuleContext.Config.Enable;
                 if (proxyRuleContext.Config.Enable)
-                    CurrentProfileContext.GlashClient.EnableProxyRule(proxyRuleContext);
-                else
                     CurrentProfileContext.GlashClient.DisableProxyRule(proxyRuleContext);
+                else
+                    CurrentProfileContext.GlashClient.EnableProxyRule(proxyRuleContext);
             }
             catch (Exception ex)
             {
